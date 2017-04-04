@@ -1,0 +1,429 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DAA3BE8E1E8CF9410092F8DD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA3BE8D1E8CF9410092F8DD /* main.m */; };
+		DAA3BE911E8CF9410092F8DD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA3BE901E8CF9410092F8DD /* AppDelegate.m */; };
+		DAA3BE971E8CF9410092F8DD /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAA3BE951E8CF9410092F8DD /* Account.storyboard */; };
+		DAA3BE991E8CF9410092F8DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAA3BE981E8CF9410092F8DD /* Assets.xcassets */; };
+		DAA3BE9C1E8CF9410092F8DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAA3BE9A1E8CF9410092F8DD /* LaunchScreen.storyboard */; };
+		DAB65FB51E924F7B0041EDEF /* MyCustomUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB65FB41E924F7B0041EDEF /* MyCustomUITextField.m */; };
+		DAB992E31E934A3C003A6483 /* MyCircularUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB992E21E934A3C003A6483 /* MyCircularUIButton.m */; };
+		DAB992E51E9355A3003A6483 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAB992E41E9355A3003A6483 /* Main.storyboard */; };
+		DAB992E91E935EEE003A6483 /* OfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB992E81E935EEE003A6483 /* OfferViewController.m */; };
+		DAB992EC1E935F32003A6483 /* RequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB992EB1E935F32003A6483 /* RequestViewController.m */; };
+		DAB992EF1E935F3D003A6483 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB992EE1E935F3D003A6483 /* DashboardViewController.m */; };
+		DAB992F51E9361D7003A6483 /* Alerter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB992F41E9361D7003A6483 /* Alerter.m */; };
+		DAB992F91E937390003A6483 /* KeyboardHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB992F81E937390003A6483 /* KeyboardHandler.m */; };
+		DAD538701E8E129A00F71D8B /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD5386F1E8E129A00F71D8B /* SignInViewController.m */; };
+		DAD538731E8E179B00F71D8B /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD538721E8E179B00F71D8B /* ForgotPasswordViewController.m */; };
+		DAD538761E8E17A400F71D8B /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD538751E8E17A400F71D8B /* SignUpViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DAA3BE891E8CF9410092F8DD /* RoomRent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoomRent.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAA3BE8D1E8CF9410092F8DD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DAA3BE8F1E8CF9410092F8DD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		DAA3BE901E8CF9410092F8DD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DAA3BE961E8CF9410092F8DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Account.storyboard; sourceTree = "<group>"; };
+		DAA3BE981E8CF9410092F8DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DAA3BE9B1E8CF9410092F8DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DAA3BE9D1E8CF9410092F8DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAB65FB31E924F7A0041EDEF /* MyCustomUITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCustomUITextField.h; sourceTree = "<group>"; };
+		DAB65FB41E924F7B0041EDEF /* MyCustomUITextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCustomUITextField.m; sourceTree = "<group>"; };
+		DAB992E11E934A3C003A6483 /* MyCircularUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCircularUIButton.h; sourceTree = "<group>"; };
+		DAB992E21E934A3C003A6483 /* MyCircularUIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCircularUIButton.m; sourceTree = "<group>"; };
+		DAB992E41E9355A3003A6483 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		DAB992E71E935EEE003A6483 /* OfferViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferViewController.h; sourceTree = "<group>"; };
+		DAB992E81E935EEE003A6483 /* OfferViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferViewController.m; sourceTree = "<group>"; };
+		DAB992EA1E935F32003A6483 /* RequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestViewController.h; sourceTree = "<group>"; };
+		DAB992EB1E935F32003A6483 /* RequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestViewController.m; sourceTree = "<group>"; };
+		DAB992ED1E935F3D003A6483 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
+		DAB992EE1E935F3D003A6483 /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController.m; sourceTree = "<group>"; };
+		DAB992F41E9361D7003A6483 /* Alerter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alerter.m; sourceTree = "<group>"; };
+		DAB992F61E9361F4003A6483 /* Alerter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Alerter.h; sourceTree = "<group>"; };
+		DAB992F71E937390003A6483 /* KeyboardHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardHandler.h; sourceTree = "<group>"; };
+		DAB992F81E937390003A6483 /* KeyboardHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardHandler.m; sourceTree = "<group>"; };
+		DAD5386E1E8E129A00F71D8B /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
+		DAD5386F1E8E129A00F71D8B /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
+		DAD538711E8E179B00F71D8B /* ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordViewController.h; sourceTree = "<group>"; };
+		DAD538721E8E179B00F71D8B /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordViewController.m; sourceTree = "<group>"; };
+		DAD538741E8E17A400F71D8B /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		DAD538751E8E17A400F71D8B /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DAA3BE861E8CF9410092F8DD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DAA3BE801E8CF9410092F8DD = {
+			isa = PBXGroup;
+			children = (
+				DAA3BE8B1E8CF9410092F8DD /* RoomRent */,
+				DAA3BE8A1E8CF9410092F8DD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DAA3BE8A1E8CF9410092F8DD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DAA3BE891E8CF9410092F8DD /* RoomRent.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DAA3BE8B1E8CF9410092F8DD /* RoomRent */ = {
+			isa = PBXGroup;
+			children = (
+				DAA3BE8F1E8CF9410092F8DD /* AppDelegate.h */,
+				DAA3BE901E8CF9410092F8DD /* AppDelegate.m */,
+				DAA3BE951E8CF9410092F8DD /* Account.storyboard */,
+				DAB992E41E9355A3003A6483 /* Main.storyboard */,
+				DAA3BEA71E8D0FA20092F8DD /* Helper */,
+				DAA3BEA81E8D0FA20092F8DD /* CustomViews */,
+				DAB992F11E936120003A6483 /* Constants */,
+				DAA3BEA31E8D0ED00092F8DD /* ViewControllers */,
+				DAA3BE981E8CF9410092F8DD /* Assets.xcassets */,
+				DAA3BE9A1E8CF9410092F8DD /* LaunchScreen.storyboard */,
+				DAA3BE9D1E8CF9410092F8DD /* Info.plist */,
+				DAA3BE8C1E8CF9410092F8DD /* Supporting Files */,
+			);
+			path = RoomRent;
+			sourceTree = "<group>";
+		};
+		DAA3BE8C1E8CF9410092F8DD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DAA3BE8D1E8CF9410092F8DD /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DAA3BEA31E8D0ED00092F8DD /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				DAB992E61E935EB5003A6483 /* Main */,
+				DAD5386D1E8E129A00F71D8B /* AccountController */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		DAA3BEA71E8D0FA20092F8DD /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				DAB992F61E9361F4003A6483 /* Alerter.h */,
+				DAB992F41E9361D7003A6483 /* Alerter.m */,
+				DAB992F71E937390003A6483 /* KeyboardHandler.h */,
+				DAB992F81E937390003A6483 /* KeyboardHandler.m */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		DAA3BEA81E8D0FA20092F8DD /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				DAB65FB31E924F7A0041EDEF /* MyCustomUITextField.h */,
+				DAB65FB41E924F7B0041EDEF /* MyCustomUITextField.m */,
+				DAB992E11E934A3C003A6483 /* MyCircularUIButton.h */,
+				DAB992E21E934A3C003A6483 /* MyCircularUIButton.m */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		DAB992E61E935EB5003A6483 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				DAB992E71E935EEE003A6483 /* OfferViewController.h */,
+				DAB992E81E935EEE003A6483 /* OfferViewController.m */,
+				DAB992EA1E935F32003A6483 /* RequestViewController.h */,
+				DAB992EB1E935F32003A6483 /* RequestViewController.m */,
+				DAB992ED1E935F3D003A6483 /* DashboardViewController.h */,
+				DAB992EE1E935F3D003A6483 /* DashboardViewController.m */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		DAB992F11E936120003A6483 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		DAD5386D1E8E129A00F71D8B /* AccountController */ = {
+			isa = PBXGroup;
+			children = (
+				DAD5386E1E8E129A00F71D8B /* SignInViewController.h */,
+				DAD5386F1E8E129A00F71D8B /* SignInViewController.m */,
+				DAD538711E8E179B00F71D8B /* ForgotPasswordViewController.h */,
+				DAD538721E8E179B00F71D8B /* ForgotPasswordViewController.m */,
+				DAD538741E8E17A400F71D8B /* SignUpViewController.h */,
+				DAD538751E8E17A400F71D8B /* SignUpViewController.m */,
+			);
+			path = AccountController;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DAA3BE881E8CF9410092F8DD /* RoomRent */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DAA3BEA01E8CF9410092F8DD /* Build configuration list for PBXNativeTarget "RoomRent" */;
+			buildPhases = (
+				DAA3BE851E8CF9410092F8DD /* Sources */,
+				DAA3BE861E8CF9410092F8DD /* Frameworks */,
+				DAA3BE871E8CF9410092F8DD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RoomRent;
+			productName = RoomRent;
+			productReference = DAA3BE891E8CF9410092F8DD /* RoomRent.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DAA3BE811E8CF9410092F8DD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Bishal Heuju";
+				TargetAttributes = {
+					DAA3BE881E8CF9410092F8DD = {
+						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = DAA3BE841E8CF9410092F8DD /* Build configuration list for PBXProject "RoomRent" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DAA3BE801E8CF9410092F8DD;
+			productRefGroup = DAA3BE8A1E8CF9410092F8DD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DAA3BE881E8CF9410092F8DD /* RoomRent */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DAA3BE871E8CF9410092F8DD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAB992E51E9355A3003A6483 /* Main.storyboard in Resources */,
+				DAA3BE9C1E8CF9410092F8DD /* LaunchScreen.storyboard in Resources */,
+				DAA3BE991E8CF9410092F8DD /* Assets.xcassets in Resources */,
+				DAA3BE971E8CF9410092F8DD /* Account.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DAA3BE851E8CF9410092F8DD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAD538731E8E179B00F71D8B /* ForgotPasswordViewController.m in Sources */,
+				DAB992E91E935EEE003A6483 /* OfferViewController.m in Sources */,
+				DAD538761E8E17A400F71D8B /* SignUpViewController.m in Sources */,
+				DAD538701E8E129A00F71D8B /* SignInViewController.m in Sources */,
+				DAA3BE911E8CF9410092F8DD /* AppDelegate.m in Sources */,
+				DAB992F51E9361D7003A6483 /* Alerter.m in Sources */,
+				DAB992EF1E935F3D003A6483 /* DashboardViewController.m in Sources */,
+				DAB992EC1E935F32003A6483 /* RequestViewController.m in Sources */,
+				DAB65FB51E924F7B0041EDEF /* MyCustomUITextField.m in Sources */,
+				DAA3BE8E1E8CF9410092F8DD /* main.m in Sources */,
+				DAB992E31E934A3C003A6483 /* MyCircularUIButton.m in Sources */,
+				DAB992F91E937390003A6483 /* KeyboardHandler.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DAA3BE951E8CF9410092F8DD /* Account.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DAA3BE961E8CF9410092F8DD /* Base */,
+			);
+			name = Account.storyboard;
+			sourceTree = "<group>";
+		};
+		DAA3BE9A1E8CF9410092F8DD /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DAA3BE9B1E8CF9410092F8DD /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DAA3BE9E1E8CF9410092F8DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DAA3BE9F1E8CF9410092F8DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DAA3BEA11E8CF9410092F8DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = RoomRent/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.heuju.RoomRent;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		DAA3BEA21E8CF9410092F8DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = RoomRent/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.heuju.RoomRent;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DAA3BE841E8CF9410092F8DD /* Build configuration list for PBXProject "RoomRent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAA3BE9E1E8CF9410092F8DD /* Debug */,
+				DAA3BE9F1E8CF9410092F8DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DAA3BEA01E8CF9410092F8DD /* Build configuration list for PBXNativeTarget "RoomRent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAA3BEA11E8CF9410092F8DD /* Debug */,
+				DAA3BEA21E8CF9410092F8DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DAA3BE811E8CF9410092F8DD /* Project object */;
+}
