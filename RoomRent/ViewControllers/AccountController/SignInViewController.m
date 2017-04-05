@@ -21,16 +21,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //PROTOTYPE: Data
+    self.emailAddress.text = @"roomrent";
+    self.password.text = @"roomrent";
+    
+    
     //self.emailAddress.text = @"admin@admin.com";
     //self.password.text = @"password";
     
     self.emailAddress.delegate = self;
     self.password.delegate = self;
     
-    
-    // register for keyboard notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:self.view.window];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:self.view.window];
     
     //Transparent navigation bar
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
@@ -47,16 +48,18 @@
     
     //TODO: Validiation of fields
     
+    [self checkLogin];
+    
     //Switch to tabBarViewController
-    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
-    
-    
-    UIStoryboard *mainStory = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
-    UITabBarController *mainTabBarController = [mainStory instantiateViewControllerWithIdentifier:@"MainTabBarController"];
-    
-    [window setRootViewController:mainTabBarController];
-    [window makeKeyAndVisible];
+    //    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+    //
+    //
+    //    UIStoryboard *mainStory = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    //
+    //    UITabBarController *mainTabBarController = [mainStory instantiateViewControllerWithIdentifier:@"MainTabBarController"];
+    //
+    //    [window setRootViewController:mainTabBarController];
+    //    [window makeKeyAndVisible];
     
 }
 
@@ -90,40 +93,30 @@
 
 
 //MARK: Extras
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+- (void)checkLogin {
     
-    [self.view endEditing:true];
-}
-
-//MARK: Keyboard notifications handling
--(void)keyboardWillShow:(NSNotification*)notification {
+    //Get Form entries
+    NSString* username = [self.emailAddress text];
+    NSString* password = [self.password text];
     
-    NSDictionary* userInfo = [notification userInfo];
-    CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    NSDictionary *parameters = @{@"username": username, @"password": password, @"api_token": API_TOKEN};
     
-    int h = self.view.frame.size.height;
-    int w = self.view.frame.size.width;
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
-    CGRect viewFrame = CGRectMake(0, -keyboardSize.height, w, h);
-    [self.view setFrame:viewFrame];
+    [manager POST:[BASE_URL stringByAppendingString:@"login"] parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"Complete, Respose: %@", responseObject);
+        
+        //TODO: Set user data
+        
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"Fail, Respose: %@", error);
+    }];
     
-}
-
--(void)keyboardWillHide:(NSNotification*)notification {
     
-    int h = self.view.frame.size.height;
-    int w = self.view.frame.size.width;
-    
-    CGRect viewFrame = CGRectMake(0, 0, w, h);
-    [self.view setFrame:viewFrame];
-}
-
-//MARK: TextFieldDelegates
--(BOOL)textFieldShouldReturn:(UITextField *)textField {
-    
-    [textField resignFirstResponder];
-    
-    return true;
 }
 
 

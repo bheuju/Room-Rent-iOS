@@ -1,15 +1,13 @@
 //
-//  KeyboardHandler.m
+//  KeyboardAvoidingViewController.h
 //  RoomRent
 //
 //  Created by Bishal Heuju on 4/4/17.
 //  Copyright © 2017 Bishal Heuju. All rights reserved.
 //
 
-#import "KeyboardHandler.h"
+#import <UIKit/UIKit.h>
 
-@implementation KeyboardHandler
+@interface KeyboardAvoidingViewController : UIViewController
 
-
-    
 @end

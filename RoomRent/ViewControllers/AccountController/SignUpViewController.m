@@ -20,11 +20,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // register for keyboard notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:self.view.window];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:self.view.window];
-
-    
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(onCancel)];
     cancelButton.tintColor = [UIColor whiteColor];
     self.navigationItem.leftBarButtonItem = cancelButton;
@@ -42,7 +37,7 @@
 //MARK: Button Click Actions
 - (IBAction)onImagePickerClicked:(UIButton*)sender {
     
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     
     picker.delegate = self;
     
@@ -56,7 +51,10 @@
     //TODO: Validation of fields
     
     Alerter *alert = [[Alerter alloc] init];
-    [alert createAlert:@"Success" message:@"Account created" viewController:self];
+    [alert createAlert:@"Success" message:@"Account created" viewController:self completion:^{
+        
+        [self dismissViewControllerAnimated:true completion:nil];
+    }];
     
     //Dismiss to login view
     //[self dismissViewControllerAnimated:true completion:nil];
@@ -87,29 +85,6 @@
     
     [self dismissViewControllerAnimated:true completion:nil];
     
-}
-
-//MARK: Keyboard notifications handling
--(void)keyboardWillShow:(NSNotification*)notification {
-    
-    NSDictionary* userInfo = [notification userInfo];
-    CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
-    int h = self.view.frame.size.height;
-    int w = self.view.frame.size.width;
-    
-    CGRect viewFrame = CGRectMake(0, -keyboardSize.height, w, h);
-    [self.view setFrame:viewFrame];
-    
-}
-
--(void)keyboardWillHide:(NSNotification*)notification {
-    
-    int h = self.view.frame.size.height;
-    int w = self.view.frame.size.width;
-    
-    CGRect viewFrame = CGRectMake(0, 0, w, h);
-    [self.view setFrame:viewFrame];
 }
 
 @end

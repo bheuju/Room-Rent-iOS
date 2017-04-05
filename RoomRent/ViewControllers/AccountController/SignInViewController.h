@@ -7,8 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KeyboardHandler.h"
+#import <AFNetworking/AFNetworking.h>
 
-@interface SignInViewController : UIViewController
+#import "KeyboardAvoidingViewController.h"
+#import "Constants.h"
+#import "Alerter.h"
+
+@interface SignInViewController : KeyboardAvoidingViewController
+
+- (void)checkLogin;
 
 @end

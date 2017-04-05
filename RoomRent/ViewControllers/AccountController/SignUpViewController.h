@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Alerter.h"
+#import "KeyboardAvoidingViewController.h"
 
-@interface SignUpViewController : UIViewController
-
+@interface SignUpViewController : KeyboardAvoidingViewController
 @end

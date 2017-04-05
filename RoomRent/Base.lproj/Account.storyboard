@@ -57,7 +57,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="304" height="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9gX-SB-AOf" userLabel="Underline">
                                                         <rect key="frame" x="0.0" y="27" width="304" height="1"/>
@@ -293,7 +293,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ibI-Bo-bfF">
-                                <rect key="frame" x="113.33333333333331" y="70" width="188" height="38.333333333333329"/>
+                                <rect key="frame" x="113" y="70" width="188" height="38.333333333333329"/>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="32"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>

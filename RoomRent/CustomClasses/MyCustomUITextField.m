@@ -10,14 +10,17 @@
 
 @implementation MyCustomUITextField
 
-/*
+
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
     // Drawing code
+    
+    self.delegate = self;
+    
 }
-*/
 
+//Chnage color of textfield placeholder
 -(void)drawPlaceholderInRect:(CGRect)rect {
     UIColor *color = [UIColor lightGrayColor];
     
@@ -32,6 +35,31 @@
         [color setFill];
         [self.placeholder drawInRect:rect withFont:self.font lineBreakMode:NSLineBreakByTruncatingTail alignment:self.textAlignment];
     }
+}
+
+
+//MARK: UITextFieldDelegate Methods
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    //if (textField == RETURN) {
+        [self resignFirstResponder];
+    //}
+    return true;
+    
+}
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+
+    //KeyboardAvoidingViewController activeField = textField;
+    //KeyboardAvoidingViewController a
+    
+    if (textField) {
+        
+    }
+    
+    
+    return true;
+    
 }
 
 @end

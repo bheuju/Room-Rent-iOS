@@ -10,6 +10,6 @@
 
 @interface Alerter : NSObject
 
-- (void)createAlert: (NSString*)alertTitle message:(NSString*)alertMessage viewController:(UIViewController*)VC;
+- (void)createAlert: (NSString*)alertTitle message:(NSString*)alertMessage viewController:(UIViewController*)VC completion:(void (^)(void))completionBlock;
 
 @end
