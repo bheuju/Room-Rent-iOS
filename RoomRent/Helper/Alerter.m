@@ -10,6 +10,16 @@
 
 @implementation Alerter
 
+static Alerter *instance = nil;
+
++ (Alerter*)sharedInstance {
+    if (instance == nil) {
+        instance = [[self alloc] init];
+        return instance;
+    }
+    return instance;
+}
+
 -(void)createAlert:(NSString*)alertTitle message:(NSString*)alertMessage viewController:(UIViewController*)VC  completion:(void (^)(void))completionBlock {
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:alertTitle message:alertMessage preferredStyle:UIAlertControllerStyleActionSheet];

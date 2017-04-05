@@ -50,14 +50,13 @@
     
     //TODO: Validation of fields
     
-    Alerter *alert = [[Alerter alloc] init];
-    [alert createAlert:@"Success" message:@"Account created" viewController:self completion:^{
+    //Alert account created successful
+    [[Alerter sharedInstance] createAlert:@"Success" message:@"Account created" viewController:self completion:^{
         
+        //Dismiss to login view
         [self dismissViewControllerAnimated:true completion:nil];
     }];
     
-    //Dismiss to login view
-    //[self dismissViewControllerAnimated:true completion:nil];
 }
 
 
@@ -68,7 +67,6 @@
 
 
 //MARK: UIImagePickerContollerDelegate Methods
-
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
     //Set picked image on button
@@ -77,6 +75,7 @@
     [self.btnImagePicker setContentMode:UIViewContentModeScaleAspectFit];
     
     //Image border and color
+    
     //self.btnImagePicker.clipsToBounds = true;
     //self.btnImagePicker.layer.masksToBounds = true;
     //self.btnImagePicker.layer.cornerRadius = self.btnImagePicker.layer.frame.size.width / 2;

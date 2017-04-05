@@ -13,6 +13,7 @@
 		DAA3BE971E8CF9410092F8DD /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAA3BE951E8CF9410092F8DD /* Account.storyboard */; };
 		DAA3BE991E8CF9410092F8DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAA3BE981E8CF9410092F8DD /* Assets.xcassets */; };
 		DAA3BE9C1E8CF9410092F8DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAA3BE9A1E8CF9410092F8DD /* LaunchScreen.storyboard */; };
+		DAB666B61E94BD2700E83956 /* ResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB666B51E94BD2700E83956 /* ResponseHandler.m */; };
 		DAB992E51E9355A3003A6483 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAB992E41E9355A3003A6483 /* Main.storyboard */; };
 		DAB992E91E935EEE003A6483 /* OfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB992E81E935EEE003A6483 /* OfferViewController.m */; };
 		DAB992EC1E935F32003A6483 /* RequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB992EB1E935F32003A6483 /* RequestViewController.m */; };
@@ -38,6 +39,8 @@
 		DAA3BE981E8CF9410092F8DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DAA3BE9B1E8CF9410092F8DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DAA3BE9D1E8CF9410092F8DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAB666B41E94BD2700E83956 /* ResponseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseHandler.h; sourceTree = "<group>"; };
+		DAB666B51E94BD2700E83956 /* ResponseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseHandler.m; sourceTree = "<group>"; };
 		DAB992E41E9355A3003A6483 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		DAB992E71E935EEE003A6483 /* OfferViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferViewController.h; sourceTree = "<group>"; };
 		DAB992E81E935EEE003A6483 /* OfferViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferViewController.m; sourceTree = "<group>"; };
@@ -155,6 +158,8 @@
 			children = (
 				DAB992F61E9361F4003A6483 /* Alerter.h */,
 				DAB992F41E9361D7003A6483 /* Alerter.m */,
+				DAB666B41E94BD2700E83956 /* ResponseHandler.h */,
+				DAB666B51E94BD2700E83956 /* ResponseHandler.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -360,6 +365,7 @@
 				DAB992EF1E935F3D003A6483 /* DashboardViewController.m in Sources */,
 				DAB992EC1E935F32003A6483 /* RequestViewController.m in Sources */,
 				DAA3BE8E1E8CF9410092F8DD /* main.m in Sources */,
+				DAB666B61E94BD2700E83956 /* ResponseHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

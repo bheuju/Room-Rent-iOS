@@ -28,7 +28,7 @@
         // iOS7 and later
         NSDictionary *attributes = @{NSForegroundColorAttributeName: color, NSFontAttributeName: self.font};
         CGRect boundingRect = [self.placeholder boundingRectWithSize:rect.size options:0 attributes:attributes context:nil];
-        [self.placeholder drawAtPoint:CGPointMake(0, (rect.size.height/2)-boundingRect.size.height/2) withAttributes:attributes];
+        [self.placeholder drawAtPoint:CGPointMake(0, (rect.size.height/2) - boundingRect.size.height/2) withAttributes:attributes];
     }
     else {
         // iOS 6

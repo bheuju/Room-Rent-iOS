@@ -8,13 +8,18 @@
 
 #import "KeyboardAvoidingViewController.h"
 
-@interface KeyboardAvoidingViewController ()
+@interface KeyboardAvoidingViewController () {
+    
+    UIView *wrapperView;
+    
+}
 
 @end
 
 @implementation KeyboardAvoidingViewController
 
-//extern UITextField *activeField;
+//UITextField *activeField;]
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];

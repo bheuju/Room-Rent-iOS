@@ -108,12 +108,41 @@
         
         NSLog(@"Complete, Respose: %@", responseObject);
         
-        //TODO: Set user data
+        //TODO: Parse JSON response and Set user data
+        NSDictionary *jsonDictionary = (NSDictionary *)responseObject;
+        
+        NSString *code = [jsonDictionary valueForKey:@"code"];
+        NSString *message = [jsonDictionary valueForKey:@"message"];
+        
+        if ([code isEqualToString:LOGIN_SUCCESS]) {
+            
+            [[Alerter sharedInstance] createAlert:@"Success" message:message viewController:self completion:^{
+                
+                //Switch to tabBarViewController
+                UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+                UIStoryboard *mainStory = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                UITabBarController *mainTabBarController = [mainStory instantiateViewControllerWithIdentifier:@"MainTabBarController"];
+                [window setRootViewController:mainTabBarController];
+                [window makeKeyAndVisible];
+                
+            }];
+            
+            NSLog(@"Login Success");
+            
+        } else if ([code isEqualToString:LOGIN_ERROR]) {
+            [[Alerter sharedInstance] createAlert:@"Failure" message:message viewController:self completion:^{}];
+        }
+        
         
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         NSLog(@"Fail, Respose: %@", error);
+        
+        NSString *message = [error valueForKey:@"message"];
+        
+        [[Alerter sharedInstance] createAlert:@"Failed" message:message viewController:self completion:nil];
+        
     }];
     
     
