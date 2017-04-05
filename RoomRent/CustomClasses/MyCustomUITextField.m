@@ -48,18 +48,19 @@
     
 }
 
--(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-
-    //KeyboardAvoidingViewController activeField = textField;
-    //KeyboardAvoidingViewController a
+-(BOOL)textFieldShouldBeginEditing:(UITextField*)textField {
     
-    if (textField) {
-        
-    }
+    CGRect rect = [self.superview convertRect:textField.frame toView:[[[UIApplication sharedApplication] delegate] window]];
     
+    //Pass activeTextField to KeyboardAvoidingVC for keyboard avoiding
+    [KeyboardAvoidingViewController setActiveTextFieldPosition:rect.origin];
     
     return true;
     
+}
+
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    return true;
 }
 
 @end

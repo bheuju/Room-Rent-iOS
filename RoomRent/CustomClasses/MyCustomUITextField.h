@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KeyboardAvoidingViewController.h"
 
 @interface MyCustomUITextField : UITextField <UITextFieldDelegate>
 

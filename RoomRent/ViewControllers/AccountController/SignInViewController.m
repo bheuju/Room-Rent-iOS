@@ -22,12 +22,8 @@
     [super viewDidLoad];
     
     //PROTOTYPE: Data
-    self.emailAddress.text = @"roomrent";
-    self.password.text = @"roomrent";
-    
-    
-    //self.emailAddress.text = @"admin@admin.com";
-    //self.password.text = @"password";
+    self.emailAddress.text = @"zeros";
+    self.password.text = @"zeros";
     
     self.emailAddress.delegate = self;
     self.password.delegate = self;
@@ -99,10 +95,16 @@
     NSString* username = [self.emailAddress text];
     NSString* password = [self.password text];
     
-    NSDictionary *parameters = @{@"username": username, @"password": password, @"api_token": API_TOKEN};
+    NSDictionary *parameters = @{
+                                 @"username": username,
+                                 @"password": password,
+                                 @"device_type": DEVICE_TYPE,
+                                 @"device_token": DEVICE_TOKEN
+                                 };
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:[@"Bearer " stringByAppendingString:API_TOKEN] forHTTPHeaderField:@"Authorization"];
     
     [manager POST:[BASE_URL stringByAppendingString:@"login"] parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
@@ -131,9 +133,9 @@
             
         } else if ([code isEqualToString:LOGIN_ERROR]) {
             [[Alerter sharedInstance] createAlert:@"Failure" message:message viewController:self completion:^{}];
+        } else {
+            [[Alerter sharedInstance] createAlert:@"Failure" message:message viewController:self completion:^{}];
         }
-        
-        
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         

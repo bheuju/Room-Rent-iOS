@@ -11,10 +11,18 @@
 #ifndef Constants_h
 #define Constants_h
 
+// login email verification response
+//{
+//    "code": "0018",
+//    "message": "Email verified. Your account is active. Login to use Roomrent"
+//}
 
 static NSString *BASE_URL = @"http://192.168.0.143:81/api/v1/";
 
 static NSString *API_TOKEN = @"OD44GCYFpHYHcwYFTG1QsQBGPOLcHjk8OMOMPkd3Ew3RTaLX0ox2ES3UASxE";
+
+static NSString *DEVICE_TYPE = @"1";
+static NSString *DEVICE_TOKEN = @"";
 
 // basic messages
 static NSString *ERROR = @"0000";

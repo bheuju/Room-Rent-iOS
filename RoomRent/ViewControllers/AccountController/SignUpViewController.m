@@ -12,6 +12,11 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btnImagePicker;
 
+@property (weak, nonatomic) IBOutlet UITextField *textfieldName;
+@property (weak, nonatomic) IBOutlet UITextField *textfieldPhone;
+@property (weak, nonatomic) IBOutlet UITextField *textfieldUsername;
+@property (weak, nonatomic) IBOutlet UITextField *textfieldEmail;
+@property (weak, nonatomic) IBOutlet UITextField *textfieldPassword;
 
 @end
 

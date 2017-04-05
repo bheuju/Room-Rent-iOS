@@ -8,18 +8,18 @@
 
 #import "KeyboardAvoidingViewController.h"
 
-@interface KeyboardAvoidingViewController () {
-    
-    UIView *wrapperView;
-    
-}
+@interface KeyboardAvoidingViewController ()
+
 
 @end
 
 @implementation KeyboardAvoidingViewController
 
-//UITextField *activeField;]
+static CGPoint activeTextFieldPosition;
 
++ (void)setActiveTextFieldPosition:(CGPoint)textFieldPosition {
+    activeTextFieldPosition = textFieldPosition;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,9 +45,17 @@
     int h = self.view.frame.size.height;
     int w = self.view.frame.size.width;
     
-    CGRect viewFrame = CGRectMake(0, -keyboardSize.height, w, h);
-    [self.view setFrame:viewFrame];
+    CGRect nonKeyboardRect = self.view.frame;
+    nonKeyboardRect.size.height -= keyboardSize.height + 30;
     
+    //CGPoint p = activeTextFieldPosition;
+    
+    if (!CGRectContainsPoint(nonKeyboardRect, activeTextFieldPosition)) {
+        
+        CGRect viewFrame = CGRectMake(0, -keyboardSize.height, w, h);
+        [self.view setFrame:viewFrame];
+        
+    }
 }
 
 -(void)keyboardWillHide:(NSNotification*)notification {
