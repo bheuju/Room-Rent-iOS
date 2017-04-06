@@ -13,6 +13,8 @@
 #import "Constants.h"
 #import "Alerter.h"
 
+#import "User.h"
+
 @interface SignInViewController : KeyboardAvoidingViewController
 
 - (void)checkLogin;

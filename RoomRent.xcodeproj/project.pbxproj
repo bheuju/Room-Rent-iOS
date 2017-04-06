@@ -13,6 +13,7 @@
 		DAA3BE971E8CF9410092F8DD /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAA3BE951E8CF9410092F8DD /* Account.storyboard */; };
 		DAA3BE991E8CF9410092F8DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAA3BE981E8CF9410092F8DD /* Assets.xcassets */; };
 		DAA3BE9C1E8CF9410092F8DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAA3BE9A1E8CF9410092F8DD /* LaunchScreen.storyboard */; };
+		DAA980F91E95F88A0032727F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA980F81E95F88A0032727F /* User.m */; };
 		DAB666B61E94BD2700E83956 /* ResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB666B51E94BD2700E83956 /* ResponseHandler.m */; };
 		DAB992E51E9355A3003A6483 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAB992E41E9355A3003A6483 /* Main.storyboard */; };
 		DAB992E91E935EEE003A6483 /* OfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB992E81E935EEE003A6483 /* OfferViewController.m */; };
@@ -22,7 +23,6 @@
 		DAB992FF1E93938E003A6483 /* MyCircularUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB992FC1E93938E003A6483 /* MyCircularUIButton.m */; };
 		DAB993001E93938E003A6483 /* MyCustomUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB992FE1E93938E003A6483 /* MyCustomUITextField.m */; };
 		DAB993031E9393EA003A6483 /* KeyboardAvoidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB993021E9393EA003A6483 /* KeyboardAvoidingViewController.m */; };
-		DAB993071E93BA37003A6483 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB993061E93BA37003A6483 /* User.m */; };
 		DAD538701E8E129A00F71D8B /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD5386F1E8E129A00F71D8B /* SignInViewController.m */; };
 		DAD538731E8E179B00F71D8B /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD538721E8E179B00F71D8B /* ForgotPasswordViewController.m */; };
 		DAD538761E8E17A400F71D8B /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD538751E8E17A400F71D8B /* SignUpViewController.m */; };
@@ -39,6 +39,8 @@
 		DAA3BE981E8CF9410092F8DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DAA3BE9B1E8CF9410092F8DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DAA3BE9D1E8CF9410092F8DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAA980F71E95F88A0032727F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		DAA980F81E95F88A0032727F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		DAB666B41E94BD2700E83956 /* ResponseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseHandler.h; sourceTree = "<group>"; };
 		DAB666B51E94BD2700E83956 /* ResponseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseHandler.m; sourceTree = "<group>"; };
 		DAB992E41E9355A3003A6483 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -56,8 +58,6 @@
 		DAB992FE1E93938E003A6483 /* MyCustomUITextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCustomUITextField.m; sourceTree = "<group>"; };
 		DAB993011E9393EA003A6483 /* KeyboardAvoidingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardAvoidingViewController.h; sourceTree = "<group>"; };
 		DAB993021E9393EA003A6483 /* KeyboardAvoidingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardAvoidingViewController.m; sourceTree = "<group>"; };
-		DAB993051E93BA37003A6483 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		DAB993061E93BA37003A6483 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		DAB993081E93BB19003A6483 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		DAD5386E1E8E129A00F71D8B /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		DAD5386F1E8E129A00F71D8B /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 				DAB992FA1E939360003A6483 /* CustomClasses */,
 				DAA3BEA81E8D0FA20092F8DD /* CustomViews */,
 				DAB992F11E936120003A6483 /* Constants */,
-				DAB993041E93BA1B003A6483 /* Models */,
+				DAA980F61E95F88A0032727F /* Models */,
 				DAA3BEA31E8D0ED00092F8DD /* ViewControllers */,
 				DAA3BE981E8CF9410092F8DD /* Assets.xcassets */,
 				DAA3BE9A1E8CF9410092F8DD /* LaunchScreen.storyboard */,
@@ -171,6 +171,15 @@
 			path = CustomViews;
 			sourceTree = "<group>";
 		};
+		DAA980F61E95F88A0032727F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DAA980F71E95F88A0032727F /* User.h */,
+				DAA980F81E95F88A0032727F /* User.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		DAB992E61E935EB5003A6483 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,16 +212,6 @@
 				DAB993021E9393EA003A6483 /* KeyboardAvoidingViewController.m */,
 			);
 			path = CustomClasses;
-			sourceTree = "<group>";
-		};
-		DAB993041E93BA1B003A6483 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				DAB993051E93BA37003A6483 /* User.h */,
-				DAB993061E93BA37003A6483 /* User.m */,
-			);
-			name = Models;
-			path = Constants/Models;
 			sourceTree = "<group>";
 		};
 		DAD5386D1E8E129A00F71D8B /* AccountController */ = {
@@ -352,7 +351,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAB993071E93BA37003A6483 /* User.m in Sources */,
 				DAB992FF1E93938E003A6483 /* MyCircularUIButton.m in Sources */,
 				DAD538731E8E179B00F71D8B /* ForgotPasswordViewController.m in Sources */,
 				DAB992E91E935EEE003A6483 /* OfferViewController.m in Sources */,
@@ -361,6 +359,7 @@
 				DAD538701E8E129A00F71D8B /* SignInViewController.m in Sources */,
 				DAA3BE911E8CF9410092F8DD /* AppDelegate.m in Sources */,
 				DAB992F51E9361D7003A6483 /* Alerter.m in Sources */,
+				DAA980F91E95F88A0032727F /* User.m in Sources */,
 				DAB993031E9393EA003A6483 /* KeyboardAvoidingViewController.m in Sources */,
 				DAB992EF1E935F3D003A6483 /* DashboardViewController.m in Sources */,
 				DAB992EC1E935F32003A6483 /* RequestViewController.m in Sources */,

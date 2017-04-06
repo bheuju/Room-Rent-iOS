@@ -20,7 +20,48 @@
 }
 
 - (IBAction)onLogout:(UIButton *)sender {
-    //TODO: Logout here 
+    //TODO: Logout here
+    
+    NSString *userApiToken = [User getUserApiToken];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
+    
+    [manager POST:[BASE_URL stringByAppendingString:@"logout"] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSString *code = [responseObject valueForKey:@"code"];
+        
+        NSString *message = [responseObject valueForKey:@"message"];
+        
+        [[Alerter sharedInstance] createAlert:@"Logout" message:message viewController:self completion:^{
+            
+            //Switch to SignInViewController
+            UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+            UIStoryboard *accountStory = [UIStoryboard storyboardWithName:@"Account" bundle:nil];
+            
+            UIViewController *signInVC = [accountStory instantiateViewControllerWithIdentifier:@"SignInViewController"];
+            
+            UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:signInVC];
+            
+            [window setRootViewController:navController];
+            [window makeKeyAndVisible];
+            
+            
+        }];
+        
+        NSLog(@"Success Response: %@", responseObject);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"Error Response: %@", error);
+        
+    }];
+
+    
+    
+    
+
 }
 
 @end

@@ -20,9 +20,26 @@
 static NSString *BASE_URL = @"http://192.168.0.143:81/api/v1/";
 
 static NSString *API_TOKEN = @"OD44GCYFpHYHcwYFTG1QsQBGPOLcHjk8OMOMPkd3Ew3RTaLX0ox2ES3UASxE";
+//static NSString *USER_API_TOKEN = @"";
 
 static NSString *DEVICE_TYPE = @"1";
 static NSString *DEVICE_TOKEN = @"";
+
+
+//** JSON KEYS **//
+//***************//
+static NSString *KEY_USER_ID = @"id";
+static NSString *KEY_NAME = @"name";
+static NSString *KEY_PHONE = @"phone";
+static NSString *KEY_USERNAME = @"username";
+static NSString *KEY_EMAIL = @"email";
+//static NSString *password = @"id";
+static NSString *KEY_API_TOKEN = @"api_token";
+static NSString *KEY_CREATED_AT = @"createdAt";
+
+
+//** Resonse Codes **//
+//*******************//
 
 // basic messages
 static NSString *ERROR = @"0000";
@@ -34,7 +51,7 @@ static NSString *LOGIN_ERROR = @"0012";
 
 // registration messages
 static NSString *REGISTER_SUCCESS = @"0013";
-static NSString *VALIDATION_EROOR = @"0014";
+static NSString *VALIDATION_ERROR = @"0014";
 static NSString *EMAIL_ALREADY_EXISTS = @"0015";
 static NSString *USER_NOT_REGISTERED = @"0016";
 static NSString *USERNAME_ALREADY_EXISTS = @"0017";

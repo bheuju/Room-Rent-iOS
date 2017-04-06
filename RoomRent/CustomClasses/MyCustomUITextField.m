@@ -51,7 +51,6 @@
 -(BOOL)textFieldShouldBeginEditing:(UITextField*)textField {
     
     CGRect rect = [self.superview convertRect:textField.frame toView:[[[UIApplication sharedApplication] delegate] window]];
-    
     //Pass activeTextField to KeyboardAvoidingVC for keyboard avoiding
     [KeyboardAvoidingViewController setActiveTextFieldPosition:rect.origin];
     

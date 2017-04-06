@@ -40,13 +40,14 @@ static CGPoint activeTextFieldPosition;
 -(void)keyboardWillShow:(NSNotification*)notification {
     
     NSDictionary* userInfo = [notification userInfo];
+
     CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
     int h = self.view.frame.size.height;
     int w = self.view.frame.size.width;
     
     CGRect nonKeyboardRect = self.view.frame;
-    nonKeyboardRect.size.height -= keyboardSize.height + 30;
+    nonKeyboardRect.size.height -= keyboardSize.height + 30;    //30 is offset
     
     //CGPoint p = activeTextFieldPosition;
     

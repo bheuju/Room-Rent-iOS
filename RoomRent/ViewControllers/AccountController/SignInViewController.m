@@ -92,11 +92,11 @@
 - (void)checkLogin {
     
     //Get Form entries
-    NSString* username = [self.emailAddress text];
+    NSString* usernameOrEmail = [self.emailAddress text];
     NSString* password = [self.password text];
     
     NSDictionary *parameters = @{
-                                 @"username": username,
+                                 @"identity": usernameOrEmail,
                                  @"password": password,
                                  @"device_type": DEVICE_TYPE,
                                  @"device_token": DEVICE_TOKEN
@@ -104,7 +104,7 @@
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[@"Bearer " stringByAppendingString:API_TOKEN] forHTTPHeaderField:@"Authorization"];
+    //[manager.requestSerializer setValue:[@"Bearer " stringByAppendingString:API_TOKEN] forHTTPHeaderField:@"Authorization"];
     
     [manager POST:[BASE_URL stringByAppendingString:@"login"] parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
@@ -127,6 +127,14 @@
                 [window setRootViewController:mainTabBarController];
                 [window makeKeyAndVisible];
                 
+                id userJson = [jsonDictionary valueForKey:@"user"];
+                
+                //Init User
+                User *user = [[User alloc] initUserFromJson:userJson];
+                
+                
+                //TODO: Save userdata to NSUserDefaults
+                
             }];
             
             NSLog(@"Login Success");
@@ -141,9 +149,9 @@
         
         NSLog(@"Fail, Respose: %@", error);
         
-        NSString *message = [error valueForKey:@"message"];
+        //NSString *message = [error valueForKey:@"message"];
         
-        [[Alerter sharedInstance] createAlert:@"Failed" message:message viewController:self completion:nil];
+        [[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self completion:^{}];
         
     }];
     

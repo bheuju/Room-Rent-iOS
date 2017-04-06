@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+#import <AFNetworking/AFNetworking.h>
+
+#import "Alerter.h"
+#import "Constants.h"
+#import "User.h"
+
 @interface OfferViewController : UIViewController
 
 @end
