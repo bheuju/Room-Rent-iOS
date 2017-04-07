@@ -12,11 +12,11 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btnImagePicker;
 
-@property (weak, nonatomic) IBOutlet UITextField *textfieldName;
-@property (weak, nonatomic) IBOutlet UITextField *textfieldPhone;
-@property (weak, nonatomic) IBOutlet UITextField *textfieldUsername;
-@property (weak, nonatomic) IBOutlet UITextField *textfieldEmail;
-@property (weak, nonatomic) IBOutlet UITextField *textfieldPassword;
+@property (weak, nonatomic) IBOutlet MyCustomUITextField *textfieldName;
+@property (weak, nonatomic) IBOutlet MyCustomUITextField *textfieldPhone;
+@property (weak, nonatomic) IBOutlet MyCustomUITextField *textfieldUsername;
+@property (weak, nonatomic) IBOutlet MyCustomUITextField *textfieldEmail;
+@property (weak, nonatomic) IBOutlet MyCustomUITextField *textfieldPassword;
 
 @end
 
@@ -24,6 +24,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //Textfields validation setup
+    [self.textfieldName addRegex:@"([A-Za-z]+),\\s+([A-Za-z]+)\\s+([A-Za-z]+)?$" withValidationMsg:@"Invalid name format"];
+    [self.textfieldPhone addRegex:@"((\\+){0,1}977(\\s){0,1}(\\-){0,1}(\\s){0,1}){0,1}9[7-8](\\s){0,1}(\\-){0,1}(\\s){0,1}[0-9]{1}[0-9]{7}$" withValidationMsg:@"Invalid phone format"];
+    [self.textfieldUsername addRegex:@"(?!.*[\\.\\-\\_]{2,})^[a-zA-Z0-9\\.\\-\\_]{3,24}$" withValidationMsg:@"Username can not contain special characters"];
+    [self.textfieldEmail addRegex:@"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,10}" withValidationMsg:@"Invalid email address"];
+    [self.textfieldPassword addRegex:@"^.{4,50}$" withValidationMsg:@"Password should be at least 3 characters"];
+    
     
     
     self.textfieldName.text = @"test";
@@ -69,9 +77,6 @@
     
     
     //TODO: Validation of fields
-    
-    
-    
     
     
     

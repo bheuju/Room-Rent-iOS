@@ -24,13 +24,10 @@
     //PROTOTYPE: Data
     self.emailAddress.text = @"zeros";
     self.password.text = @"zeros";
-    
-    self.emailAddress.delegate = self;
-    self.password.delegate = self;
-    
+       
     //Textfields validation setup
-    [self.emailAddress addRegex:@"[A-Z0-9a-z._%+-]{3,}+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}" withValidationMsg:@"Invalid email address"];
-    [self.password addRegex:@"^.{3,50}$" withValidationMsg:@"PAssword should be at least 3 characters"];
+    [self.emailAddress addRegex:@"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,10}" withValidationMsg:@"Invalid email address"];
+    [self.password addRegex:@"^.{4,50}$" withValidationMsg:@"Password should be at least 3 characters"];
     
     //Transparent navigation bar
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];

@@ -98,7 +98,7 @@
 }
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField*)textField {
-    
+    //Get rectangle(position) of textField w.r.t window coordinates
     CGRect rect = [self.superview convertRect:textField.frame toView:[[[UIApplication sharedApplication] delegate] window]];
     //Pass activeTextField to KeyboardAvoidingVC for keyboard avoiding
     [KeyboardAvoidingViewController setActiveTextFieldPosition:rect.origin];

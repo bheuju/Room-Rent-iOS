@@ -248,6 +248,9 @@
                                         <state key="normal" title="Send Password">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="onForgotPassword:" destination="85h-hg-l89" eventType="touchUpInside" id="4Hs-5U-7jh"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -272,6 +275,9 @@
                             <constraint firstItem="Foy-DR-TEc" firstAttribute="top" secondItem="KhF-EX-YBe" secondAttribute="bottom" constant="50" id="z7Y-Kv-W3S"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textfieldEmail" destination="hII-w0-Vzn" id="3JC-tG-Y5B"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hGe-V3-1Tb" sceneMemberID="firstResponder"/>
             </objects>

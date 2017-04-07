@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AFNetworking/AFNetworking.h>
+
 #import "KeyboardAvoidingViewController.h"
+#import "MyCustomUITextField.h"
+#import "Constants.h"
 
 @interface ForgotPasswordViewController : KeyboardAvoidingViewController
 

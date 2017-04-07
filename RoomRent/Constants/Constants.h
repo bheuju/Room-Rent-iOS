@@ -23,6 +23,7 @@
 static NSString *BASE_URL = @"http://192.168.0.143:81/api/v1/";
 static NSString *LOGIN_PATH = @"login";
 static NSString *LOGOUT_PATH = @"logout";
+static NSString *FORGOT_PASSWORD_PATH = @"forgetpassword";
 static NSString *SIGNUP_PATH = @"register";
 
 //static NSString *API_TOKEN = @"OD44GCYFpHYHcwYFTG1QsQBGPOLcHjk8OMOMPkd3Ew3RTaLX0ox2ES3UASxE";
@@ -61,19 +62,25 @@ static NSString *LOGIN_ERROR = @"0012";
 // registration messages
 static NSString *REGISTER_SUCCESS = @"0013";
 static NSString *VALIDATION_ERROR = @"0014";
-static NSString *EMAIL_ALREADY_EXISTS = @"0015";
+static NSString *EMAIL_VERIFIED = @"0015";
 static NSString *USER_NOT_REGISTERED = @"0016";
-static NSString *USERNAME_ALREADY_EXISTS = @"0017";
+static NSString *UNABLE_TO_SEND_EMAIL = @"0017";
+
+// logout message
+static NSString *LOGOUT_SUCCESS = @"0020";
 
 // profile update messages
-static NSString *PASSWORD_DO_NOT_MATCH = @"0021";
+static NSString *PASSWORD_DOES_NOT_MATCH = @"0021";
 static NSString *EAMIL_NOT_FOUND = @"0022";
 static NSString *PASSWORD_RESET_LINK_SENT = @"0023";
+static NSString *PASSWORD_UPDATE_SUCCESS = @"0024";
+static NSString *CONFIRM_PASSWORD_ERROR = @"0025";
 
 // basic errors
-static NSString *USER_INACTIVE = @"0031";
+static NSString *USER_UNVERIFIED = @"0031";
 static NSString *USER_NOT_LOGGED_IN = @"0032";
 static NSString *USER_ALREADY_ACTIVE = @"0033";
+static NSString *PASSWORD_RESET_REQUEST = @"0034";
 
 // invalid request
 static NSString *INVALID_USER = @"0051";
