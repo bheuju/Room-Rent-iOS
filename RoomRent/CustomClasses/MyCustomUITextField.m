@@ -8,20 +8,19 @@
 
 #import "MyCustomUITextField.h"
 
-@implementation MyCustomUITextField
+@implementation MyCustomUITextField {
+    
+}
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
     
-    self.regex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,10}";
-    self.validationMsg = @"";
-    
     self.delegate = self;
     
 }
 
-//Chnage color of textfield placeholder
+//Change color of textfield placeholder
 -(void)drawPlaceholderInRect:(CGRect)rect {
     UIColor *color = [UIColor lightGrayColor];
     
@@ -40,18 +39,33 @@
 
 
 //MARK: Validation
+-(void)addRegex:(NSString *)regex withValidationMsg:(NSString *)validationMsg {
+    self.regex = regex;
+    self.validationMsg = validationMsg;
+}
+
 -(BOOL)validate {
     
-    //NSString *regex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,10}";
-    //self.regex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,10}";
+    //If no validation cases return
+    if (self.regex == nil) {
+        return true;
+    }
+    
+    
     NSPredicate *testRegex = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", self.regex];
     
     if (![testRegex evaluateWithObject:self.text]) {
         
         //Invalid Entry
+        self.textColor = [UIColor redColor];
         
-        //NSString *errorMsg = @"This is an error message";
-        self.layer.backgroundColor = [[UIColor redColor]CGColor];
+        UIButton *btnError=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+        [btnError addTarget:self action:@selector(tapOnError) forControlEvents:UIControlEventTouchUpInside];
+        [btnError setBackgroundImage:[UIImage imageNamed:@"error.png"] forState:UIControlStateNormal];
+        
+        self.rightView=btnError;
+        //self.rightViewMode=UITextFieldViewModeAlways;
+        self.rightViewMode = UITextFieldViewModeUnlessEditing;
         
         return false;
     }
@@ -60,10 +74,15 @@
 }
 
 
-//MARK: UITextFieldDelegate Methods
+-(void) tapOnError{
+    NSLog(@"Validation Error: %@", self.validationMsg);
+}
 
+
+//MARK: UITextFieldDelegate Methods
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
-    self.layer.backgroundColor = [[UIColor clearColor]CGColor];
+    self.textColor = [UIColor whiteColor];
+    self.rightView = nil;
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {

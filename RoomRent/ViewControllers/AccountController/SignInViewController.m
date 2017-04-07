@@ -10,8 +10,8 @@
 
 @interface SignInViewController () <UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *emailAddress;
-@property (weak, nonatomic) IBOutlet UITextField *password;
+@property (weak, nonatomic) IBOutlet MyCustomUITextField *emailAddress;
+@property (weak, nonatomic) IBOutlet MyCustomUITextField *password;
 
 @end
 
@@ -28,7 +28,9 @@
     self.emailAddress.delegate = self;
     self.password.delegate = self;
     
-    
+    //Textfields validation setup
+    [self.emailAddress addRegex:@"[A-Z0-9a-z._%+-]{3,}+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}" withValidationMsg:@"Invalid email address"];
+    [self.password addRegex:@"^.{3,50}$" withValidationMsg:@"PAssword should be at least 3 characters"];
     
     //Transparent navigation bar
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];

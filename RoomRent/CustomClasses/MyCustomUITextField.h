@@ -16,4 +16,6 @@
 @property NSString *regex;
 @property NSString *validationMsg;
 
+-(void)addRegex:(NSString*)regex withValidationMsg:(NSString*)validationMsg;
+
 @end
