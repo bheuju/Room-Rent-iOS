@@ -89,7 +89,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="254" height="22"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                                             </textField>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vgd-mI-5pc">
                                                                 <rect key="frame" x="254" y="0.0" width="50" height="22"/>
@@ -293,13 +293,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ibI-Bo-bfF">
-                                <rect key="frame" x="113" y="70" width="188" height="38.333333333333329"/>
+                                <rect key="frame" x="113" y="49.999999999999993" width="188" height="38.333333333333321"/>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="32"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="6O4-kr-jyv">
-                                <rect key="frame" x="30" y="328.33333333333337" width="354" height="340.00000000000011"/>
+                                <rect key="frame" x="30" y="268.33333333333337" width="354" height="340.00000000000011"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="xUl-I0-LzT" userLabel="Name Stack">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="28"/>
@@ -317,7 +317,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="304" height="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WoZ-fR-RB4" userLabel="Underline">
                                                         <rect key="frame" x="0.0" y="27" width="304" height="1"/>
@@ -346,7 +346,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="304" height="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next"/>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rsn-F9-d9T" userLabel="Underline">
                                                         <rect key="frame" x="0.0" y="27" width="304" height="1"/>
@@ -389,25 +389,25 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="FNa-88-ZSK" userLabel="Email Stack">
-                                        <rect key="frame" x="0.0" y="174" width="354" height="28.000000000000057"/>
+                                        <rect key="frame" x="0.0" y="174" width="354" height="28"/>
                                         <subviews>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" image="emailIcon" translatesAutoresizingMaskIntoConstraints="NO" id="A71-xe-3k3">
-                                                <rect key="frame" x="0.0" y="0.0" width="50" height="28.000000000000057"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="l2S-oX-uSP"/>
                                                 </constraints>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="mX1-qH-Vq3">
-                                                <rect key="frame" x="50" y="0.0" width="304" height="28.000000000000057"/>
+                                                <rect key="frame" x="50" y="0.0" width="304" height="28"/>
                                                 <subviews>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3pa-rs-H4Z" customClass="MyCustomUITextField">
-                                                        <rect key="frame" x="0.0" y="0.0" width="304" height="17.000000000000057"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="304" height="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gPz-du-U33" userLabel="Underline">
-                                                        <rect key="frame" x="0.0" y="27.000000000000057" width="304" height="1"/>
+                                                        <rect key="frame" x="0.0" y="27" width="304" height="1"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="dVM-J4-Ybd"/>
@@ -418,25 +418,25 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="hii-64-79K" userLabel="Password Stack">
-                                        <rect key="frame" x="0.0" y="232.00000000000006" width="354" height="28"/>
+                                        <rect key="frame" x="0.0" y="232" width="354" height="28.000000000000057"/>
                                         <subviews>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" image="passwordIcon" translatesAutoresizingMaskIntoConstraints="NO" id="rLM-lg-7GN">
-                                                <rect key="frame" x="0.0" y="0.0" width="50" height="28"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="28.000000000000057"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="TeM-rY-Edw"/>
                                                 </constraints>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="JfO-Jf-luY">
-                                                <rect key="frame" x="50" y="0.0" width="304" height="28"/>
+                                                <rect key="frame" x="50" y="0.0" width="304" height="28.000000000000057"/>
                                                 <subviews>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SsU-Sd-HC0" customClass="MyCustomUITextField">
-                                                        <rect key="frame" x="0.0" y="0.0" width="304" height="17"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="304" height="17.000000000000057"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SEX-Yr-u3P" userLabel="Underline">
-                                                        <rect key="frame" x="0.0" y="27" width="304" height="1"/>
+                                                        <rect key="frame" x="0.0" y="27.000000000000057" width="304" height="1"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="btc-JN-1YD"/>
@@ -476,7 +476,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wNk-B7-2ql" userLabel="chooseImage" customClass="MyCircularUIButton">
-                                <rect key="frame" x="147" y="158.33333333333331" width="120" height="119.99999999999994"/>
+                                <rect key="frame" x="147" y="118.33333333333334" width="120" height="120.00000000000003"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="UON-sP-hUJ"/>
                                     <constraint firstAttribute="height" constant="120" id="vT1-bQ-OlZ"/>
@@ -489,7 +489,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ibI-Bo-bfF" firstAttribute="top" secondItem="HIf-ZQ-bud" secondAttribute="bottom" constant="50" id="1zK-tK-8A2"/>
+                            <constraint firstItem="ibI-Bo-bfF" firstAttribute="top" secondItem="HIf-ZQ-bud" secondAttribute="bottom" constant="30" id="1zK-tK-8A2"/>
                             <constraint firstItem="Dp5-XX-k7V" firstAttribute="top" secondItem="HD1-eB-Ycb" secondAttribute="bottom" id="3ol-WS-PFB"/>
                             <constraint firstItem="6O4-kr-jyv" firstAttribute="leading" secondItem="b0W-uU-o2g" secondAttribute="leading" constant="30" id="Boz-Ph-YjE"/>
                             <constraint firstItem="wNk-B7-2ql" firstAttribute="centerX" secondItem="b0W-uU-o2g" secondAttribute="centerX" id="Hih-p2-I27"/>
@@ -499,8 +499,8 @@
                             <constraint firstItem="HD1-eB-Ycb" firstAttribute="leading" secondItem="b0W-uU-o2g" secondAttribute="leading" id="e2j-Wo-n1s"/>
                             <constraint firstItem="ibI-Bo-bfF" firstAttribute="centerX" secondItem="b0W-uU-o2g" secondAttribute="centerX" id="f2U-Lv-4qU"/>
                             <constraint firstItem="6O4-kr-jyv" firstAttribute="centerX" secondItem="HD1-eB-Ycb" secondAttribute="centerX" id="h1I-zF-m2w"/>
-                            <constraint firstItem="wNk-B7-2ql" firstAttribute="top" secondItem="ibI-Bo-bfF" secondAttribute="bottom" constant="50" id="mm6-r0-E9T"/>
-                            <constraint firstItem="6O4-kr-jyv" firstAttribute="top" secondItem="wNk-B7-2ql" secondAttribute="bottom" constant="50" id="qfy-Fu-HzO"/>
+                            <constraint firstItem="wNk-B7-2ql" firstAttribute="top" secondItem="ibI-Bo-bfF" secondAttribute="bottom" constant="30" id="mm6-r0-E9T"/>
+                            <constraint firstItem="6O4-kr-jyv" firstAttribute="top" secondItem="wNk-B7-2ql" secondAttribute="bottom" constant="30" id="qfy-Fu-HzO"/>
                         </constraints>
                     </view>
                     <connections>

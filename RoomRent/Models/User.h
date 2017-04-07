@@ -20,7 +20,7 @@
 
 + (NSString*) getUserApiToken;
 
-- (void)initUser:(int)userId name:(NSString*)name phone:(NSString*)phone username:(NSString*)username email:(NSString*)email password:(NSString*)password;
+- (User*)initUser:(int)userId name:(NSString*)name phone:(NSString*)phone username:(NSString*)username email:(NSString*)email password:(NSString*)password;
 
 - (User*)initUserFromJson:(id)userJson;
 

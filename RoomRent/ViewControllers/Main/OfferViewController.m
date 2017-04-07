@@ -28,11 +28,11 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
     
-    [manager POST:[BASE_URL stringByAppendingString:@"logout"] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manager POST:[BASE_URL stringByAppendingString:LOGOUT_PATH] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        NSString *code = [responseObject valueForKey:@"code"];
+        NSString *code = [responseObject valueForKey:JSON_KEY_CODE];
         
-        NSString *message = [responseObject valueForKey:@"message"];
+        NSString *message = [responseObject valueForKey:JSON_KEY_MESSAGE];
         
         [[Alerter sharedInstance] createAlert:@"Logout" message:message viewController:self completion:^{
             

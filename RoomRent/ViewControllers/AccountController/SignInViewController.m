@@ -29,6 +29,7 @@
     self.password.delegate = self;
     
     
+    
     //Transparent navigation bar
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     //self.navigationController.navigationBar.shadowImage = [UIImage new];
@@ -87,13 +88,12 @@
 }
 
 
-
 //MARK: Extras
 - (void)checkLogin {
     
     //Get Form entries
-    NSString* usernameOrEmail = [self.emailAddress text];
-    NSString* password = [self.password text];
+    NSString* usernameOrEmail = self.emailAddress.text;
+    NSString* password = self.password.text;
     
     NSDictionary *parameters = @{
                                  @"identity": usernameOrEmail,
@@ -102,11 +102,17 @@
                                  @"device_token": DEVICE_TOKEN
                                  };
     
+    
+    //[[APICaller sharedInstance] callApi:LOGIN_PATH parameters:parameters successBlock:^{
+        //JsonResponse;
+        
+    //}];
+    
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    //[manager.requestSerializer setValue:[@"Bearer " stringByAppendingString:API_TOKEN] forHTTPHeaderField:@"Authorization"];
     
-    [manager POST:[BASE_URL stringByAppendingString:@"login"] parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manager POST:[BASE_URL stringByAppendingString:LOGIN_PATH] parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSLog(@"Complete, Respose: %@", responseObject);
         

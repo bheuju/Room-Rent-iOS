@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#include <AFNetworking/AFNetworking.h>
+
 #import "Alerter.h"
 #import "KeyboardAvoidingViewController.h"
+
+#import "User.h"
+
 
 @interface SignUpViewController : KeyboardAvoidingViewController
 @end

@@ -10,11 +10,12 @@
 
 @implementation MyCustomUITextField
 
-
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
-    // Drawing code
+    
+    self.regex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,10}";
+    self.validationMsg = @"";
     
     self.delegate = self;
     
@@ -38,12 +39,41 @@
 }
 
 
+//MARK: Validation
+-(BOOL)validate {
+    
+    //NSString *regex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,10}";
+    //self.regex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,10}";
+    NSPredicate *testRegex = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", self.regex];
+    
+    if (![testRegex evaluateWithObject:self.text]) {
+        
+        //Invalid Entry
+        
+        //NSString *errorMsg = @"This is an error message";
+        self.layer.backgroundColor = [[UIColor redColor]CGColor];
+        
+        return false;
+    }
+    
+    return true;
+}
+
+
 //MARK: UITextFieldDelegate Methods
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField {
+    self.layer.backgroundColor = [[UIColor clearColor]CGColor];
+}
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     
-    //if (textField == RETURN) {
+    if (textField.returnKeyType == UIReturnKeyDone) {
         [self resignFirstResponder];
-    //}
+    } else if (textField.returnKeyType == UIReturnKeyNext) {
+        [self resignFirstResponder];
+        
+    }
     return true;
     
 }
@@ -58,8 +88,10 @@
     
 }
 
--(BOOL)textFieldShouldEndEditing:(UITextField *)textField {
-    return true;
+-(void)textFieldDidEndEditing:(UITextField *)textField {
+    
+    [self validate];
+    
 }
 
 @end

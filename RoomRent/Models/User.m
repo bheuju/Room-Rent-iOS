@@ -12,8 +12,15 @@
 
 static NSString *userApiToken = nil;
 
-- (void)initUser:(int)userId name:(NSString*)name phone:(NSString*)phone username:(NSString*)username email:(NSString*)email password:(NSString*)password {
+- (User*)initUser:(int)userId name:(NSString*)name phone:(NSString*)phone username:(NSString*)username email:(NSString*)email password:(NSString*)password {
     
+    self.name = name;
+    self.phone = phone;
+    self.username = username;
+    self.email = email;
+    self.password = password;
+    
+    return self;
 }
 
 -(User*)initUserFromJson:(id)userJson {

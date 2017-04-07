@@ -12,6 +12,7 @@
 #import "KeyboardAvoidingViewController.h"
 #import "Constants.h"
 #import "Alerter.h"
+#import "APICaller.h"
 
 #import "User.h"
 

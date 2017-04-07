@@ -17,9 +17,15 @@
 //    "message": "Email verified. Your account is active. Login to use Roomrent"
 //}
 
-static NSString *BASE_URL = @"http://192.168.0.143:81/api/v1/";
 
-static NSString *API_TOKEN = @"OD44GCYFpHYHcwYFTG1QsQBGPOLcHjk8OMOMPkd3Ew3RTaLX0ox2ES3UASxE";
+//** URLs **//
+//**********//
+static NSString *BASE_URL = @"http://192.168.0.143:81/api/v1/";
+static NSString *LOGIN_PATH = @"login";
+static NSString *LOGOUT_PATH = @"logout";
+static NSString *SIGNUP_PATH = @"register";
+
+//static NSString *API_TOKEN = @"OD44GCYFpHYHcwYFTG1QsQBGPOLcHjk8OMOMPkd3Ew3RTaLX0ox2ES3UASxE";
 //static NSString *USER_API_TOKEN = @"";
 
 static NSString *DEVICE_TYPE = @"1";
@@ -33,9 +39,12 @@ static NSString *KEY_NAME = @"name";
 static NSString *KEY_PHONE = @"phone";
 static NSString *KEY_USERNAME = @"username";
 static NSString *KEY_EMAIL = @"email";
-//static NSString *password = @"id";
+static NSString *KEY_PASSWORD = @"password";
 static NSString *KEY_API_TOKEN = @"api_token";
-static NSString *KEY_CREATED_AT = @"createdAt";
+static NSString *KEY_CREATED_AT = @"created_at";
+
+static NSString *JSON_KEY_CODE = @"code";
+static NSString *JSON_KEY_MESSAGE = @"message";
 
 
 //** Resonse Codes **//

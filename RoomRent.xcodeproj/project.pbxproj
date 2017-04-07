@@ -14,7 +14,9 @@
 		DAA3BE991E8CF9410092F8DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAA3BE981E8CF9410092F8DD /* Assets.xcassets */; };
 		DAA3BE9C1E8CF9410092F8DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAA3BE9A1E8CF9410092F8DD /* LaunchScreen.storyboard */; };
 		DAA980F91E95F88A0032727F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA980F81E95F88A0032727F /* User.m */; };
+		DAA980FD1E96178B0032727F /* APICaller.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA980FC1E96178B0032727F /* APICaller.m */; };
 		DAB666B61E94BD2700E83956 /* ResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB666B51E94BD2700E83956 /* ResponseHandler.m */; };
+		DAB6944E1E973E6900BD3498 /* ValidationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB6944D1E973E6900BD3498 /* ValidationHandler.m */; };
 		DAB992E51E9355A3003A6483 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAB992E41E9355A3003A6483 /* Main.storyboard */; };
 		DAB992E91E935EEE003A6483 /* OfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB992E81E935EEE003A6483 /* OfferViewController.m */; };
 		DAB992EC1E935F32003A6483 /* RequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB992EB1E935F32003A6483 /* RequestViewController.m */; };
@@ -41,8 +43,12 @@
 		DAA3BE9D1E8CF9410092F8DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DAA980F71E95F88A0032727F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		DAA980F81E95F88A0032727F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		DAA980FB1E96178B0032727F /* APICaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APICaller.h; sourceTree = "<group>"; };
+		DAA980FC1E96178B0032727F /* APICaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APICaller.m; sourceTree = "<group>"; };
 		DAB666B41E94BD2700E83956 /* ResponseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseHandler.h; sourceTree = "<group>"; };
 		DAB666B51E94BD2700E83956 /* ResponseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseHandler.m; sourceTree = "<group>"; };
+		DAB6944C1E973E6900BD3498 /* ValidationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidationHandler.h; sourceTree = "<group>"; };
+		DAB6944D1E973E6900BD3498 /* ValidationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidationHandler.m; sourceTree = "<group>"; };
 		DAB992E41E9355A3003A6483 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		DAB992E71E935EEE003A6483 /* OfferViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferViewController.h; sourceTree = "<group>"; };
 		DAB992E81E935EEE003A6483 /* OfferViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferViewController.m; sourceTree = "<group>"; };
@@ -160,6 +166,10 @@
 				DAB992F41E9361D7003A6483 /* Alerter.m */,
 				DAB666B41E94BD2700E83956 /* ResponseHandler.h */,
 				DAB666B51E94BD2700E83956 /* ResponseHandler.m */,
+				DAA980FB1E96178B0032727F /* APICaller.h */,
+				DAA980FC1E96178B0032727F /* APICaller.m */,
+				DAB6944C1E973E6900BD3498 /* ValidationHandler.h */,
+				DAB6944D1E973E6900BD3498 /* ValidationHandler.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -353,10 +363,12 @@
 			files = (
 				DAB992FF1E93938E003A6483 /* MyCircularUIButton.m in Sources */,
 				DAD538731E8E179B00F71D8B /* ForgotPasswordViewController.m in Sources */,
+				DAA980FD1E96178B0032727F /* APICaller.m in Sources */,
 				DAB992E91E935EEE003A6483 /* OfferViewController.m in Sources */,
 				DAD538761E8E17A400F71D8B /* SignUpViewController.m in Sources */,
 				DAB993001E93938E003A6483 /* MyCustomUITextField.m in Sources */,
 				DAD538701E8E129A00F71D8B /* SignInViewController.m in Sources */,
+				DAB6944E1E973E6900BD3498 /* ValidationHandler.m in Sources */,
 				DAA3BE911E8CF9410092F8DD /* AppDelegate.m in Sources */,
 				DAB992F51E9361D7003A6483 /* Alerter.m in Sources */,
 				DAA980F91E95F88A0032727F /* User.m in Sources */,

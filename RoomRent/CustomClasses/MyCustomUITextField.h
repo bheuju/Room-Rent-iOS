@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import "KeyboardAvoidingViewController.h"
+#import "Alerter.h"
 
 @interface MyCustomUITextField : UITextField <UITextFieldDelegate>
+
+@property NSString *regex;
+@property NSString *validationMsg;
 
 @end

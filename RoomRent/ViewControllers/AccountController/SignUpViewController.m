@@ -25,6 +25,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    self.textfieldName.text = @"test";
+    self.textfieldPhone.text = @"test";
+    self.textfieldUsername.text = @"test";
+    self.textfieldEmail.text = @"test@test.com";
+    self.textfieldPassword.text = @"test";
+    
+    
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(onCancel)];
     cancelButton.tintColor = [UIColor whiteColor];
     self.navigationItem.leftBarButtonItem = cancelButton;
@@ -35,14 +43,14 @@
     self.navigationController.navigationBar.translucent = YES;
     //self.navigationController.view.backgroundColor = [UIColor clearColor];
     //self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
-
+    
 }
 
 
 //MARK: Button Click Actions
 - (IBAction)onImagePickerClicked:(UIButton*)sender {
     
-     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     
     picker.delegate = self;
     
@@ -53,15 +61,59 @@
 
 - (IBAction)onCreateNewAccount:(UIButton *)sender {
     
+    NSString *name = self.textfieldName.text;
+    NSString *phone = self.textfieldPhone.text;
+    NSString *username = self.textfieldUsername.text;
+    NSString *email = self.textfieldEmail.text;
+    NSString *password = self.textfieldPassword.text;
+    
+    
     //TODO: Validation of fields
     
-    //Alert account created successful
-    [[Alerter sharedInstance] createAlert:@"Success" message:@"Account created" viewController:self completion:^{
-        
-        //Dismiss to login view
-        [self dismissViewControllerAnimated:true completion:nil];
-    }];
     
+    
+    
+    
+    
+    User *user = [[User alloc] initUser:0 name:name phone:phone username:username email:email password:password];
+    
+    NSDictionary *parameters = @{
+                                 KEY_NAME: name,
+                                 KEY_PHONE: phone,
+                                 KEY_USERNAME: username,
+                                 KEY_EMAIL: email,
+                                 KEY_PASSWORD: password
+                                 };
+    
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    [manager POST:[BASE_URL stringByAppendingString:SIGNUP_PATH] parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSString *code = [responseObject valueForKey:JSON_KEY_CODE];
+        
+        if ([code isEqualToString:REGISTER_SUCCESS]) {
+            
+            //Alert account created successful
+            [[Alerter sharedInstance] createAlert:@"Success" message:@"Account created" viewController:self completion:^{
+                
+                //Dismiss to login view
+                [self dismissViewControllerAnimated:true completion:nil];
+            }];
+            
+        } else {
+            NSString *message = [responseObject valueForKey:JSON_KEY_MESSAGE];
+            [[Alerter sharedInstance] createAlert:@"Error" message:message viewController:self completion:^{}];
+        }
+        
+        NSLog(@"Success: %@", responseObject);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"Failure: %@", error);
+        
+    }];
 }
 
 
