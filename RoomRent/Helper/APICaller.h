@@ -15,6 +15,7 @@
 
 +(APICaller*)sharedInstance;
 -(APICaller*)initAPICaller;
--(void)callApi:(NSString*)url parameters:(NSDictionary*)param successBlock:(void (^)(void))successBlock;
+
+-(void)callApi:(NSString*)url parameters:(NSDictionary*)param successBlock:(void (^)(id responseObject))successBlock;
 
 @end

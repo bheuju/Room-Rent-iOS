@@ -12,6 +12,7 @@
 #import "KeyboardAvoidingViewController.h"
 #import "MyCustomUITextField.h"
 #import "Constants.h"
+#import "APICaller.h"
 
 @interface ForgotPasswordViewController : KeyboardAvoidingViewController
 

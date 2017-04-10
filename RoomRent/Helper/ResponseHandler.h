@@ -7,10 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "Constants.h"
 
 @interface ResponseHandler : NSObject
 
-+ (ResponseHandler*) sharedInstance;
++(ResponseHandler*) sharedInstance;
+
+
+-(void) handleResponse:(id)jsonData;
+
+-(void) check:(NSString*)code;
 
 @end

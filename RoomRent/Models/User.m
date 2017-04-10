@@ -27,14 +27,14 @@ static NSString *userApiToken = nil;
     
     NSDictionary *json = (NSDictionary*) userJson;
     
-    self.userId = [[json valueForKey:KEY_USER_ID] intValue];
-    self.name = [json valueForKey:KEY_NAME];
-    self.phone = [json valueForKey:KEY_PHONE];
-    self.username = [json valueForKey:KEY_USERNAME];
-    self.email = [json valueForKey:KEY_EMAIL];
+    self.userId = [[json valueForKey:JSON_KEY_USER_ID] intValue];
+    self.name = [json valueForKey:JSON_KEY_NAME];
+    self.phone = [json valueForKey:JSON_KEY_PHONE];
+    self.username = [json valueForKey:JSON_KEY_USERNAME];
+    self.email = [json valueForKey:JSON_KEY_EMAIL];
     
     //Overwrite API_TOKEN with new user api token
-    userApiToken = [json valueForKey:KEY_API_TOKEN];
+    userApiToken = [json valueForKey:JSON_KEY_API_TOKEN];
     
     return self;
 }

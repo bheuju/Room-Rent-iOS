@@ -110,6 +110,7 @@
 -(void)textFieldDidEndEditing:(UITextField *)textField {
     
     [self validate];
+    //[[ValidationHandler sharedInstance] validateTextField:textField];
     
 }
 

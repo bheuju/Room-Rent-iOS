@@ -40,29 +40,21 @@
     
     NSString* email = self.textfieldEmail.text;
     
+    //Validation of fields
+    //Explicit validation on clicking of submit button
+    [self.textfieldEmail validate];
+    
     NSDictionary *parameters = @{
-                                 KEY_EMAIL: email
+                                 JSON_KEY_EMAIL: email
                                  };
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    
-    [manager POST:[BASE_URL stringByAppendingString:FORGOT_PASSWORD_PATH] parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        NSLog(@"Complete, Respose: %@", responseObject);
+    [[APICaller sharedInstance] callApi:FORGOT_PASSWORD_PATH parameters:parameters successBlock:^(id responseObject) {
+               
+        NSString *code = [responseObject valueForKey:JSON_KEY_CODE];
+        NSString *message = [responseObject valueForKey:JSON_KEY_MESSAGE];
         
         
-        //TODO: Implement ResponseHandler here
-        //parse validation messages from server and append to "message" to be shown in alerter 
-        
-        //TODO: Parse JSON response and Set user data
-        NSDictionary *jsonDictionary = (NSDictionary *)responseObject;
-        
-        NSString *code = [jsonDictionary valueForKey:JSON_KEY_CODE];
-        NSString *message = [jsonDictionary valueForKey:JSON_KEY_MESSAGE];
-        
-        
-        if ([code isEqualToString:PASSWORD_RESET_LINK_SENT]) {
+        if ([code isEqualToString:CODE_PASSWORD_RESET_LINK_SENT]) {
             
             [[Alerter sharedInstance] createAlert:@"Success" message:message viewController:self completion:^{
                 
@@ -71,23 +63,18 @@
                 
             }];
             
-            NSLog(@"Register Success");
+            //NSLog(@"Forgot password Success");
             
         } else {
             [[Alerter sharedInstance] createAlert:@"Failure" message:message viewController:self completion:^{}];
         }
         
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-        NSLog(@"Fail, Respose: %@", error);
-        
-        //NSString *message = [error valueForKey:@"message"];
-        
-        [[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self completion:^{}];
+   
         
     }];
 }
 
+//MARK: Extras
 - (void)onCancel {
     [self dismissViewControllerAnimated:true completion:nil];
 }

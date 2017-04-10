@@ -10,6 +10,7 @@
 
 #import "KeyboardAvoidingViewController.h"
 #import "Alerter.h"
+#import "ValidationHandler.h"
 
 @interface MyCustomUITextField : UITextField <UITextFieldDelegate>
 
@@ -17,5 +18,6 @@
 @property NSString *validationMsg;
 
 -(void)addRegex:(NSString*)regex withValidationMsg:(NSString*)validationMsg;
+-(BOOL)validate;
 
 @end
