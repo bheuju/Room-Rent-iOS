@@ -20,9 +20,10 @@
 }
 
 - (IBAction)onLogout:(UIButton *)sender {
+    
     //TODO: Logout here
     
-    NSString *userApiToken = [User getUserApiToken];
+    NSString *userApiToken = [[NSUserDefaults standardUserDefaults] stringForKey:JSON_KEY_API_TOKEN];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -45,13 +46,12 @@
             
             [window setRootViewController:navController];
             [window makeKeyAndVisible];
-            
-            
         }];
         
         
         //TODO: Clear UserData
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:JSON_KEY_USER_OBJECT];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:JSON_KEY_API_TOKEN];
         
         
         NSLog(@"Success Response: %@", responseObject);
@@ -60,12 +60,9 @@
         
         NSLog(@"Error Response: %@", error);
         
+        [[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self completion:^{}];
+        
     }];
-
-    
-    
-    
-
 }
 
 @end

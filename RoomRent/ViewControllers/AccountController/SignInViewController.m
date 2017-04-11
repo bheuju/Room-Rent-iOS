@@ -130,17 +130,24 @@ User *user = nil;
                 
             }];
             
+            
             //Extract and init USER
             id userJson = [responseObject valueForKey:JSON_KEY_USER_OBJECT];
+            
+            //set userdata
             user = [[User alloc] initUserFromJson:userJson];
             user.password = password;   //init password from textField
-            
             
             //Save userdata to NSUserDefaults
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             NSData *userData = [NSKeyedArchiver archivedDataWithRootObject:user];
             [userDefaults setObject:userData forKey:JSON_KEY_USER_OBJECT];
             [userDefaults synchronize];
+            
+            
+            //set userApiToken
+            NSString *userAPiToken = [responseObject valueForKey:JSON_KEY_API_TOKEN];
+            [userDefaults setObject:userAPiToken forKey:JSON_KEY_API_TOKEN];
             
             //Reading userdata from NSUserDefaults
             //NSData *data = [userDefaults objectForKey:JSON_KEY_USER_OBJECT];

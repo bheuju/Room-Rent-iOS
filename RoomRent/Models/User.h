@@ -18,12 +18,10 @@
 @property NSString *email;
 @property NSString *password;
 
-+ (NSString*) getUserApiToken;
+-(User*)initUser:(int)userId name:(NSString*)name phone:(NSString*)phone username:(NSString*)username email:(NSString*)email password:(NSString*)password;
 
-- (User*)initUser:(int)userId name:(NSString*)name phone:(NSString*)phone username:(NSString*)username email:(NSString*)email password:(NSString*)password;
+-(User*)initUserFromJson:(id)userJson;
 
-- (User*)initUserFromJson:(id)userJson;
-
-- (User*)getUser;
+-(User*)getUser;
 
 @end

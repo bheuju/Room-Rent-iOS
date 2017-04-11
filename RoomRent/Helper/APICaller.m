@@ -50,7 +50,22 @@ AFHTTPSessionManager *manager;
         NSLog(@"Server is offline! \nSorry for the inconvenience. \nPlease try again later.");
         
     }];
+}
+
+
+-(void)callApiForImageUpload:(NSString*)url image:(UIImage*)image {
     
+    NSData *imageData = UIImagePNGRepresentation(image);
+    
+    [manager POST:[BASE_URL stringByAppendingString:url] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        [formData appendPartWithFileData:imageData name:@"userFile" fileName:@"image.png" mimeType:@"image/png"];
+    } progress: nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        
+    }];
 }
 
 

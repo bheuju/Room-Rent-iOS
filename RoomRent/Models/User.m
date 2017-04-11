@@ -10,8 +10,6 @@
 
 @implementation User
 
-static NSString *userApiToken = nil;
-
 - (User*)initUser:(int)userId name:(NSString*)name phone:(NSString*)phone username:(NSString*)username email:(NSString*)email password:(NSString*)password {
     
     self.name = name;
@@ -34,14 +32,9 @@ static NSString *userApiToken = nil;
     self.email = [json valueForKey:JSON_KEY_EMAIL];
     
     //Overwrite API_TOKEN with new user api token
-    userApiToken = [json valueForKey:JSON_KEY_API_TOKEN];
+    //userApiToken = [json valueForKey:JSON_KEY_API_TOKEN];
     
     return self;
-}
-
-
-+(NSString *)getUserApiToken {
-    return userApiToken;
 }
 
 -(User*)getUser {
