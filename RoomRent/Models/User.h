@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Constants.h"
 
-@interface User : NSObject
+@interface User : NSObject <NSCoding>
 
 @property int userId;
 @property NSString *name;

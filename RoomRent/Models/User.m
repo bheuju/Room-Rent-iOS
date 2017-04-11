@@ -50,4 +50,31 @@ static NSString *userApiToken = nil;
     
 }
 
+
+//MARK: NSCoding implementations
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    
+    if (self = [super init]) {
+        self.userId = [[aDecoder decodeObjectForKey:JSON_KEY_USER_ID] intValue] ;
+        self.name = [aDecoder decodeObjectForKey:JSON_KEY_NAME];
+        self.phone = [aDecoder decodeObjectForKey:JSON_KEY_PHONE];
+        self.username = [aDecoder decodeObjectForKey:JSON_KEY_USERNAME];
+        self.email = [aDecoder decodeObjectForKey:JSON_KEY_EMAIL];
+        self.password = [aDecoder decodeObjectForKey:JSON_KEY_PASSWORD];
+    }
+    
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder {
+    
+    [aCoder encodeObject:[NSString stringWithFormat:@"%d",self.userId] forKey:JSON_KEY_USER_ID];
+    [aCoder encodeObject:self.name forKey:JSON_KEY_NAME];
+    [aCoder encodeObject:self.phone forKey:JSON_KEY_PHONE];
+    [aCoder encodeObject:self.username forKey:JSON_KEY_USERNAME];
+    [aCoder encodeObject:self.email forKey:JSON_KEY_EMAIL];
+    [aCoder encodeObject:self.password forKey:JSON_KEY_PASSWORD];
+    
+}
+
 @end

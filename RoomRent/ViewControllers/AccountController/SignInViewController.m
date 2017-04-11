@@ -18,8 +18,23 @@
 
 @implementation SignInViewController
 
+User *user = nil;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //MARK: AUTO LOGIN
+    //Get username/email and password from UserDefaults
+    NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_USER_OBJECT];
+    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:userData];
+    NSString *usernameOrEmail = user.username;
+    NSString *password = user.password;
+    
+    if (usernameOrEmail != nil && password != nil) {
+        [self checkLogin:usernameOrEmail password:password];
+    }
+    
+    
     
     //PROTOTYPE: Data
     self.emailAddress.text = @"zeros";
@@ -42,7 +57,16 @@
 
 - (IBAction)onSignIn:(UIButton *)sender {
     
-    [self checkLogin];
+    //Get Form entries
+    NSString* usernameOrEmail = self.emailAddress.text;
+    NSString* password = self.password.text;
+    
+    //Validation of fields
+    //Explicit validation on clicking of submit button
+    [self.emailAddress validate];
+    [self.password validate];
+
+    [self checkLogin:usernameOrEmail password:password];
     
 }
 
@@ -75,16 +99,7 @@
 
 
 //MARK: Extras
-- (void)checkLogin {
-    
-    //Get Form entries
-    NSString* usernameOrEmail = self.emailAddress.text;
-    NSString* password = self.password.text;
-    
-    //Validation of fields
-    //Explicit validation on clicking of submit button
-    [self.emailAddress validate];
-    [self.password validate];
+- (void)checkLogin:(NSString*)usernameOrEmail password:(NSString*)password {
     
     NSDictionary *parameters = @{
                                  JSON_KEY_IDENTITY: usernameOrEmail,
@@ -117,81 +132,25 @@
             
             //Extract and init USER
             id userJson = [responseObject valueForKey:JSON_KEY_USER_OBJECT];
-            User *user = [[User alloc] initUserFromJson:userJson];
+            user = [[User alloc] initUserFromJson:userJson];
+            user.password = password;   //init password from textField
             
-            //TODO: Save userdata to NSUserDefaults
+            
+            //Save userdata to NSUserDefaults
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             NSData *userData = [NSKeyedArchiver archivedDataWithRootObject:user];
-            [userDefaults setObject:userData forKey:@"USER"];
+            [userDefaults setObject:userData forKey:JSON_KEY_USER_OBJECT];
             [userDefaults synchronize];
             
-            //Reading
-            NSData *data = [userDefaults objectForKey:@"USER"];
-            User *u = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-            
-            
+            //Reading userdata from NSUserDefaults
+            //NSData *data = [userDefaults objectForKey:JSON_KEY_USER_OBJECT];
+            //User *u = [NSKeyedUnarchiver unarchiveObjectWithData:data];
             
         } else {
             [[Alerter sharedInstance] createAlert:@"Failure" message:message viewController:self completion:^{}];
         }
         
     }];
-    
-    
-    //AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    //manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    
-    
-    
-    //    [manager POST:[BASE_URL stringByAppendingString:LOGIN_PATH] parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-    //
-    //        NSLog(@"Complete, Respose: %@", responseObject);
-    //
-    //        //TODO: Parse JSON response and Set user data
-    //        NSDictionary *jsonDictionary = (NSDictionary *)responseObject;
-    //
-    //        NSString *code = [jsonDictionary valueForKey:@"code"];
-    //        NSString *message = [jsonDictionary valueForKey:@"message"];
-    //
-    //        if ([code isEqualToString:CODE_LOGIN_SUCCESS]) {
-    //
-    //            [[Alerter sharedInstance] createAlert:@"Success" message:message viewController:self completion:^{
-    //
-    //                //Switch to tabBarViewController
-    //                UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
-    //                UIStoryboard *mainStory = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    //                UITabBarController *mainTabBarController = [mainStory instantiateViewControllerWithIdentifier:@"MainTabBarController"];
-    //                [window setRootViewController:mainTabBarController];
-    //                [window makeKeyAndVisible];
-    //
-    //                id userJson = [jsonDictionary valueForKey:@"user"];
-    //
-    //                //Init User
-    //                User *user = [[User alloc] initUserFromJson:userJson];
-    //
-    //
-    //                //TODO: Save userdata to NSUserDefaults
-    //
-    //            }];
-    //
-    //            NSLog(@"Login Success");
-    //
-    //        } else if ([code isEqualToString:CODE_LOGIN_ERROR]) {
-    //            [[Alerter sharedInstance] createAlert:@"Failure" message:message viewController:self completion:^{}];
-    //        } else {
-    //            [[Alerter sharedInstance] createAlert:@"Failure" message:message viewController:self completion:^{}];
-    //        }
-    //
-    //    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-    //
-    //        NSLog(@"Fail, Respose: %@", error);
-    //
-    //        //NSString *message = [error valueForKey:@"message"];
-    //
-    //        [[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self completion:^{}];
-    //
-    //    }];
-    
     
 }
 

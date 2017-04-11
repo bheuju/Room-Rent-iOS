@@ -20,6 +20,6 @@
 
 @interface SignInViewController : KeyboardAvoidingViewController
 
-- (void)checkLogin;
+-(void)checkLogin:(NSString*)usernameOrEmail password:(NSString*)password;
 
 @end
