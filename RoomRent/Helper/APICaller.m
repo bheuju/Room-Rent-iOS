@@ -52,13 +52,23 @@ AFHTTPSessionManager *manager;
     }];
 }
 
-
--(void)callApiForImageUpload:(NSString*)url image:(UIImage*)image {
-    
-    NSData *imageData = UIImagePNGRepresentation(image);
+//TODO:
+-(void)callApiForImageUpload:(NSString*)url imageArray:(NSArray*)imageArray {
     
     [manager POST:[BASE_URL stringByAppendingString:url] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        [formData appendPartWithFileData:imageData name:@"userFile" fileName:@"image.png" mimeType:@"image/png"];
+        
+        int i = 0;
+        for (UIImage *image in imageArray) {
+            
+            NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+            
+            [formData appendPartWithFileData:imageData name:@"image[]" fileName:[NSString stringWithFormat:@"image%d.jpg", i] mimeType:@"image/jpeg"];
+            
+            i++;
+        }
+        
+        
+        
     } progress: nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         

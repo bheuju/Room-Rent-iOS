@@ -10,14 +10,42 @@
 
 @interface OfferViewController ()
 
+@property (weak, nonatomic) IBOutlet UITableView *offerTableView;
+
 @end
+
+NSArray *itemsArray;
 
 @implementation OfferViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    self.offerTableView.dataSource = self;
+    self.offerTableView.delegate = self;
+    
+    //Register OfferTableViewCell
+    [self.offerTableView registerNib:[UINib nibWithNibName:@"OfferTableViewCell" bundle:nil] forCellReuseIdentifier:@"offerTableViewCell"];
+    
 }
+
+//MARK: TableView Methods
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 3;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    OfferTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"offerTableViewCell" forIndexPath:indexPath];
+    
+    [[cell textLabel] setText:@"Hello"];
+    
+    return cell;
+    
+}
+
+
+
 
 - (IBAction)onLogout:(UIButton *)sender {
     

@@ -16,8 +16,9 @@
 
 @property NSString *regex;
 @property NSString *validationMsg;
+@property BOOL isRequired;
 
 -(void)addRegex:(NSString*)regex withValidationMsg:(NSString*)validationMsg;
 -(BOOL)validate;
-
+-(void)setIsRequired;
 @end

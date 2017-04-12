@@ -13,6 +13,8 @@
 		DAA3BE971E8CF9410092F8DD /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAA3BE951E8CF9410092F8DD /* Account.storyboard */; };
 		DAA3BE991E8CF9410092F8DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAA3BE981E8CF9410092F8DD /* Assets.xcassets */; };
 		DAA3BE9C1E8CF9410092F8DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAA3BE9A1E8CF9410092F8DD /* LaunchScreen.storyboard */; };
+		DAA4E51D1E9DE8AF00D165AF /* OfferTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA4E51B1E9DE8AF00D165AF /* OfferTableViewCell.m */; };
+		DAA4E51E1E9DE8AF00D165AF /* OfferTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAA4E51C1E9DE8AF00D165AF /* OfferTableViewCell.xib */; };
 		DAA980F91E95F88A0032727F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA980F81E95F88A0032727F /* User.m */; };
 		DAA980FD1E96178B0032727F /* APICaller.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA980FC1E96178B0032727F /* APICaller.m */; };
 		DAB666B61E94BD2700E83956 /* ResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB666B51E94BD2700E83956 /* ResponseHandler.m */; };
@@ -41,6 +43,9 @@
 		DAA3BE981E8CF9410092F8DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DAA3BE9B1E8CF9410092F8DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DAA3BE9D1E8CF9410092F8DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAA4E51A1E9DE8AF00D165AF /* OfferTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferTableViewCell.h; sourceTree = "<group>"; };
+		DAA4E51B1E9DE8AF00D165AF /* OfferTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferTableViewCell.m; sourceTree = "<group>"; };
+		DAA4E51C1E9DE8AF00D165AF /* OfferTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfferTableViewCell.xib; sourceTree = "<group>"; };
 		DAA980F71E95F88A0032727F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		DAA980F81E95F88A0032727F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		DAA980FB1E96178B0032727F /* APICaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APICaller.h; sourceTree = "<group>"; };
@@ -177,6 +182,9 @@
 		DAA3BEA81E8D0FA20092F8DD /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				DAA4E51A1E9DE8AF00D165AF /* OfferTableViewCell.h */,
+				DAA4E51B1E9DE8AF00D165AF /* OfferTableViewCell.m */,
+				DAA4E51C1E9DE8AF00D165AF /* OfferTableViewCell.xib */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -301,6 +309,7 @@
 			files = (
 				DAB992E51E9355A3003A6483 /* Main.storyboard in Resources */,
 				DAA3BE9C1E8CF9410092F8DD /* LaunchScreen.storyboard in Resources */,
+				DAA4E51E1E9DE8AF00D165AF /* OfferTableViewCell.xib in Resources */,
 				DAA3BE991E8CF9410092F8DD /* Assets.xcassets in Resources */,
 				DAA3BE971E8CF9410092F8DD /* Account.storyboard in Resources */,
 			);
@@ -372,6 +381,7 @@
 				DAA3BE911E8CF9410092F8DD /* AppDelegate.m in Sources */,
 				DAB992F51E9361D7003A6483 /* Alerter.m in Sources */,
 				DAA980F91E95F88A0032727F /* User.m in Sources */,
+				DAA4E51D1E9DE8AF00D165AF /* OfferTableViewCell.m in Sources */,
 				DAB993031E9393EA003A6483 /* KeyboardAvoidingViewController.m in Sources */,
 				DAB992EF1E935F3D003A6483 /* DashboardViewController.m in Sources */,
 				DAB992EC1E935F32003A6483 /* RequestViewController.m in Sources */,

@@ -32,6 +32,9 @@
     [self.textfieldEmail addRegex:@"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,10}" withValidationMsg:@"Invalid email address"];
     [self.textfieldPassword addRegex:@"^.{4,50}$" withValidationMsg:@"Password should be at least 3 characters"];
     
+    [self.textfieldUsername setIsRequired];
+    [self.textfieldEmail setIsRequired];
+    [self.textfieldPassword setIsRequired];
     
     //PROTOTYPE: test data
     //self.textfieldName.text = @"test";
@@ -119,7 +122,6 @@
             NSArray* keys = [validationErrors allKeys];
             for(NSString* key in keys) {
                 
-                //TODO: Crash here, msg is not returned as string
                 //NSString *msg = [validationErrors valueForKey:key];
                 
                 NSArray* msgArray = [[validationErrors valueForKey:key] allObjects];

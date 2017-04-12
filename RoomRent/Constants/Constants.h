@@ -20,7 +20,7 @@
 
 //** URLs **//
 //**********//
-static NSString *BASE_URL = @"http://192.168.0.143:82/api/v1/";
+static NSString *BASE_URL = @"http://192.168.0.143:81/api/v1/";
 static NSString *LOGIN_PATH = @"login";
 static NSString *LOGOUT_PATH = @"logout";
 static NSString *FORGOT_PASSWORD_PATH = @"forgetpassword";

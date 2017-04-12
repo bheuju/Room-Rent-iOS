@@ -14,6 +14,8 @@
 #import "Constants.h"
 #import "User.h"
 
-@interface OfferViewController : UIViewController
+#import "OfferTableViewCell.h"
+
+@interface OfferViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end

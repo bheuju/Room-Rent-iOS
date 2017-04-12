@@ -44,16 +44,33 @@
     self.validationMsg = validationMsg;
 }
 
+-(void)setIsRequired {
+    self.isRequired = true;
+}
+
 -(BOOL)validate {
+    
+    //Required validation
+    if (self.isRequired && ![self hasText]) {
+        UIButton *btnError=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+        [btnError addTarget:self action:@selector(tapOnError) forControlEvents:UIControlEventTouchUpInside];
+        [btnError setBackgroundImage:[UIImage imageNamed:@"error.png"] forState:UIControlStateNormal];
+        
+        self.rightView=btnError;
+        self.rightViewMode = UITextFieldViewModeUnlessEditing;
+        
+        self.validationMsg = @"Cannot be empty";
+        
+        return false;
+    }
     
     //If no validation cases return
     if (self.regex == nil) {
         return true;
     }
     
-    
+    //Regex validation
     NSPredicate *testRegex = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", self.regex];
-    
     if (![testRegex evaluateWithObject:self.text]) {
         
         //Invalid Entry
