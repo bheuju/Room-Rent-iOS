@@ -10,13 +10,12 @@
 
 @implementation User
 
-- (User*)initUser:(int)userId name:(NSString*)name phone:(NSString*)phone username:(NSString*)username email:(NSString*)email password:(NSString*)password {
+- (User*)initUser:(int)userId name:(NSString*)name phone:(NSString*)phone username:(NSString*)username email:(NSString*)email {
     
     self.name = name;
     self.phone = phone;
     self.username = username;
     self.email = email;
-    self.password = password;
     
     return self;
 }
@@ -53,7 +52,6 @@
         self.phone = [aDecoder decodeObjectForKey:JSON_KEY_PHONE];
         self.username = [aDecoder decodeObjectForKey:JSON_KEY_USERNAME];
         self.email = [aDecoder decodeObjectForKey:JSON_KEY_EMAIL];
-        self.password = [aDecoder decodeObjectForKey:JSON_KEY_PASSWORD];
     }
     
     return self;
@@ -66,7 +64,6 @@
     [aCoder encodeObject:self.phone forKey:JSON_KEY_PHONE];
     [aCoder encodeObject:self.username forKey:JSON_KEY_USERNAME];
     [aCoder encodeObject:self.email forKey:JSON_KEY_EMAIL];
-    [aCoder encodeObject:self.password forKey:JSON_KEY_PASSWORD];
     
 }
 

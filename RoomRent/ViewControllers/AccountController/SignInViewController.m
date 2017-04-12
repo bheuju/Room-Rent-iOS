@@ -23,18 +23,6 @@ User *user = nil;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //MARK: AUTO LOGIN
-    //Get username/email and password from UserDefaults
-    NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_USER_OBJECT];
-    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:userData];
-    NSString *usernameOrEmail = user.username;
-    NSString *password = user.password;
-    
-    if (usernameOrEmail != nil && password != nil) {
-        [self checkLogin:usernameOrEmail password:password];
-    }
-    
-    
     
     //PROTOTYPE: Data
     self.emailAddress.text = @"zeros";
@@ -128,7 +116,10 @@ User *user = nil;
                 UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
                 UIStoryboard *mainStory = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 UITabBarController *mainTabBarController = [mainStory instantiateViewControllerWithIdentifier:@"MainTabBarController"];
-                [window setRootViewController:mainTabBarController];
+                
+                UINavigationController *mainVC = [[UINavigationController alloc] initWithRootViewController:mainTabBarController];
+                
+                [window setRootViewController:mainVC];
                 [window makeKeyAndVisible];
                 
             }];
@@ -139,7 +130,6 @@ User *user = nil;
             
             //set userdata
             user = [[User alloc] initUserFromJson:userJson];
-            user.password = password;   //init password from textField
             
             //Save userdata to NSUserDefaults
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -147,10 +137,9 @@ User *user = nil;
             [userDefaults setObject:userData forKey:JSON_KEY_USER_OBJECT];
             [userDefaults synchronize];
             
-            
             //set userApiToken
-            NSString *userAPiToken = [responseObject valueForKey:JSON_KEY_API_TOKEN];
-            [userDefaults setObject:userAPiToken forKey:JSON_KEY_API_TOKEN];
+            NSString *userApiToken = [responseObject valueForKey:JSON_KEY_API_TOKEN];
+            [userDefaults setObject:userApiToken forKey:JSON_KEY_API_TOKEN];
             
             //Reading userdata from NSUserDefaults
             //NSData *data = [userDefaults objectForKey:JSON_KEY_USER_OBJECT];

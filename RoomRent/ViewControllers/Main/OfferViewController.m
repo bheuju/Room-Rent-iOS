@@ -36,7 +36,7 @@ NSArray *itemsArray;
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    OfferTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"offerTableViewCell" forIndexPath:indexPath];
+    OfferTableViewCell *cell = (OfferTableViewCell*) [tableView dequeueReusableCellWithIdentifier:@"offerTableViewCell"];
     
     [[cell textLabel] setText:@"Hello"];
     
@@ -45,13 +45,12 @@ NSArray *itemsArray;
 }
 
 
-
-
+//MARK: Button Click Methods
 - (IBAction)onLogout:(UIButton *)sender {
     
     //TODO: Logout here
     
-    NSString *userApiToken = [[NSUserDefaults standardUserDefaults] stringForKey:JSON_KEY_API_TOKEN];
+    NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -92,5 +91,13 @@ NSArray *itemsArray;
         
     }];
 }
+
+- (IBAction)onForceClearUserDefaults:(UIButton *)sender {
+    
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:[[NSBundle mainBundle] bundleIdentifier]];
+    
+}
+
+
 
 @end

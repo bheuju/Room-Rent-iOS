@@ -14,9 +14,33 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    //MARK: AUTO LOGIN
+    //Get userData from UserDefaults
+    NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_USER_OBJECT];
+    
+    if (userData != nil) {
+        
+        //Logged In User
+        
+        //Switch to tabBarViewController
+        UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+        UIStoryboard *mainStory = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UITabBarController *mainTabBarController = [mainStory instantiateViewControllerWithIdentifier:@"MainTabBarController"];
+        
+        UINavigationController *mainVC = [[UINavigationController alloc] initWithRootViewController:mainTabBarController];
+        
+        [window setRootViewController:mainVC];
+        [window makeKeyAndVisible];
+        
+    } else {
+        //Not Logged In
+        
+        //Do Nothing
+    }
+    
     
     return YES;
 }

@@ -16,9 +16,8 @@
 @property NSString *phone;
 @property NSString *username;
 @property NSString *email;
-@property NSString *password;
 
--(User*)initUser:(int)userId name:(NSString*)name phone:(NSString*)phone username:(NSString*)username email:(NSString*)email password:(NSString*)password;
+-(User*)initUser:(int)userId name:(NSString*)name phone:(NSString*)phone username:(NSString*)username email:(NSString*)email;
 
 -(User*)initUserFromJson:(id)userJson;
 

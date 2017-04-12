@@ -15,6 +15,7 @@
 		DAA3BE9C1E8CF9410092F8DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAA3BE9A1E8CF9410092F8DD /* LaunchScreen.storyboard */; };
 		DAA4E51D1E9DE8AF00D165AF /* OfferTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA4E51B1E9DE8AF00D165AF /* OfferTableViewCell.m */; };
 		DAA4E51E1E9DE8AF00D165AF /* OfferTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAA4E51C1E9DE8AF00D165AF /* OfferTableViewCell.xib */; };
+		DAA4E5211E9E1A3600D165AF /* AddPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA4E5201E9E1A3600D165AF /* AddPostViewController.m */; };
 		DAA980F91E95F88A0032727F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA980F81E95F88A0032727F /* User.m */; };
 		DAA980FD1E96178B0032727F /* APICaller.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA980FC1E96178B0032727F /* APICaller.m */; };
 		DAB666B61E94BD2700E83956 /* ResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB666B51E94BD2700E83956 /* ResponseHandler.m */; };
@@ -46,6 +47,8 @@
 		DAA4E51A1E9DE8AF00D165AF /* OfferTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferTableViewCell.h; sourceTree = "<group>"; };
 		DAA4E51B1E9DE8AF00D165AF /* OfferTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferTableViewCell.m; sourceTree = "<group>"; };
 		DAA4E51C1E9DE8AF00D165AF /* OfferTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfferTableViewCell.xib; sourceTree = "<group>"; };
+		DAA4E51F1E9E1A3600D165AF /* AddPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPostViewController.h; sourceTree = "<group>"; };
+		DAA4E5201E9E1A3600D165AF /* AddPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPostViewController.m; sourceTree = "<group>"; };
 		DAA980F71E95F88A0032727F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		DAA980F81E95F88A0032727F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		DAA980FB1E96178B0032727F /* APICaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APICaller.h; sourceTree = "<group>"; };
@@ -207,6 +210,8 @@
 				DAB992EB1E935F32003A6483 /* RequestViewController.m */,
 				DAB992ED1E935F3D003A6483 /* DashboardViewController.h */,
 				DAB992EE1E935F3D003A6483 /* DashboardViewController.m */,
+				DAA4E51F1E9E1A3600D165AF /* AddPostViewController.h */,
+				DAA4E5201E9E1A3600D165AF /* AddPostViewController.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -384,6 +389,7 @@
 				DAA4E51D1E9DE8AF00D165AF /* OfferTableViewCell.m in Sources */,
 				DAB993031E9393EA003A6483 /* KeyboardAvoidingViewController.m in Sources */,
 				DAB992EF1E935F3D003A6483 /* DashboardViewController.m in Sources */,
+				DAA4E5211E9E1A3600D165AF /* AddPostViewController.m in Sources */,
 				DAB992EC1E935F32003A6483 /* RequestViewController.m in Sources */,
 				DAA3BE8E1E8CF9410092F8DD /* main.m in Sources */,
 				DAB666B61E94BD2700E83956 /* ResponseHandler.m in Sources */,

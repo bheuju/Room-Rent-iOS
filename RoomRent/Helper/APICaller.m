@@ -42,7 +42,7 @@ AFHTTPSessionManager *manager;
         successBlock(responseObject);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+
         NSLog(@"Fail, Respose: %@", error);
         
         //[[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self completion:^{}];
@@ -56,7 +56,7 @@ AFHTTPSessionManager *manager;
 -(void)callApiForImageUpload:(NSString*)url imageArray:(NSArray*)imageArray {
     
     [manager POST:[BASE_URL stringByAppendingString:url] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        
+
         int i = 0;
         for (UIImage *image in imageArray) {
             
@@ -66,8 +66,6 @@ AFHTTPSessionManager *manager;
             
             i++;
         }
-        
-        
         
     } progress: nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
