@@ -37,11 +37,11 @@
     [self.textfieldPassword setIsRequired];
     
     //PROTOTYPE: test data
-    //self.textfieldName.text = @"test";
-    //self.textfieldPhone.text = @"9845685945";
-    //self.textfieldUsername.text = @"test";
-    //self.textfieldEmail.text = @"test@test.com";
-    //self.textfieldPassword.text = @"test";
+    self.textfieldName.text = @"Mr. Test";
+    self.textfieldPhone.text = @"9849562347";
+    self.textfieldUsername.text = @"test";
+    self.textfieldEmail.text = @"test@test.com";
+    self.textfieldPassword.text = @"Test1234";
     
     //Add cancel button to VC
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(onCancel)];
@@ -89,6 +89,13 @@
     
     //User *user = [[User alloc] initUser:0 name:name phone:phone username:username email:email password:password];
     
+    
+    
+    
+    //NSArray *imageArray = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"aa.png"] , nil];
+    //[[APICaller sharedInstance] callApiForImageUpload:IMAGE_UPLOAD_PATH imageArray:imageArray];
+    
+    
     NSDictionary *parameters = @{
                                  JSON_KEY_NAME: name,
                                  JSON_KEY_PHONE: phone,
@@ -97,51 +104,64 @@
                                  JSON_KEY_PASSWORD: password
                                  };
     
-    
-    [[APICaller sharedInstance] callApi:SIGNUP_PATH parameters:parameters successBlock:^(id responseObject) {
+    UIImage *image = [UIImage imageNamed:@"aa.png"];
+    [[APICaller sharedInstance] callApi:SIGNUP_PATH parameters:parameters image:image successBlock:^(id responseObject) {
         
-        NSString *code = [responseObject valueForKey:JSON_KEY_CODE];
-        NSString *message = [responseObject valueForKey:JSON_KEY_MESSAGE];
-        
-        if ([code isEqualToString:CODE_REGISTER_SUCCESS]) {
+        [[Alerter sharedInstance] createAlert:@"Success" message:@"Register success" viewController:self completion:^{
             
-            //Alert account created successful
-            [[Alerter sharedInstance] createAlert:@"Success" message:message viewController:self completion:^{
-                
-                //Dismiss to login view
-                [self dismissViewControllerAnimated:true completion:nil];
-            }];
-            
-        } else if ([code isEqualToString:CODE_VALIDATION_ERROR]) {
-            
-            message = [message stringByAppendingString:@"\n"];
-            
-            //Extract all error messages to display in alerter
-            NSDictionary *validationErrors = (NSDictionary*) [responseObject valueForKey:JSON_KEY_VALIDATION_ERROR];
-            
-            NSArray* keys = [validationErrors allKeys];
-            for(NSString* key in keys) {
-                
-                //NSString *msg = [validationErrors valueForKey:key];
-                
-                NSArray* msgArray = [[validationErrors valueForKey:key] allObjects];
-                for (NSString *msg in msgArray) {
-                    
-                    //NSLog(@"Message: %@", msg);
-                    
-                    message = [message stringByAppendingString:@"\n"];
-                    message = [message stringByAppendingString:msg];
-                }
-            }
-            
-            [[Alerter sharedInstance] createAlert:@"Error" message:message viewController:self completion:^{}];
-            
-        } else {
-            
-            [[Alerter sharedInstance] createAlert:@"Error" message:message viewController:self completion:^{}];
-        }
+            //Dismiss to login view
+            //[self dismissViewControllerAnimated:true completion:nil];
+        }];
+
         
     }];
+    
+    
+//    [[APICaller sharedInstance] callApi:SIGNUP_PATH parameters:parameters successBlock:^(id responseObject) {
+//        
+//        NSString *code = [responseObject valueForKey:JSON_KEY_CODE];
+//        NSString *message = [responseObject valueForKey:JSON_KEY_MESSAGE];
+//        
+//        if ([code isEqualToString:CODE_REGISTER_SUCCESS]) {
+//            
+//            //Alert account created successful
+//            [[Alerter sharedInstance] createAlert:@"Success" message:message viewController:self completion:^{
+//                
+//                //Dismiss to login view
+//                [self dismissViewControllerAnimated:true completion:nil];
+//            }];
+//            
+//        } else if ([code isEqualToString:CODE_VALIDATION_ERROR]) {
+//            
+//            message = [message stringByAppendingString:@"\n"];
+//            
+//            //Extract all error messages to display in alerter
+//            NSDictionary *validationErrors = (NSDictionary*) [responseObject valueForKey:JSON_KEY_VALIDATION_ERROR];
+//            
+//            NSArray* keys = [validationErrors allKeys];
+//            for(NSString* key in keys) {
+//                
+//                //NSString *msg = [validationErrors valueForKey:key];
+//                
+//                NSArray* msgArray = [[validationErrors valueForKey:key] allObjects];
+//                for (NSString *msg in msgArray) {
+//                    
+//                    //NSLog(@"Message: %@", msg);
+//                    
+//                    message = [message stringByAppendingString:@"\n"];
+//                    message = [message stringByAppendingString:msg];
+//                }
+//            }
+//            
+//            [[Alerter sharedInstance] createAlert:@"Error" message:message viewController:self completion:^{}];
+//            
+//        } else {
+//            
+//            [[Alerter sharedInstance] createAlert:@"Error" message:message viewController:self completion:^{}];
+//        }
+//        
+//    }];
+    
 }
 
 

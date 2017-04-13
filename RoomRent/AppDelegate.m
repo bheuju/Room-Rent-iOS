@@ -8,6 +8,9 @@
 
 #import "AppDelegate.h"
 
+#import <SWRevealViewController/SWRevealViewController.h>
+#import "SidebarViewController.h"
+
 @interface AppDelegate ()
 
 @end
@@ -30,9 +33,12 @@
         UIStoryboard *mainStory = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UITabBarController *mainTabBarController = [mainStory instantiateViewControllerWithIdentifier:@"MainTabBarController"];
         
-        UINavigationController *mainVC = [[UINavigationController alloc] initWithRootViewController:mainTabBarController];
+        UIViewController *sidebarVC = [mainStory instantiateViewControllerWithIdentifier:@"SidebarViewController"];
         
-        [window setRootViewController:mainVC];
+        //UINavigationController *mainVC = [[UINavigationController alloc] initWithRootViewController:mainTabBarController];
+        SWRevealViewController *revealVC = [[SWRevealViewController alloc] initWithRearViewController:sidebarVC frontViewController:mainTabBarController];
+        
+        [window setRootViewController:revealVC];
         [window makeKeyAndVisible];
         
     } else {

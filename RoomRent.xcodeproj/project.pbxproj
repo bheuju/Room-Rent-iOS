@@ -18,6 +18,7 @@
 		DAA4E5211E9E1A3600D165AF /* AddPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA4E5201E9E1A3600D165AF /* AddPostViewController.m */; };
 		DAA980F91E95F88A0032727F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA980F81E95F88A0032727F /* User.m */; };
 		DAA980FD1E96178B0032727F /* APICaller.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA980FC1E96178B0032727F /* APICaller.m */; };
+		DAAF21251E9F549C0089249D /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAF21241E9F549C0089249D /* SidebarViewController.m */; };
 		DAB666B61E94BD2700E83956 /* ResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB666B51E94BD2700E83956 /* ResponseHandler.m */; };
 		DAB6944E1E973E6900BD3498 /* ValidationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB6944D1E973E6900BD3498 /* ValidationHandler.m */; };
 		DAB992E51E9355A3003A6483 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAB992E41E9355A3003A6483 /* Main.storyboard */; };
@@ -53,6 +54,8 @@
 		DAA980F81E95F88A0032727F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		DAA980FB1E96178B0032727F /* APICaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APICaller.h; sourceTree = "<group>"; };
 		DAA980FC1E96178B0032727F /* APICaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APICaller.m; sourceTree = "<group>"; };
+		DAAF21231E9F549C0089249D /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
+		DAAF21241E9F549C0089249D /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
 		DAB666B41E94BD2700E83956 /* ResponseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseHandler.h; sourceTree = "<group>"; };
 		DAB666B51E94BD2700E83956 /* ResponseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseHandler.m; sourceTree = "<group>"; };
 		DAB6944C1E973E6900BD3498 /* ValidationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidationHandler.h; sourceTree = "<group>"; };
@@ -212,6 +215,8 @@
 				DAB992EE1E935F3D003A6483 /* DashboardViewController.m */,
 				DAA4E51F1E9E1A3600D165AF /* AddPostViewController.h */,
 				DAA4E5201E9E1A3600D165AF /* AddPostViewController.m */,
+				DAAF21231E9F549C0089249D /* SidebarViewController.h */,
+				DAAF21241E9F549C0089249D /* SidebarViewController.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -381,6 +386,7 @@
 				DAB992E91E935EEE003A6483 /* OfferViewController.m in Sources */,
 				DAD538761E8E17A400F71D8B /* SignUpViewController.m in Sources */,
 				DAB993001E93938E003A6483 /* MyCustomUITextField.m in Sources */,
+				DAAF21251E9F549C0089249D /* SidebarViewController.m in Sources */,
 				DAD538701E8E129A00F71D8B /* SignInViewController.m in Sources */,
 				DAB6944E1E973E6900BD3498 /* ValidationHandler.m in Sources */,
 				DAA3BE911E8CF9410092F8DD /* AppDelegate.m in Sources */,

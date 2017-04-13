@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SWRevealViewController/SWRevealViewController.h>
 
 @interface DashboardViewController : UIViewController
 

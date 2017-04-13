@@ -1,34 +1,22 @@
 //
-//  RequestViewController.m
+//  SidebarViewController.m
 //  RoomRent
 //
-//  Created by Bishal Heuju on 4/4/17.
+//  Created by Bishal Heuju on 4/13/17.
 //  Copyright © 2017 Bishal Heuju. All rights reserved.
 //
 
-#import "RequestViewController.h"
+#import "SidebarViewController.h"
 
-@interface RequestViewController ()
-
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+@interface SidebarViewController ()
 
 @end
 
-@implementation RequestViewController
+@implementation SidebarViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    //Reveal View
-    SWRevealViewController *revealVC = self.revealViewController;
-    if (revealVC) {
-        
-        [self.sidebarButton setTarget:self.revealViewController];
-        [self.sidebarButton setAction:@selector(revealToggle:)];
-        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-        
-    }
-    
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {

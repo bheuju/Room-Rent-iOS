@@ -10,6 +10,8 @@
 
 #import <AFNetworking/AFNetworking.h>
 
+#import <SWRevealViewController/SWRevealViewController.h>
+
 #import "Alerter.h"
 #import "Constants.h"
 #import "User.h"

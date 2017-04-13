@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <AFNetworking/AFNetworking.h>
+#import <SWRevealViewController/SWRevealViewController.h>
 
+#import "SidebarViewController.h"
 #import "KeyboardAvoidingViewController.h"
 #import "Constants.h"
 #import "Alerter.h"
