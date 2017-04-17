@@ -18,6 +18,11 @@
 //}
 
 
+//** App Defaults **//
+//******************//
+static float SIDEBAR_WIDTH = 300.0f;
+
+
 //** URLs **//
 //**********//
 static NSString *BASE_URL = @"http://192.168.0.143:81/api/v1/";

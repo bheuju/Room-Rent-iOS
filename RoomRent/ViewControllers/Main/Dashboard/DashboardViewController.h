@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <SWRevealViewController/SWRevealViewController.h>
 
-@interface DashboardViewController : UIViewController
+#import "SidebarImplementedViewController.h"
+
+@interface DashboardViewController : SidebarImplementedViewController
 
 @end

@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 
 #import <AFNetworking/AFNetworking.h>
-
 #import <SWRevealViewController/SWRevealViewController.h>
+
+#import "SidebarImplementedViewController.h"
 
 #import "Alerter.h"
 #import "Constants.h"
@@ -18,6 +19,6 @@
 
 #import "OfferTableViewCell.h"
 
-@interface OfferViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface OfferViewController : SidebarImplementedViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end

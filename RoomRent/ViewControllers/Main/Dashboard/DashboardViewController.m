@@ -10,7 +10,7 @@
 
 @interface DashboardViewController ()
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+//@property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 
 @end
 
@@ -20,14 +20,14 @@
     [super viewDidLoad];
     
     //Reveal View
-    SWRevealViewController *revealVC = self.revealViewController;
-    if (revealVC) {
-        
-        [self.sidebarButton setTarget:self.revealViewController];
-        [self.sidebarButton setAction:@selector(revealToggle:)];
-        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-        
-    }
+//    SWRevealViewController *revealVC = self.revealViewController;
+//    if (revealVC) {
+//        
+//        [self.sidebarButton setTarget:self.revealViewController];
+//        [self.sidebarButton setAction:@selector(revealToggle:)];
+//        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+//        
+//    }
     
 }
 

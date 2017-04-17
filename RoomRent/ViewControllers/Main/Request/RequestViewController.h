@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <SWRevealViewController/SWRevealViewController.h>
 
-@interface RequestViewController : UIViewController
+#import "SidebarImplementedViewController.h"
+
+@interface RequestViewController : SidebarImplementedViewController
 
 @end

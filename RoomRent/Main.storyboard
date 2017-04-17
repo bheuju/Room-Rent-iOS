@@ -22,15 +22,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fAe-nu-RpT">
-                                <rect key="frame" x="307" y="602" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                <state key="normal" title="Add"/>
-                                <connections>
-                                    <action selector="onAdd:" destination="nGH-Vk-xdj" eventType="touchUpInside" id="8nO-YP-lnM"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dashboard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zb1-Rp-Dci">
                                 <rect key="frame" x="108" y="157" width="84" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -38,15 +29,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fAe-nu-RpT">
+                                <rect key="frame" x="277" y="550" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="onAdd:" destination="nGH-Vk-xdj" eventType="touchUpInside" id="8nO-YP-lnM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Gpv-PP-SWx">
-                        <barButtonItem key="leftBarButtonItem" image="menu-icon" id="Qyp-1F-HoA"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="sidebarButton" destination="Qyp-1F-HoA" id="Mep-F3-4ub"/>
-                    </connections>
+                    <navigationItem key="navigationItem" id="Gpv-PP-SWx"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3mx-Op-rFi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -74,12 +69,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="cgD-x5-GIh">
-                        <barButtonItem key="leftBarButtonItem" image="menu-icon" id="Tdz-5o-uKn"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="sidebarButton" destination="Tdz-5o-uKn" id="XS2-Gp-LTc"/>
-                    </connections>
+                    <navigationItem key="navigationItem" id="cgD-x5-GIh"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3bd-hY-kFb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -145,12 +135,9 @@
                             <constraint firstItem="2Yc-Cf-yuf" firstAttribute="leading" secondItem="9bn-zz-w7E" secondAttribute="leading" id="xyP-AL-wLE"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="uol-FH-gh9">
-                        <barButtonItem key="leftBarButtonItem" image="menu-icon" id="P2G-A9-XCW"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="uol-FH-gh9"/>
                     <connections>
                         <outlet property="offerTableView" destination="2Yc-Cf-yuf" id="7co-KY-nBn"/>
-                        <outlet property="sidebarButton" destination="P2G-A9-XCW" id="pRb-Zy-1x6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8fm-lS-6nH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -209,20 +196,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="z09-dS-z6K">
-                                <rect key="frame" x="0.0" y="271" width="414" height="465"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Room Rent" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVK-RY-nuL">
-                                <rect key="frame" x="156" y="70" width="103.33333333333331" height="25.333333333333329"/>
+                                <rect key="frame" x="155" y="70" width="104" height="26"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="chooseImageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="cm2-8N-4ku">
-                                <rect key="frame" x="147" y="120.33333333333334" width="120" height="120.00000000000003"/>
+                                <rect key="frame" x="147" y="121" width="120" height="120"/>
                             </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="z09-dS-z6K">
+                                <rect key="frame" x="0.0" y="271" width="414" height="465"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -235,7 +222,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8pr-EA-8PR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1375" y="-1449"/>
+            <point key="canvasLocation" x="-1375.3623188405797" y="-1449.4565217391305"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="u1j-vJ-WJe">
@@ -373,6 +360,5 @@
         <image name="dashboard-on" width="29" height="29"/>
         <image name="discover-off" width="29" height="29"/>
         <image name="discover-on" width="29" height="29"/>
-        <image name="menu-icon" width="17" height="14"/>
     </resources>
 </document>
