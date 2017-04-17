@@ -26,6 +26,7 @@ static float SIDEBAR_WIDTH = 300.0f;
 //** URLs **//
 //**********//
 static NSString *BASE_URL = @"http://192.168.0.143:81/api/v1/";
+//static NSString *BASE_URL = @"http://192.168.0.157:81/api/";
 static NSString *LOGIN_PATH = @"login";
 static NSString *LOGOUT_PATH = @"logout";
 static NSString *FORGOT_PASSWORD_PATH = @"forgetpassword";
@@ -37,7 +38,7 @@ static NSString *IMAGE_UPLOAD_PATH = @"upload";
 //static NSString *USER_API_TOKEN = @"";
 
 static NSString *DEVICE_TYPE = @"1";
-static NSString *DEVICE_TOKEN = @"iOS Device";
+static NSString *DEVICE_TOKEN = @"Zero's iOS Device";
 
 
 //** JSON KEYS **//

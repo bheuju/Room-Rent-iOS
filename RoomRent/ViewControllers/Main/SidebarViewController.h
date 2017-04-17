@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AFNetworking/AFNetworking.h>
 
-@interface SidebarViewController : UIViewController
+#import "Constants.h"
+#import "Alerter.h"
+#import "APICaller.h"
+
+
+@interface SidebarViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+
+-(void)logout;
 
 @end

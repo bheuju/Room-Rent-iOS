@@ -36,8 +36,8 @@
     }
     
     //Customizing revealViewController
-    revealVC.rearViewRevealWidth = SIDEBAR_WIDTH;
-    revealVC.rearViewRevealOverdraw = 0.0f;
+    self.revealViewController.rearViewRevealWidth = SIDEBAR_WIDTH;
+    self.revealViewController.rearViewRevealOverdraw = 0.0f;
     
 }
 
