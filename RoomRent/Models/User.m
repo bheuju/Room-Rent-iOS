@@ -29,6 +29,7 @@
     self.phone = [json valueForKey:JSON_KEY_PHONE];
     self.username = [json valueForKey:JSON_KEY_USERNAME];
     self.email = [json valueForKey:JSON_KEY_EMAIL];
+    self.profileImageUrl = [json valueForKey:JSON_KEY_PROFILE_IMAGE_URL];
     
     //Overwrite API_TOKEN with new user api token
     //userApiToken = [json valueForKey:JSON_KEY_API_TOKEN];
@@ -36,11 +37,6 @@
     return self;
 }
 
--(User*)getUser {
-    
-    return self;
-    
-}
 
 
 //MARK: NSCoding implementations
@@ -52,6 +48,7 @@
         self.phone = [aDecoder decodeObjectForKey:JSON_KEY_PHONE];
         self.username = [aDecoder decodeObjectForKey:JSON_KEY_USERNAME];
         self.email = [aDecoder decodeObjectForKey:JSON_KEY_EMAIL];
+        self.profileImageUrl = [aDecoder decodeObjectForKey:JSON_KEY_PROFILE_IMAGE_URL];
     }
     
     return self;
@@ -64,6 +61,7 @@
     [aCoder encodeObject:self.phone forKey:JSON_KEY_PHONE];
     [aCoder encodeObject:self.username forKey:JSON_KEY_USERNAME];
     [aCoder encodeObject:self.email forKey:JSON_KEY_EMAIL];
+    [aCoder encodeObject:self.profileImageUrl forKey:JSON_KEY_PROFILE_IMAGE_URL];
     
 }
 

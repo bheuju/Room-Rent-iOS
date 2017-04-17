@@ -197,8 +197,12 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="chooseImageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="cm2-8N-4ku">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="chooseImageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="cm2-8N-4ku">
                                 <rect key="frame" x="147" y="121" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="556-x4-SVe"/>
+                                    <constraint firstAttribute="height" constant="120" id="mZJ-lF-AGz"/>
+                                </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="z09-dS-z6K">
                                 <rect key="frame" x="0.0" y="271" width="414" height="465"/>
@@ -230,6 +234,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="profileImage" destination="cm2-8N-4ku" id="4kr-JW-I1Y"/>
                         <outlet property="sidebarTableView" destination="z09-dS-z6K" id="hpl-vU-31Q"/>
                     </connections>
                 </viewController>

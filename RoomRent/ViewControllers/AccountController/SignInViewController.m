@@ -133,6 +133,11 @@ User *user = nil;
             //set userdata
             user = [[User alloc] initUserFromJson:userJson];
             
+            //MARK: Temporary for test
+            user.profileImageUrl = [responseObject valueForKey:JSON_KEY_PROFILE_IMAGE_URL];
+            //User *tempUser = user;
+            
+            
             //Save userdata to NSUserDefaults
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             NSData *userData = [NSKeyedArchiver archivedDataWithRootObject:user];
@@ -146,6 +151,8 @@ User *user = nil;
             //Reading userdata from NSUserDefaults
             //NSData *data = [userDefaults objectForKey:JSON_KEY_USER_OBJECT];
             //User *u = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+            
+            //int x = 5;
             
         } else {
             [[Alerter sharedInstance] createAlert:@"Failure" message:message viewController:self completion:^{}];

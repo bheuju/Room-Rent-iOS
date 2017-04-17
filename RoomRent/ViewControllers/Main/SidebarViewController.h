@@ -13,6 +13,8 @@
 #import "Alerter.h"
 #import "APICaller.h"
 
+#import "User.h"
+
 
 @interface SidebarViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 

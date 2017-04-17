@@ -11,6 +11,7 @@
 @interface SidebarViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *sidebarTableView;
+@property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 
 @end
 
@@ -24,7 +25,16 @@ NSArray *menuList;
     self.sidebarTableView.delegate = self;
     self.sidebarTableView.dataSource = self;
 
-    menuList = @[@"Profile",@"Logout"];
+    menuList = @[@"Profile", @"Logout"];
+    
+    NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_USER_OBJECT];
+    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:userData];
+    
+    [[APICaller sharedInstance] callApiForImageRequest:user.profileImageUrl successBlock:^(id responseObject) {
+        
+        [self.profileImage setImage:responseObject];
+        
+    }];
 }
 
 

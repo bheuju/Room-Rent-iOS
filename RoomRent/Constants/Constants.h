@@ -51,6 +51,7 @@ static NSString *JSON_KEY_PHONE = @"phone";
 static NSString *JSON_KEY_USERNAME = @"username";
 static NSString *JSON_KEY_EMAIL = @"email";
 static NSString *JSON_KEY_PASSWORD = @"password";
+static NSString *JSON_KEY_PROFILE_IMAGE_URL = @"profile_image";
 static NSString *JSON_KEY_API_TOKEN = @"api_token";
 static NSString *JSON_KEY_CREATED_AT = @"created_at";
 
