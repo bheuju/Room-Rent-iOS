@@ -19,21 +19,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //Reveal View
-//    SWRevealViewController *revealVC = self.revealViewController;
-//    if (revealVC) {
-//        
-//        [self.sidebarButton setTarget:self.revealViewController];
-//        [self.sidebarButton setAction:@selector(revealToggle:)];
-//        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-//        
-//    }
+    
+}
+
+- (IBAction)onAddRequest:(UIButton *)sender {
+    
+    UIStoryboard *mainStory = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *addRequestVC = [mainStory instantiateViewControllerWithIdentifier:@"AddRequestViewController"];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addRequestVC];
+    
+    [self presentViewController:navController animated:true completion:nil];
     
 }
 
 - (IBAction)onAdd:(UIButton*)sender {
-    //TODO:
-    
+   
     UIStoryboard *mainStory = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *addPostVC = [mainStory instantiateViewControllerWithIdentifier:@"AddPostViewController"];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addPostVC];

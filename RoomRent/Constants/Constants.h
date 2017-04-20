@@ -32,6 +32,8 @@ static NSString *LOGOUT_PATH = @"logout";
 static NSString *FORGOT_PASSWORD_PATH = @"forgetpassword";
 static NSString *SIGNUP_PATH = @"register";
 
+static NSString *GETFILE_PATH = @"getfile/";
+
 static NSString *IMAGE_UPLOAD_PATH = @"upload";
 
 //static NSString *API_TOKEN = @"OD44GCYFpHYHcwYFTG1QsQBGPOLcHjk8OMOMPkd3Ew3RTaLX0ox2ES3UASxE";

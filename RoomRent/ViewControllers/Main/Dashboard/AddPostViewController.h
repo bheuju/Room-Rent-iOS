@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddPostViewController : UIViewController
+#import "AddressPickerViewController.h"
+
+@interface AddPostViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UICollectionViewDelegateFlowLayout, AddressPickerDelegeate>
+
+-(void)populatePhotoCollectionViewWithImage:(UIImage*)image;
 
 @end

@@ -8,7 +8,7 @@
 
 #import "SignUpViewController.h"
 
-@interface SignUpViewController () <UIImagePickerControllerDelegate>
+@interface SignUpViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *btnImagePicker;
 
@@ -21,6 +21,8 @@
 @end
 
 @implementation SignUpViewController
+
+UIImage *profileImage;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,6 +57,8 @@
     //self.navigationController.view.backgroundColor = [UIColor clearColor];
     //self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
     
+    
+    profileImage = nil;
 }
 
 
@@ -88,10 +92,7 @@
     [self.textfieldPassword validate];
     
     //User *user = [[User alloc] initUser:0 name:name phone:phone username:username email:email password:password];
-    
-    
-    
-    
+        
     //NSArray *imageArray = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"aa.png"] , nil];
     //[[APICaller sharedInstance] callApiForImageUpload:IMAGE_UPLOAD_PATH imageArray:imageArray];
     
@@ -104,64 +105,47 @@
                                  JSON_KEY_PASSWORD: password
                                  };
     
-    UIImage *image = [UIImage imageNamed:@"aa.png"];
-    [[APICaller sharedInstance] callApi:SIGNUP_PATH parameters:parameters image:image successBlock:^(id responseObject) {
+    //profileImage = [UIImage imageNamed:@"aa.png"];
+    [[APICaller sharedInstance] callApi:SIGNUP_PATH parameters:parameters image:profileImage successBlock:^(id responseObject) {
         
-        [[Alerter sharedInstance] createAlert:@"Success" message:@"Register success" viewController:self completion:^{
+        NSString *code = [responseObject valueForKey:JSON_KEY_CODE];
+        NSString *message = [responseObject valueForKey:JSON_KEY_MESSAGE];
+        
+        if ([code isEqualToString:CODE_REGISTER_SUCCESS]) {
             
-            //Dismiss to login view
-            //[self dismissViewControllerAnimated:true completion:nil];
-        }];
-
+            //Alert account created successful
+            [[Alerter sharedInstance] createAlert:@"Success" message:message viewController:self completion:^{
+                
+                //Dismiss to login view
+                [self dismissViewControllerAnimated:true completion:nil];
+            }];
+            
+        } else if ([code isEqualToString:CODE_VALIDATION_ERROR]) {
+            
+            message = [message stringByAppendingString:@"\n"];
+            
+            //Extract all error messages to display in alerter
+            NSDictionary *validationErrors = (NSDictionary*) [responseObject valueForKey:JSON_KEY_VALIDATION_ERROR];
+            
+            NSArray* keys = [validationErrors allKeys];
+            for(NSString* key in keys) {
+                
+                NSArray* msgArray = [[validationErrors valueForKey:key] allObjects];
+                for (NSString *msg in msgArray) {
+                    
+                    message = [message stringByAppendingString:@"\n"];
+                    message = [message stringByAppendingString:msg];
+                }
+            }
+            
+            [[Alerter sharedInstance] createAlert:@"Error" message:message viewController:self completion:^{}];
+            
+        } else {
+            
+            [[Alerter sharedInstance] createAlert:@"Error" message:message viewController:self completion:^{}];
+        }
         
     }];
-    
-    
-//    [[APICaller sharedInstance] callApi:SIGNUP_PATH parameters:parameters successBlock:^(id responseObject) {
-//        
-//        NSString *code = [responseObject valueForKey:JSON_KEY_CODE];
-//        NSString *message = [responseObject valueForKey:JSON_KEY_MESSAGE];
-//        
-//        if ([code isEqualToString:CODE_REGISTER_SUCCESS]) {
-//            
-//            //Alert account created successful
-//            [[Alerter sharedInstance] createAlert:@"Success" message:message viewController:self completion:^{
-//                
-//                //Dismiss to login view
-//                [self dismissViewControllerAnimated:true completion:nil];
-//            }];
-//            
-//        } else if ([code isEqualToString:CODE_VALIDATION_ERROR]) {
-//            
-//            message = [message stringByAppendingString:@"\n"];
-//            
-//            //Extract all error messages to display in alerter
-//            NSDictionary *validationErrors = (NSDictionary*) [responseObject valueForKey:JSON_KEY_VALIDATION_ERROR];
-//            
-//            NSArray* keys = [validationErrors allKeys];
-//            for(NSString* key in keys) {
-//                
-//                //NSString *msg = [validationErrors valueForKey:key];
-//                
-//                NSArray* msgArray = [[validationErrors valueForKey:key] allObjects];
-//                for (NSString *msg in msgArray) {
-//                    
-//                    //NSLog(@"Message: %@", msg);
-//                    
-//                    message = [message stringByAppendingString:@"\n"];
-//                    message = [message stringByAppendingString:msg];
-//                }
-//            }
-//            
-//            [[Alerter sharedInstance] createAlert:@"Error" message:message viewController:self completion:^{}];
-//            
-//        } else {
-//            
-//            [[Alerter sharedInstance] createAlert:@"Error" message:message viewController:self completion:^{}];
-//        }
-//        
-//    }];
-    
 }
 
 
@@ -178,6 +162,8 @@
     UIImage *selectedImage = [info objectForKey:UIImagePickerControllerEditedImage];
     [self.btnImagePicker setImage:selectedImage forState:UIControlStateNormal];
     [self.btnImagePicker setContentMode:UIViewContentModeScaleAspectFit];
+    
+    profileImage = selectedImage;
     
     //Image border and color
     

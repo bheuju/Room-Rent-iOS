@@ -18,5 +18,5 @@
 #import "User.h"
 
 
-@interface SignUpViewController : KeyboardAvoidingViewController
+@interface SignUpViewController : KeyboardAvoidingViewController <UIImagePickerControllerDelegate>
 @end

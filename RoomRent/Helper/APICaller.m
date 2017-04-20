@@ -33,6 +33,7 @@ AFHTTPSessionManager *manager;
     return self;
 }
 
+//no image
 -(void)callApi:(NSString*)url parameters:(NSDictionary*)param successBlock:(void (^)(id responseObject))successBlock {
     
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -53,8 +54,8 @@ AFHTTPSessionManager *manager;
     }];
 }
 
-//TODO:
--(void)callApiForImageUpload:(NSString*)url imageArray:(NSArray*)imageArray {
+//image array named image[]
+-(void)callApi:(NSString*)url parameters:(NSDictionary*)param imageArray:(NSArray*)imageArray successBlock:(void (^)(id responseObject))successBlock {
     
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     [manager POST:[BASE_URL stringByAppendingString:url] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
@@ -78,23 +79,23 @@ AFHTTPSessionManager *manager;
     }];
 }
 
-
+//single image named profile_image
 -(void)callApi:(NSString*)url parameters:(NSDictionary*)param image:(UIImage*)image successBlock:(void (^)(id responseObject))successBlock {
     
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     [manager POST:[BASE_URL stringByAppendingString:url] parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        
-        NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
-        
-        [formData appendPartWithFileData:imageData name:@"profile_image" fileName:@"image.jpg" mimeType:@"image/jpeg"];
-        
+        if (image != nil) {
+            NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+            
+            [formData appendPartWithFileData:imageData name:@"profile_image" fileName:@"image.jpg" mimeType:@"image/jpeg"];
+        }
     } progress: nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSLog(@"Task: %@", task);
         NSLog(@"Complete, Respose: %@", responseObject);
         
         successBlock(responseObject);
-
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         NSLog(@"Fail, Respose: %@", error);
@@ -102,6 +103,7 @@ AFHTTPSessionManager *manager;
     }];
 }
 
+//image fetch with api_token
 -(void)callApiForImageRequest:(NSString*)url successBlock:(void (^)(id responseObject))successBlock {
     
     //NSString *url = @"http://192.168.0.143:81/api/v1/getfile/akldshfiuo876879jfd877jhdsaf7.jpg";
@@ -109,12 +111,11 @@ AFHTTPSessionManager *manager;
     NSDictionary *param = @{JSON_KEY_API_TOKEN : [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN]};
     
     manager.responseSerializer = [AFImageResponseSerializer serializer];
-    [manager GET:url parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manager GET:[[BASE_URL stringByAppendingString:GETFILE_PATH] stringByAppendingString:url] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSLog(@"%@", responseObject);
         
         successBlock(responseObject);
-        
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         

@@ -11,7 +11,8 @@
 @interface SidebarViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *sidebarTableView;
-@property (weak, nonatomic) IBOutlet UIImageView *profileImage;
+@property (weak, nonatomic) IBOutlet UIButton *profileImageButton;
+
 
 @end
 
@@ -21,20 +22,27 @@ NSArray *menuList;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.sidebarTableView.delegate = self;
     self.sidebarTableView.dataSource = self;
-
+    
     menuList = @[@"Profile", @"Logout"];
     
     NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_USER_OBJECT];
     User *user = [NSKeyedUnarchiver unarchiveObjectWithData:userData];
     
-    [[APICaller sharedInstance] callApiForImageRequest:user.profileImageUrl successBlock:^(id responseObject) {
-        
-        [self.profileImage setImage:responseObject];
-        
-    }];
+    if (![user.profileImageUrl isEqual:[NSNull null]]) {
+        [[APICaller sharedInstance] callApiForImageRequest:user.profileImageUrl successBlock:^(id responseObject) {
+            
+            UIImage *image = responseObject;
+            [self.profileImageButton setImage:image forState:UIControlStateNormal];
+            [self.profileImageButton setContentMode:UIViewContentModeScaleAspectFit];
+            
+            self.profileImageButton.layer.borderColor = [UIColor whiteColor].CGColor;
+            self.profileImageButton.layer.borderWidth = 2.0f;
+            
+        }];
+    }
 }
 
 
@@ -54,7 +62,7 @@ NSArray *menuList;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    
     NSString *item = menuList[indexPath.row];
     
     if ([item isEqualToString:@"Logout"]) {

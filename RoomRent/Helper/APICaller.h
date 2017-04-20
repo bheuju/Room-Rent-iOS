@@ -18,11 +18,9 @@
 
 -(void)callApi:(NSString*)url parameters:(NSDictionary*)param successBlock:(void (^)(id responseObject))successBlock;
 -(void)callApi:(NSString*)url parameters:(NSDictionary*)param image:(UIImage*)image successBlock:(void (^)(id responseObject))successBlock;
--(void)callApiForImageUpload:(NSString*)url imageArray:(NSArray*)imageArray;
-
+-(void)callApi:(NSString*)url parameters:(NSDictionary*)param imageArray:(NSArray*)imageArray successBlock:(void (^)(id responseObject))successBlock;
 
 -(void)callApiForImageRequest:(NSString*)urla successBlock:(void (^)(id responseObject))successBlock;
-
 
 
 @end

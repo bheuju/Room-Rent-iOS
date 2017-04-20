@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		212D39DE93BA6D90999047CD /* Pods_RoomRent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10184AC0278D4E52182C011 /* Pods_RoomRent.framework */; };
+		DA74488E1EA87E8A00009FD3 /* AddressPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA74488D1EA87E8A00009FD3 /* AddressPickerViewController.m */; };
+		DA7448901EA881A700009FD3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA74488F1EA881A700009FD3 /* MapKit.framework */; };
+		DA91A9981EA716B70073F123 /* AddRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA91A9971EA716B70073F123 /* AddRequestViewController.m */; };
 		DAA3BE8E1E8CF9410092F8DD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA3BE8D1E8CF9410092F8DD /* main.m */; };
 		DAA3BE911E8CF9410092F8DD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA3BE901E8CF9410092F8DD /* AppDelegate.m */; };
 		DAA3BE971E8CF9410092F8DD /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAA3BE951E8CF9410092F8DD /* Account.storyboard */; };
@@ -38,6 +41,11 @@
 /* Begin PBXFileReference section */
 		14E9F01A7BD64946CC1AFAEC /* Pods-RoomRent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoomRent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RoomRent/Pods-RoomRent.debug.xcconfig"; sourceTree = "<group>"; };
 		C4D758DB25427B22D989AC05 /* Pods-RoomRent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoomRent.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoomRent/Pods-RoomRent.release.xcconfig"; sourceTree = "<group>"; };
+		DA74488C1EA87E8A00009FD3 /* AddressPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressPickerViewController.h; sourceTree = "<group>"; };
+		DA74488D1EA87E8A00009FD3 /* AddressPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressPickerViewController.m; sourceTree = "<group>"; };
+		DA74488F1EA881A700009FD3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		DA91A9961EA716B70073F123 /* AddRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRequestViewController.h; sourceTree = "<group>"; };
+		DA91A9971EA716B70073F123 /* AddRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRequestViewController.m; sourceTree = "<group>"; };
 		DAA3BE891E8CF9410092F8DD /* RoomRent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoomRent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAA3BE8D1E8CF9410092F8DD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DAA3BE8F1E8CF9410092F8DD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -93,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA7448901EA881A700009FD3 /* MapKit.framework in Frameworks */,
 				212D39DE93BA6D90999047CD /* Pods_RoomRent.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -103,6 +112,7 @@
 		1D40B147EDFADCBB3C9654D7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DA74488F1EA881A700009FD3 /* MapKit.framework */,
 				E10184AC0278D4E52182C011 /* Pods_RoomRent.framework */,
 			);
 			name = Frameworks;
@@ -267,6 +277,10 @@
 				DAC149C11EA463C2001AA17D /* AddPostViewController.m */,
 				DAC149C21EA463C2001AA17D /* DashboardViewController.h */,
 				DAC149C31EA463C2001AA17D /* DashboardViewController.m */,
+				DA91A9961EA716B70073F123 /* AddRequestViewController.h */,
+				DA91A9971EA716B70073F123 /* AddRequestViewController.m */,
+				DA74488C1EA87E8A00009FD3 /* AddressPickerViewController.h */,
+				DA74488D1EA87E8A00009FD3 /* AddressPickerViewController.m */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -413,6 +427,7 @@
 				DAC149C41EA463C2001AA17D /* OfferViewController.m in Sources */,
 				DAC149C71EA463C2001AA17D /* DashboardViewController.m in Sources */,
 				DAD538731E8E179B00F71D8B /* ForgotPasswordViewController.m in Sources */,
+				DA91A9981EA716B70073F123 /* AddRequestViewController.m in Sources */,
 				DAA980FD1E96178B0032727F /* APICaller.m in Sources */,
 				DAD538761E8E17A400F71D8B /* SignUpViewController.m in Sources */,
 				DAB993001E93938E003A6483 /* MyCustomUITextField.m in Sources */,
@@ -427,6 +442,7 @@
 				DAA4E51D1E9DE8AF00D165AF /* OfferTableViewCell.m in Sources */,
 				DAC149C61EA463C2001AA17D /* AddPostViewController.m in Sources */,
 				DAB993031E9393EA003A6483 /* KeyboardAvoidingViewController.m in Sources */,
+				DA74488E1EA87E8A00009FD3 /* AddressPickerViewController.m in Sources */,
 				DAA3BE8E1E8CF9410092F8DD /* main.m in Sources */,
 				DAB666B61E94BD2700E83956 /* ResponseHandler.m in Sources */,
 			);

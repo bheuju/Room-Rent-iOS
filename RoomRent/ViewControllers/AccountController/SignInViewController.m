@@ -134,7 +134,7 @@ User *user = nil;
             user = [[User alloc] initUserFromJson:userJson];
             
             //MARK: Temporary for test
-            user.profileImageUrl = [responseObject valueForKey:JSON_KEY_PROFILE_IMAGE_URL];
+            //user.profileImageUrl = [responseObject valueForKey:JSON_KEY_PROFILE_IMAGE_URL];
             //User *tempUser = user;
             
             
