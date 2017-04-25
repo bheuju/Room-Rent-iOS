@@ -30,11 +30,16 @@ AFHTTPSessionManager *manager;
     manager = [AFHTTPSessionManager manager];
     //manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
+    [manager.requestSerializer setValue:APP_API_TOKEN forHTTPHeaderField:@"apiToken"];
+    
     return self;
 }
 
 //no image
 -(void)callApi:(NSString*)url parameters:(NSDictionary*)param successBlock:(void (^)(id responseObject))successBlock {
+    
+    NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
+    [manager.requestSerializer setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
     
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     [manager POST:[BASE_URL stringByAppendingString:url] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -54,40 +59,82 @@ AFHTTPSessionManager *manager;
     }];
 }
 
+//GET: request
+-(void)callApi:(NSString*)url successBlock:(void (^)(id responseObject))successBlock {
+    
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
+    [manager.requestSerializer setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
+
+    [manager GET:[BASE_URL stringByAppendingString:url] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"Complete, Respose: %@", responseObject);
+        
+        successBlock(responseObject);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"Fail, Respose: %@", error);
+        
+        //[[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self completion:^{}];
+        
+        NSLog(@"Server is offline! \nSorry for the inconvenience. \nPlease try again later.");
+        
+    }];
+   
+}
+
+
 //image array named image[]
 -(void)callApi:(NSString*)url parameters:(NSDictionary*)param imageArray:(NSArray*)imageArray successBlock:(void (^)(id responseObject))successBlock {
     
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    [manager POST:[BASE_URL stringByAppendingString:url] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    //manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    //manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
+    
+    NSMutableDictionary *paramaters = [[NSMutableDictionary alloc] initWithDictionary:param];
+    [paramaters setObject:userApiToken forKey:JSON_KEY_API_TOKEN];
+    
+    [manager.requestSerializer setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
+    
+    [manager POST:[BASE_URL stringByAppendingString:url] parameters:paramaters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
         int i = 0;
         for (UIImage *image in imageArray) {
             
             NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
             
-            [formData appendPartWithFileData:imageData name:@"image[]" fileName:[NSString stringWithFormat:@"image%d.jpg", i] mimeType:@"image/jpeg"];
+            [formData appendPartWithFileData:imageData name:JSON_KEY_POST_IMAGES_REQUEST fileName:[NSString stringWithFormat:@"image%d.jpg", i] mimeType:@"image/jpeg"];
             
             i++;
         }
         
     } progress: nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
+        NSLog(@"Complete, Respose: %@", responseObject);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
+        NSLog(@"Fail, Respose: %@", error);
         
     }];
 }
 
 //single image named profile_image
+//For
 -(void)callApi:(NSString*)url parameters:(NSDictionary*)param image:(UIImage*)image successBlock:(void (^)(id responseObject))successBlock {
     
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     [manager POST:[BASE_URL stringByAppendingString:url] parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         if (image != nil) {
             NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
             
-            [formData appendPartWithFileData:imageData name:@"profile_image" fileName:@"image.jpg" mimeType:@"image/jpeg"];
+            [formData appendPartWithFileData:imageData name:JSON_KEY_PROFILE_IMAGE_URL_REQUEST fileName:@"image.jpg" mimeType:@"image/jpeg"];
         }
     } progress: nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         

@@ -14,31 +14,59 @@
 
 @end
 
-NSArray *itemsArray;
+static NSMutableArray *postsArray;
 
 @implementation OfferViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.offerTableView.dataSource = self;
     self.offerTableView.delegate = self;
     
     //Register OfferTableViewCell
     [self.offerTableView registerNib:[UINib nibWithNibName:@"OfferTableViewCell" bundle:nil] forCellReuseIdentifier:@"offerTableViewCell"];
- 
+    
+//    NSDictionary *parameters = @{
+//                                 @"offset":@"10",
+//                                 @"post_type":@"1",
+//                                 @"latitude":@"27.6869126",
+//                                 @"longitude":@"85.3128881",
+//                                 };
+//
+    
+    postsArray = [[NSMutableArray alloc] init];
+    
+    //Items loading
+    [[APICaller sharedInstance] callApi:POST_GET_ALL_PATH parameters:nil successBlock:^(id responseObject) {
+        
+        id data = [responseObject valueForKey:@"data"];
+        
+        for (id postJsonObject in data) {
+            
+            Post *post = [[Post alloc] initPostWithJson:postJsonObject];
+            
+            [postsArray addObject:post];
+            int x = 8;
+        }
+        
+        NSMutableArray *arr = postsArray;
+        int x = 6;
+        
+    }];
+    
 }
 
 //MARK: TableView Methods
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return postsArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     OfferTableViewCell *cell = (OfferTableViewCell*) [tableView dequeueReusableCellWithIdentifier:@"offerTableViewCell"];
     
-    [[cell textLabel] setText:@"Hello"];
+    //[[cell textLabel] setText:@"Hello"];
     
     return cell;
     

@@ -16,6 +16,7 @@
 #import "Alerter.h"
 #import "Constants.h"
 #import "User.h"
+#import "Post.h"
 
 #import "OfferTableViewCell.h"
 

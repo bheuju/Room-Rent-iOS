@@ -10,6 +10,7 @@
 #import <SWRevealViewController/SWRevealViewController.h>
 
 #import "SidebarImplementedViewController.h"
+#import "Alerter.h"
 
 @interface DashboardViewController : SidebarImplementedViewController
 

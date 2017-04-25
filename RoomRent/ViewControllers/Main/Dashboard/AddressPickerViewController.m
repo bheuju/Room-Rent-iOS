@@ -21,6 +21,11 @@ MKPointAnnotation *annot;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    CLLocationCoordinate2D noLocation = CLLocationCoordinate2DMake(27.70545067195189, 85.31774443228218);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(noLocation, 10000, 10000);
+    MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:viewRegion];
+    [self.mapView setRegion:adjustedRegion animated:YES];
+    
     self.mapView.showsUserLocation = true;
     
     self.mapView.delegate = self;

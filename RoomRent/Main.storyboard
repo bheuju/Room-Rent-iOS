@@ -37,14 +37,6 @@
                                     <action selector="onAdd:" destination="nGH-Vk-xdj" eventType="touchUpInside" id="8nO-YP-lnM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ot3-Uo-8cV">
-                                <rect key="frame" x="124" y="550" width="91" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="New Request"/>
-                                <connections>
-                                    <action selector="onAddRequest:" destination="nGH-Vk-xdj" eventType="touchUpInside" id="XdQ-O6-6JS"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -221,7 +213,7 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QoU-GK-qAu" id="VVK-rJ-b0x">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -259,9 +251,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="yNN-rE-KcL" kind="relationship" relationship="viewControllers" id="i2E-bS-GOP"/>
                         <segue destination="FhS-2l-Ucp" kind="relationship" relationship="viewControllers" id="OwP-Sp-GHI"/>
                         <segue destination="eoN-1O-Pnv" kind="relationship" relationship="viewControllers" id="YEo-QN-4wi"/>
+                        <segue destination="yNN-rE-KcL" kind="relationship" relationship="viewControllers" id="i2E-bS-GOP"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8in-Qb-nNg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -348,11 +340,11 @@
             </objects>
             <point key="canvasLocation" x="2808.6956521739135" y="18.75"/>
         </scene>
-        <!--Item-->
+        <!--OFFER-->
         <scene sceneID="4CP-S6-OpR">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FhS-2l-Ucp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="discover-on" selectedImage="discover-off" id="fpR-P9-2Re"/>
+                    <tabBarItem key="tabBarItem" title="OFFER" image="discover-on" selectedImage="discover-off" id="fpR-P9-2Re"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jqb-uZ-WeJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -464,7 +456,7 @@
                                                         <rect key="frame" x="0.0" y="221" width="354" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jj4-9A-ajQ">
                                                         <rect key="frame" x="0.0" y="271" width="39" height="20.333333333333314"/>
@@ -476,7 +468,7 @@
                                                         <rect key="frame" x="0.0" y="311.33333333333331" width="354" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     </textField>
                                                     <stackView opaque="NO" contentMode="scaleAspectFit" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="iII-OS-You">
                                                         <rect key="frame" x="0.0" y="361.33333333333331" width="354" height="30"/>
@@ -545,6 +537,9 @@
                                                         <state key="normal" title="POST">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="onPostSubmitClicked:" destination="kcT-f9-Q09" eventType="touchUpInside" id="nDx-15-Onm"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -599,6 +594,10 @@
                     <connections>
                         <outlet property="photoCollectionView" destination="XWU-TO-TNB" id="Mbh-US-IJ0"/>
                         <outlet property="postAddress" destination="Ysq-6r-R7d" id="svV-sN-qcX"/>
+                        <outlet property="postDescription" destination="jBO-W9-pXo" id="oaY-vA-qPv"/>
+                        <outlet property="postNoOfRooms" destination="d9Q-am-4nM" id="mdr-dL-59J"/>
+                        <outlet property="postPrice" destination="xzl-W2-jG0" id="lpZ-LO-aqm"/>
+                        <outlet property="postTitle" destination="6hj-cI-N6r" id="aZe-SQ-wBA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tnf-Bs-Yw5" userLabel="First Responder" sceneMemberID="firstResponder"/>

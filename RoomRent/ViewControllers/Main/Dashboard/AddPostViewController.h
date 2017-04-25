@@ -9,8 +9,14 @@
 #import <UIKit/UIKit.h>
 
 #import "AddressPickerViewController.h"
+#import "APICaller.h"
+#import "KeyboardAvoidingViewController.h"
 
-@interface AddPostViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UICollectionViewDelegateFlowLayout, AddressPickerDelegeate>
+
+#import "Post.h"
+
+@interface AddPostViewController : KeyboardAvoidingViewController <UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UICollectionViewDelegateFlowLayout, AddressPickerDelegeate, UITextFieldDelegate>
+
 
 -(void)populatePhotoCollectionViewWithImage:(UIImage*)image;
 

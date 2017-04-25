@@ -22,23 +22,26 @@
     
 }
 
-- (IBAction)onAddRequest:(UIButton *)sender {
-    
-    UIStoryboard *mainStory = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *addRequestVC = [mainStory instantiateViewControllerWithIdentifier:@"AddRequestViewController"];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addRequestVC];
-    
-    [self presentViewController:navController animated:true completion:nil];
-    
-}
 
 - (IBAction)onAdd:(UIButton*)sender {
-   
-    UIStoryboard *mainStory = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *addPostVC = [mainStory instantiateViewControllerWithIdentifier:@"AddPostViewController"];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addPostVC];
     
-    [self presentViewController:navController animated:true completion:nil];
+    [[Alerter sharedInstance] createActions:@"Add offer / request ?" message:@"Please select an option" viewController:self action1:@"Offer" actionCompletion1:^{
+        
+        UIStoryboard *mainStory = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *addPostVC = [mainStory instantiateViewControllerWithIdentifier:@"AddPostViewController"];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addPostVC];
+        
+        [self presentViewController:navController animated:true completion:nil];
+        
+    } action2:@"Request" actionCompletion2:^{
+        
+        UIStoryboard *mainStory = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *addRequestVC = [mainStory instantiateViewControllerWithIdentifier:@"AddRequestViewController"];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addRequestVC];
+        
+        [self presentViewController:navController animated:true completion:nil];
+        
+    }];
     
 }
 

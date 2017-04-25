@@ -13,5 +13,6 @@
 + (Alerter*)sharedInstance;
 
 - (void)createAlert: (NSString*)alertTitle message:(NSString*)alertMessage viewController:(UIViewController*)VC completion:(void (^)(void))completionBlock;
+-(void)createActions:(NSString*)alertTitle message:(NSString*)alertMessage viewController:(UIViewController*) VC action1:(NSString*)actionTitle1 actionCompletion1:(void (^)(void))actionCompletion1 action2:(NSString*)actionTitle2 actionCompletion2:(void (^)(void))actionCompletion2;
 
 @end

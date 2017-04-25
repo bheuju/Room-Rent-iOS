@@ -21,6 +21,7 @@
 		DAA980F91E95F88A0032727F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA980F81E95F88A0032727F /* User.m */; };
 		DAA980FD1E96178B0032727F /* APICaller.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA980FC1E96178B0032727F /* APICaller.m */; };
 		DAAF21251E9F549C0089249D /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAF21241E9F549C0089249D /* SidebarViewController.m */; };
+		DAB5E38E1EA9BCDB0011AB67 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB5E38D1EA9BCDB0011AB67 /* Post.m */; };
 		DAB666B61E94BD2700E83956 /* ResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB666B51E94BD2700E83956 /* ResponseHandler.m */; };
 		DAB6944E1E973E6900BD3498 /* ValidationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB6944D1E973E6900BD3498 /* ValidationHandler.m */; };
 		DAB992E51E9355A3003A6483 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAB992E41E9355A3003A6483 /* Main.storyboard */; };
@@ -63,6 +64,8 @@
 		DAA980FC1E96178B0032727F /* APICaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APICaller.m; sourceTree = "<group>"; };
 		DAAF21231E9F549C0089249D /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
 		DAAF21241E9F549C0089249D /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
+		DAB5E38C1EA9BCDB0011AB67 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		DAB5E38D1EA9BCDB0011AB67 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		DAB666B41E94BD2700E83956 /* ResponseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseHandler.h; sourceTree = "<group>"; };
 		DAB666B51E94BD2700E83956 /* ResponseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseHandler.m; sourceTree = "<group>"; };
 		DAB6944C1E973E6900BD3498 /* ValidationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidationHandler.h; sourceTree = "<group>"; };
@@ -213,6 +216,8 @@
 			children = (
 				DAA980F71E95F88A0032727F /* User.h */,
 				DAA980F81E95F88A0032727F /* User.m */,
+				DAB5E38C1EA9BCDB0011AB67 /* Post.h */,
+				DAB5E38D1EA9BCDB0011AB67 /* Post.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -438,6 +443,7 @@
 				DAB6944E1E973E6900BD3498 /* ValidationHandler.m in Sources */,
 				DAA3BE911E8CF9410092F8DD /* AppDelegate.m in Sources */,
 				DAB992F51E9361D7003A6483 /* Alerter.m in Sources */,
+				DAB5E38E1EA9BCDB0011AB67 /* Post.m in Sources */,
 				DAA980F91E95F88A0032727F /* User.m in Sources */,
 				DAA4E51D1E9DE8AF00D165AF /* OfferTableViewCell.m in Sources */,
 				DAC149C61EA463C2001AA17D /* AddPostViewController.m in Sources */,

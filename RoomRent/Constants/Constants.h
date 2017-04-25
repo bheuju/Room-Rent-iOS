@@ -25,8 +25,9 @@ static float SIDEBAR_WIDTH = 300.0f;
 
 //** URLs **//
 //**********//
-static NSString *BASE_URL = @"http://192.168.0.143:81/api/v1/";
+static NSString *BASE_URL = @"http://192.168.0.143:82/api/v1/";
 //static NSString *BASE_URL = @"http://192.168.0.157:81/api/";
+
 static NSString *LOGIN_PATH = @"login";
 static NSString *LOGOUT_PATH = @"logout";
 static NSString *FORGOT_PASSWORD_PATH = @"forgetpassword";
@@ -36,15 +37,26 @@ static NSString *GETFILE_PATH = @"getfile/";
 
 static NSString *IMAGE_UPLOAD_PATH = @"upload";
 
-//static NSString *API_TOKEN = @"OD44GCYFpHYHcwYFTG1QsQBGPOLcHjk8OMOMPkd3Ew3RTaLX0ox2ES3UASxE";
+static NSString *POST_POST_PATH = @"post/create";
+static NSString *POST_GET_ALL_PATH = @"post/all";
+
+
+
+static NSString *APP_API_TOKEN = @"OD44GCYFpHYHcwYFTG1QsQBGPOLcHjk8OMOMPkd3Ew3RTaLX0ox2ES3UASxE";
 //static NSString *USER_API_TOKEN = @"";
 
 static NSString *DEVICE_TYPE = @"1";
 static NSString *DEVICE_TOKEN = @"Zero's iOS Device";
 
 
+static NSString *OFFER = @"1";
+static NSString *REQUEST = @"2";
+
+
 //** JSON KEYS **//
 //***************//
+
+//Accopunt
 static NSString *JSON_KEY_IDENTITY = @"identity";
 
 static NSString *JSON_KEY_USER_ID = @"id";
@@ -53,6 +65,7 @@ static NSString *JSON_KEY_PHONE = @"phone";
 static NSString *JSON_KEY_USERNAME = @"username";
 static NSString *JSON_KEY_EMAIL = @"email";
 static NSString *JSON_KEY_PASSWORD = @"password";
+static NSString *JSON_KEY_PROFILE_IMAGE_URL_REQUEST = @"profile_image";
 static NSString *JSON_KEY_PROFILE_IMAGE_URL = @"profile_image";
 static NSString *JSON_KEY_API_TOKEN = @"api_token";
 static NSString *JSON_KEY_CREATED_AT = @"created_at";
@@ -67,8 +80,40 @@ static NSString *JSON_KEY_CODE = @"code";
 static NSString *JSON_KEY_MESSAGE = @"message";
 static NSString *JSON_KEY_VALIDATION_ERROR = @"errors";
 
+//POST
+static NSString *JSON_KEY_POST_ID = @"id";
+static NSString *JSON_KEY_POST_TITLE = @"title";
+static NSString *JSON_KEY_POST_DESCRIPTION = @"description";
+static NSString *JSON_KEY_POST_NO_OF_ROOMS = @"no_of_rooms";
+static NSString *JSON_KEY_POST_PRICE = @"price";
+static NSString *JSON_KEY_POST_ADDRESS = @"address";
+static NSString *JSON_KEY_POST_ADDRESS_LATITUDE = @"latitude";
+static NSString *JSON_KEY_POST_ADDRESS_LONGITUDE = @"longitude";
+static NSString *JSON_KEY_POST_IMAGES_REQUEST = @"images[]";
+static NSString *JSON_KEY_POST_IMAGES = @"images";
+static NSString *JSON_KEY_POST_TYPE = @"post_type";
 
 
+
+
+
+
+
+
+
+//static NSString *LOGIN_PATH = @"login";
+//static NSString *LOGOUT_PATH = @"logout";
+//static NSString *FORGOT_PASSWORD_PATH = @"forgotPassword";
+//static NSString *SIGNUP_PATH = @"user/create";
+//
+//static NSString *GETFILE_PATH = @"getFile/";
+//
+//static NSString *IMAGE_UPLOAD_PATH = @"upload";
+//
+//static NSString *POST_POST_PATH = @"post/create";
+//
+//
+////Account
 //static NSString *JSON_KEY_IDENTITY = @"identity";
 //
 //static NSString *JSON_KEY_USER_ID = @"id";
@@ -77,6 +122,8 @@ static NSString *JSON_KEY_VALIDATION_ERROR = @"errors";
 //static NSString *JSON_KEY_USERNAME = @"userName";
 //static NSString *JSON_KEY_EMAIL = @"email";
 //static NSString *JSON_KEY_PASSWORD = @"password";
+//static NSString *JSON_KEY_PROFILE_IMAGE_URL_REQUEST = @"profileImage[]";
+//static NSString *JSON_KEY_PROFILE_IMAGE_URL = @"profileImage";
 //static NSString *JSON_KEY_API_TOKEN = @"apiToken";
 //static NSString *JSON_KEY_CREATED_AT = @"createdAt";
 //
@@ -89,7 +136,18 @@ static NSString *JSON_KEY_VALIDATION_ERROR = @"errors";
 //static NSString *JSON_KEY_CODE = @"code";
 //static NSString *JSON_KEY_MESSAGE = @"message";
 //static NSString *JSON_KEY_VALIDATION_ERROR = @"errors";
-
+//
+////POST
+//static NSString *JSON_KEY_POST_ID = @"id";
+//static NSString *JSON_KEY_POST_TITLE = @"title";
+//static NSString *JSON_KEY_POST_DESCRIPTION = @"description";
+//static NSString *JSON_KEY_POST_NO_OF_ROOMS = @"numberOfRooms";
+//static NSString *JSON_KEY_POST_PRICE = @"price";
+//static NSString *JSON_KEY_POST_ADDRESS = @"address";
+//static NSString *JSON_KEY_POST_ADDRESS_LATITUDE = @"latitude";
+//static NSString *JSON_KEY_POST_ADDRESS_LONGITUDE = @"longitude";
+//static NSString *JSON_KEY_POST_IMAGES = @"images[]";
+//static NSString *JSON_KEY_POST_TYPE = @"postType";
 
 
 //** Resonse Codes **//
