@@ -80,7 +80,7 @@ NSArray *menuList;
     
     NSDictionary *parameters = @{JSON_KEY_API_TOKEN:userApiToken};
     
-    [[APICaller sharedInstance] callApi:LOGOUT_PATH parameters:parameters successBlock:^(id responseObject) {
+    [[APICaller sharedInstance] callApi:LOGOUT_PATH parameters:parameters sendToken:false successBlock:^(id responseObject) {
         NSString *code = [responseObject valueForKey:JSON_KEY_CODE];
         NSString *message = [responseObject valueForKey:JSON_KEY_MESSAGE];
         

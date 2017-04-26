@@ -36,10 +36,12 @@ AFHTTPSessionManager *manager;
 }
 
 //no image
--(void)callApi:(NSString*)url parameters:(NSDictionary*)param successBlock:(void (^)(id responseObject))successBlock {
+-(void)callApi:(NSString*)url parameters:(NSDictionary*)param sendToken:(BOOL)sendToken successBlock:(void (^)(id responseObject))successBlock {
     
-    NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
-    [manager.requestSerializer setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
+    if (sendToken) {
+        NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
+        [manager.requestSerializer setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
+    }
     
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     [manager POST:[BASE_URL stringByAppendingString:url] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -66,7 +68,7 @@ AFHTTPSessionManager *manager;
     
     NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
     [manager.requestSerializer setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
-
+    
     [manager GET:[BASE_URL stringByAppendingString:url] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSLog(@"Complete, Respose: %@", responseObject);
@@ -82,7 +84,7 @@ AFHTTPSessionManager *manager;
         NSLog(@"Server is offline! \nSorry for the inconvenience. \nPlease try again later.");
         
     }];
-   
+    
 }
 
 
@@ -116,6 +118,8 @@ AFHTTPSessionManager *manager;
     } progress: nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSLog(@"Complete, Respose: %@", responseObject);
+        
+        successBlock(responseObject);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         

@@ -93,6 +93,8 @@ static NSString *JSON_KEY_POST_IMAGES_REQUEST = @"images[]";
 static NSString *JSON_KEY_POST_IMAGES = @"images";
 static NSString *JSON_KEY_POST_TYPE = @"post_type";
 
+static NSString *JSON_KEY_POST_OFFSET = @"offset";
+static NSString *JSON_KEY_POST_IS_LAST_PAGE = @"is_last_page";
 
 
 

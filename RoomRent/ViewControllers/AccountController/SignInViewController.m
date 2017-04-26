@@ -100,7 +100,7 @@ User *user = nil;
                                  };
     
     //Call API
-    [[APICaller sharedInstance] callApi:LOGIN_PATH parameters:parameters successBlock:^(id responseObject) {
+    [[APICaller sharedInstance] callApi:LOGIN_PATH parameters:parameters sendToken:false successBlock:^(id responseObject) {
         
         //[[ResponseHandler sharedInstance] handleResponse:responseObject];
         

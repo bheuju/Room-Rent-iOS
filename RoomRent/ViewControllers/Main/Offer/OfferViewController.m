@@ -14,9 +14,15 @@
 
 @end
 
-static NSMutableArray *postsArray;
+NSMutableArray *postsArray;
 
 @implementation OfferViewController
+
+
+UIRefreshControl *refreshControl;
+int offsetValue;
+bool postAdded;
+bool isLastPage;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,19 +32,38 @@ static NSMutableArray *postsArray;
     
     //Register OfferTableViewCell
     [self.offerTableView registerNib:[UINib nibWithNibName:@"OfferTableViewCell" bundle:nil] forCellReuseIdentifier:@"offerTableViewCell"];
+    self.offerTableView.rowHeight = UITableViewAutomaticDimension;
+    self.offerTableView.estimatedRowHeight = 300.0f;
     
-//    NSDictionary *parameters = @{
-//                                 @"offset":@"10",
-//                                 @"post_type":@"1",
-//                                 @"latitude":@"27.6869126",
-//                                 @"longitude":@"85.3128881",
-//                                 };
-//
+    
+    //Pull to refresh
+    refreshControl = [[UIRefreshControl alloc] init];
+    refreshControl.backgroundColor = [UIColor greenColor];
+    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Reloading posts"];
+    [refreshControl addTarget:self action:@selector(getData) forControlEvents:UIControlEventValueChanged];
+    [self.offerTableView addSubview:refreshControl];
+    
+    //    NSDictionary *parameters = @{
+    //                                 @"offset":@"10",
+    //                                 @"post_type":@"1",
+    //                                 @"latitude":@"27.6869126",
+    //                                 @"longitude":@"85.3128881",
+    //                                 };
+    //
     
     postsArray = [[NSMutableArray alloc] init];
     
     //Items loading
-    [[APICaller sharedInstance] callApi:POST_GET_ALL_PATH parameters:nil successBlock:^(id responseObject) {
+    postAdded = false;
+    isLastPage = false;
+    [self getData];
+}
+
+-(void)getData {
+    
+    [[APICaller sharedInstance] callApi:POST_GET_ALL_PATH parameters:nil sendToken:true successBlock:^(id responseObject) {
+        
+        [postsArray removeAllObjects];
         
         id data = [responseObject valueForKey:@"data"];
         
@@ -47,19 +72,29 @@ static NSMutableArray *postsArray;
             Post *post = [[Post alloc] initPostWithJson:postJsonObject];
             
             [postsArray addObject:post];
-            int x = 8;
+            //int x = 8;
         }
         
-        NSMutableArray *arr = postsArray;
-        int x = 6;
+        [self.offerTableView reloadData];
+        
+        
+        postAdded = true;
+        
+        //Set offset value
+        offsetValue = [[responseObject valueForKey:JSON_KEY_POST_OFFSET] intValue];
+        isLastPage = [[responseObject valueForKey:JSON_KEY_POST_IS_LAST_PAGE] boolValue];
+        
+        [refreshControl endRefreshing];
         
     }];
-    
 }
 
 //MARK: TableView Methods
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    //int x = postsArray.count;
     return postsArray.count;
+    
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -68,7 +103,60 @@ static NSMutableArray *postsArray;
     
     //[[cell textLabel] setText:@"Hello"];
     
+    Post *post = postsArray[indexPath.row];
+    
+    cell.postTitle.text = [[post.postId stringValue] stringByAppendingString:post.postTitle];
+    cell.postNoOfRooms.text = [post.postNoOfRooms stringValue];
+    cell.postPrice.text = [post.postPrice stringValue];
+    cell.postUser.text = post.postUser.username;
+    //cell.textLabel = @"Hello";
+    
     return cell;
+    
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    float top = 0.0f;
+    float bottom = scrollView.contentSize.height - scrollView.frame.size.height;
+    float buffer = 600.0f;
+    float scrollPosition = scrollView.contentOffset.y;
+    
+    NSLog(@"%lu",(unsigned long)postsArray.count);
+    
+    //Reached bottom of list
+    if (scrollPosition > (bottom - buffer) && postAdded && !isLastPage) {
+        
+        //Add more posts
+        
+        NSDictionary *parameters = @{
+                                     @"offset":[NSNumber numberWithInt:offsetValue]
+                                    };
+        
+        [[APICaller sharedInstance] callApi:POST_GET_ALL_PATH parameters:parameters sendToken:true successBlock:^(id responseObject) {
+            
+            id data = [responseObject valueForKey:@"data"];
+            
+            for (id postJsonObject in data) {
+                
+                Post *post = [[Post alloc] initPostWithJson:postJsonObject];
+                
+                [postsArray addObject:post];
+            }
+            
+            [self.offerTableView reloadData];
+            
+            
+            offsetValue = [[responseObject valueForKey:JSON_KEY_POST_OFFSET] intValue];
+            isLastPage = [[responseObject valueForKey:JSON_KEY_POST_IS_LAST_PAGE] boolValue];
+            
+            
+            [refreshControl endRefreshing];
+            
+        }];
+        
+    }
+    
     
 }
 

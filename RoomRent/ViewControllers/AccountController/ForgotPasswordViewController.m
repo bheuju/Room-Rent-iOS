@@ -48,7 +48,7 @@
                                  JSON_KEY_EMAIL: email
                                  };
     
-    [[APICaller sharedInstance] callApi:FORGOT_PASSWORD_PATH parameters:parameters successBlock:^(id responseObject) {
+    [[APICaller sharedInstance] callApi:FORGOT_PASSWORD_PATH parameters:parameters sendToken:false  successBlock:^(id responseObject) {
                
         NSString *code = [responseObject valueForKey:JSON_KEY_CODE];
         NSString *message = [responseObject valueForKey:JSON_KEY_MESSAGE];

@@ -11,6 +11,7 @@
 
 #import "Constants.h"
 #import "APICaller.h"
+#import "User.h"
 
 @interface Post : NSObject
 
@@ -25,6 +26,7 @@
 @property CLLocationCoordinate2D postAddressCoordinates;
 @property NSMutableArray *postImageArray;
 
+@property User *postUser;
 
 -(Post*)initPostWithJson:(id)postJson;
 

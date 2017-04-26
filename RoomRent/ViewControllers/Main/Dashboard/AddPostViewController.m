@@ -69,7 +69,7 @@ Post *post;
 }
 
 
-//Button click methods
+//MARK: Button click methods
 - (IBAction)onAddressPickerButtonClicked:(UIButton *)sender {
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     AddressPickerViewController *addressPickerVC = (AddressPickerViewController*)[story instantiateViewControllerWithIdentifier:@"AddressPickerViewController"];
@@ -87,11 +87,11 @@ Post *post;
     post.postTitle = self.postTitle.text;
     post.postDescription = self.postDescription.text;
     post.postNoOfRooms = self.postNoOfRooms.text;
-    post.postPrice = self.postPrice.text;
+    post.postPrice = [self extractNumber:self.postPrice.text];
     post.postAddress = self.postAddress.text;
     
-    //float lat = post.postAddressCoordinates.latitude;
-    //float lon = post.postAddressCoordinates.longitude;
+    float lat = post.postAddressCoordinates.latitude;
+    float lon = post.postAddressCoordinates.longitude;
     
     post.postImageArray = photoList;
     if (allowAddingImage) {
@@ -109,13 +109,14 @@ Post *post;
                                  JSON_KEY_POST_NO_OF_ROOMS : post.postNoOfRooms,
                                  JSON_KEY_POST_PRICE : post.postPrice,
                                  JSON_KEY_POST_ADDRESS : post.postAddress,
-                                 JSON_KEY_POST_ADDRESS_LATITUDE : [NSNumber numberWithDouble:post.postAddressCoordinates.latitude],
-                                 JSON_KEY_POST_ADDRESS_LONGITUDE : [NSNumber numberWithDouble:post.postAddressCoordinates.longitude],
+                                 JSON_KEY_POST_ADDRESS_LATITUDE : [NSNumber numberWithFloat:lat],
+                                 JSON_KEY_POST_ADDRESS_LONGITUDE : [NSNumber numberWithFloat:lon],
                                  JSON_KEY_POST_TYPE : post.postType
                                  };
     
     [[APICaller sharedInstance] callApi:POST_POST_PATH parameters:parameters imageArray:post.postImageArray successBlock:^(id responseObject) {
         
+        [self dismissViewControllerAnimated:true completion:nil];
         
     }];
     
