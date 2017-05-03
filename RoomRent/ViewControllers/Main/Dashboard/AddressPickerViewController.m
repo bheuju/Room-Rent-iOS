@@ -15,16 +15,16 @@
 MKPointAnnotation *annot;
 
 @implementation AddressPickerViewController
-
+@synthesize mapView;
 //id delegate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    CLLocationCoordinate2D noLocation = CLLocationCoordinate2DMake(27.70545067195189, 85.31774443228218);
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(noLocation, 10000, 10000);
-    MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:viewRegion];
-    [self.mapView setRegion:adjustedRegion animated:YES];
+    //CLLocationCoordinate2D noLocation = CLLocationCoordinate2DMake(27.70545067195189, 85.31774443228218);
+    //MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(noLocation, 10000, 10000);
+    //MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:viewRegion];
+    //[self.mapView setRegion:adjustedRegion animated:YES];
     
     self.mapView.showsUserLocation = true;
     
@@ -39,11 +39,6 @@ MKPointAnnotation *annot;
 }
 
 //MARK: Extras
-
-//-(void)setDelegate:(id)newDelegate {
-//    self.delegate = newDelegate;
-//}
-
 -(void)placePin:(UIGestureRecognizer*) gestureRecognizer {
     if (gestureRecognizer.state != UIGestureRecognizerStateBegan)
         return;
@@ -70,6 +65,15 @@ MKPointAnnotation *annot;
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
+//MARK: MapKit Delegates
+-(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+    
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 800, 800);
+    MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:viewRegion];
+    
+    [self.mapView setRegion:adjustedRegion animated:true];
+    
+}
 
 @end
 

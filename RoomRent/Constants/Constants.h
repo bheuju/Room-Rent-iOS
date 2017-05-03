@@ -25,7 +25,7 @@ static float SIDEBAR_WIDTH = 300.0f;
 
 //** URLs **//
 //**********//
-static NSString *BASE_URL = @"http://192.168.0.143:82/api/v1/";
+static NSString *BASE_URL = @"http://192.168.0.143:81/api/v1/";
 //static NSString *BASE_URL = @"http://192.168.0.157:81/api/";
 
 static NSString *LOGIN_PATH = @"login";
@@ -39,7 +39,7 @@ static NSString *IMAGE_UPLOAD_PATH = @"upload";
 
 static NSString *POST_POST_PATH = @"post/create";
 static NSString *POST_GET_ALL_PATH = @"post/all";
-
+static NSString *POST_GET_SPECIFIC_POST_PATH = @"post/";
 
 
 static NSString *APP_API_TOKEN = @"OD44GCYFpHYHcwYFTG1QsQBGPOLcHjk8OMOMPkd3Ew3RTaLX0ox2ES3UASxE";
@@ -81,6 +81,8 @@ static NSString *JSON_KEY_MESSAGE = @"message";
 static NSString *JSON_KEY_VALIDATION_ERROR = @"errors";
 
 //POST
+static NSString *JSON_KEY_POST_OBJECT = @"post";
+
 static NSString *JSON_KEY_POST_ID = @"id";
 static NSString *JSON_KEY_POST_TITLE = @"title";
 static NSString *JSON_KEY_POST_DESCRIPTION = @"description";

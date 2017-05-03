@@ -61,15 +61,17 @@ AFHTTPSessionManager *manager;
     }];
 }
 
-//GET: request
--(void)callApi:(NSString*)url successBlock:(void (^)(id responseObject))successBlock {
+/**
+ * GET Request
+ */
+-(void)callApi:(NSString*)url parameters:(NSDictionary*)param successBlock:(void (^)(id responseObject))successBlock {
     
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     
     NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
     [manager.requestSerializer setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
     
-    [manager GET:[BASE_URL stringByAppendingString:url] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manager GET:[BASE_URL stringByAppendingString:url] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSLog(@"Complete, Respose: %@", responseObject);
         

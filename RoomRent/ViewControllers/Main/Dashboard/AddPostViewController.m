@@ -52,11 +52,11 @@ Post *post;
     
     
     //PROTOTYPE: test data
-    self.postTitle.text = @"Free room";
-    self.postDescription.text = @"Free room for someone";
-    self.postNoOfRooms.text = @"3";
-    self.postPrice.text = @"10";
-    //self.postAddress.text = @"";
+    self.postTitle.text = @"2 Bed Flat For Rent Pine Gardens Honiton";
+    self.postDescription.text = @"A fine example of a top floor two bedroom apartment in a sought after location within Honiton.This well presented and spacious apartment is situated on the second floor and offers spectacular views across Honiton and surrounding areas. The property is situated in a much sought after location and is just minutes from the town centre.";
+    self.postNoOfRooms.text = @"2";
+    self.postPrice.text = @"£150";
+    self.postAddress.text = @"Pine Gardens, Honiton, EX14, Devon";
     
     
     self.postPrice.delegate = self;

@@ -14,16 +14,21 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
   - SWRevealViewController (2.3.0)
 
 DEPENDENCIES:
   - AFNetworking
+  - SDWebImage
   - SWRevealViewController
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
 
-PODFILE CHECKSUM: 473b11004e0c57b18455b79dec1938de51d05e1f
+PODFILE CHECKSUM: bd95656bd27ecded5d6609f5846f0c3762655c39
 
 COCOAPODS: 1.2.0

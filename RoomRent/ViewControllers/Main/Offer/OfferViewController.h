@@ -12,6 +12,7 @@
 #import <SWRevealViewController/SWRevealViewController.h>
 
 #import "SidebarImplementedViewController.h"
+#import "SinglePostViewController.h"
 
 #import "Alerter.h"
 #import "Constants.h"

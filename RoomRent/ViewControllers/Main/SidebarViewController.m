@@ -13,7 +13,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *sidebarTableView;
 @property (weak, nonatomic) IBOutlet UIButton *profileImageButton;
 
-
 @end
 
 NSArray *menuList;
@@ -31,17 +30,22 @@ NSArray *menuList;
     NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_USER_OBJECT];
     User *user = [NSKeyedUnarchiver unarchiveObjectWithData:userData];
     
+    //Load and cache profileImage
     if (![user.profileImageUrl isEqual:[NSNull null]]) {
-        [[APICaller sharedInstance] callApiForImageRequest:user.profileImageUrl successBlock:^(id responseObject) {
-            
-            UIImage *image = responseObject;
-            [self.profileImageButton setImage:image forState:UIControlStateNormal];
-            [self.profileImageButton setContentMode:UIViewContentModeScaleAspectFit];
-            
-            self.profileImageButton.layer.borderColor = [UIColor whiteColor].CGColor;
-            self.profileImageButton.layer.borderWidth = 2.0f;
-            
-        }];
+        
+        NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
+        
+        SDWebImageDownloader *manager = [SDWebImageManager sharedManager].imageDownloader;
+        [manager setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
+        
+        NSURL *url = [NSURL URLWithString:[[BASE_URL stringByAppendingString:GETFILE_PATH] stringByAppendingString:user.profileImageUrl]];
+        
+        [self.profileImageButton sd_setImageWithURL:url forState:UIControlStateNormal];
+        [self.profileImageButton setContentMode:UIViewContentModeScaleAspectFit];
+        
+        self.profileImageButton.layer.borderColor = [UIColor whiteColor].CGColor;
+        self.profileImageButton.layer.borderWidth = 2.0f;
+        
     }
 }
 

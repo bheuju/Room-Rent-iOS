@@ -117,7 +117,6 @@ bool isLastPage;
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-    float top = 0.0f;
     float bottom = scrollView.contentSize.height - scrollView.frame.size.height;
     float buffer = 600.0f;
     float scrollPosition = scrollView.contentOffset.y;
@@ -154,9 +153,23 @@ bool isLastPage;
             [refreshControl endRefreshing];
             
         }];
-        
     }
+}
+
+
+//MARK: TableView Delegates
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    //Load single post view
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    SinglePostViewController *singlePostVC = (SinglePostViewController*)[story instantiateViewControllerWithIdentifier:@"SinglePostViewController"];
+    
+    Post *p = postsArray[indexPath.row];
+    
+    //Set post details
+    [singlePostVC initPostHavingPostId:p.postId];
+    
+    [self.navigationController pushViewController:singlePostVC animated:true];
     
 }
 

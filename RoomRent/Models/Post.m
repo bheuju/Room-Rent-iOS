@@ -25,8 +25,8 @@
     double lon = [[postJson valueForKey:JSON_KEY_POST_ADDRESS_LONGITUDE] doubleValue];
     self.postAddressCoordinates = CLLocationCoordinate2DMake(lat, lon);
     
-    NSArray *imageNames = [[postJson valueForKey:JSON_KEY_POST_IMAGES] allObjects];
-    self.postImageArray = [NSMutableArray arrayWithArray:imageNames];
+    
+    self.postImageArray = [NSMutableArray arrayWithArray:[[postJson valueForKey:JSON_KEY_POST_IMAGES] allObjects]];
     
     //    for (NSString *imageName in imageNames) {
     //        //self.postImageArray = [postJson valueForKey:JSON_KEY_POST_ID];

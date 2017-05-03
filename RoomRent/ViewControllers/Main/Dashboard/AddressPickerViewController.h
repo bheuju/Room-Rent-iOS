@@ -15,8 +15,6 @@
 
 @property id delegate;
 
-//-(void)setDelegate:(id)newDelegate;
-
 @end
 
 
