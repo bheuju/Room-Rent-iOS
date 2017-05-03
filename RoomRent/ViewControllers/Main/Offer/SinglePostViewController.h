@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #import "MapViewController.h"
+#import "ImageSliderCollectionViewCell.h"
 
 #import "Post.h"
 

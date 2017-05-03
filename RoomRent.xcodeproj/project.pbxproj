@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		212D39DE93BA6D90999047CD /* Pods_RoomRent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10184AC0278D4E52182C011 /* Pods_RoomRent.framework */; };
+		DA011D841EB9A1C6004D183C /* ImageSliderCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA011D821EB9A1C5004D183C /* ImageSliderCollectionViewCell.m */; };
+		DA011D851EB9A1C6004D183C /* ImageSliderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA011D831EB9A1C5004D183C /* ImageSliderCollectionViewCell.xib */; };
 		DA5408C31EB1A71000F11BB4 /* SinglePostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5408C21EB1A71000F11BB4 /* SinglePostViewController.m */; };
 		DA74488E1EA87E8A00009FD3 /* AddressPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA74488D1EA87E8A00009FD3 /* AddressPickerViewController.m */; };
 		DA7448901EA881A700009FD3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA74488F1EA881A700009FD3 /* MapKit.framework */; };
@@ -45,6 +47,9 @@
 /* Begin PBXFileReference section */
 		14E9F01A7BD64946CC1AFAEC /* Pods-RoomRent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoomRent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RoomRent/Pods-RoomRent.debug.xcconfig"; sourceTree = "<group>"; };
 		C4D758DB25427B22D989AC05 /* Pods-RoomRent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoomRent.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoomRent/Pods-RoomRent.release.xcconfig"; sourceTree = "<group>"; };
+		DA011D811EB9A1C5004D183C /* ImageSliderCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSliderCollectionViewCell.h; sourceTree = "<group>"; };
+		DA011D821EB9A1C5004D183C /* ImageSliderCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageSliderCollectionViewCell.m; sourceTree = "<group>"; };
+		DA011D831EB9A1C5004D183C /* ImageSliderCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageSliderCollectionViewCell.xib; sourceTree = "<group>"; };
 		DA5408C11EB1A71000F11BB4 /* SinglePostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinglePostViewController.h; sourceTree = "<group>"; };
 		DA5408C21EB1A71000F11BB4 /* SinglePostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinglePostViewController.m; sourceTree = "<group>"; };
 		DA74488C1EA87E8A00009FD3 /* AddressPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressPickerViewController.h; sourceTree = "<group>"; };
@@ -217,6 +222,9 @@
 				DAA4E51A1E9DE8AF00D165AF /* OfferTableViewCell.h */,
 				DAA4E51B1E9DE8AF00D165AF /* OfferTableViewCell.m */,
 				DAA4E51C1E9DE8AF00D165AF /* OfferTableViewCell.xib */,
+				DA011D811EB9A1C5004D183C /* ImageSliderCollectionViewCell.h */,
+				DA011D821EB9A1C5004D183C /* ImageSliderCollectionViewCell.m */,
+				DA011D831EB9A1C5004D183C /* ImageSliderCollectionViewCell.xib */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -382,6 +390,7 @@
 				DAB992E51E9355A3003A6483 /* Main.storyboard in Resources */,
 				DAA3BE9C1E8CF9410092F8DD /* LaunchScreen.storyboard in Resources */,
 				DAA4E51E1E9DE8AF00D165AF /* OfferTableViewCell.xib in Resources */,
+				DA011D851EB9A1C6004D183C /* ImageSliderCollectionViewCell.xib in Resources */,
 				DAA3BE991E8CF9410092F8DD /* Assets.xcassets in Resources */,
 				DAA3BE971E8CF9410092F8DD /* Account.storyboard in Resources */,
 			);
@@ -443,6 +452,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAB992FF1E93938E003A6483 /* MyCircularUIButton.m in Sources */,
+				DA011D841EB9A1C6004D183C /* ImageSliderCollectionViewCell.m in Sources */,
 				DAC149C41EA463C2001AA17D /* OfferViewController.m in Sources */,
 				DAC149C71EA463C2001AA17D /* DashboardViewController.m in Sources */,
 				DAD538731E8E179B00F71D8B /* ForgotPasswordViewController.m in Sources */,

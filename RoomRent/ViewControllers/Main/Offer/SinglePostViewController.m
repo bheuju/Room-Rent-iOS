@@ -25,7 +25,6 @@
 @implementation SinglePostViewController
 
 static Post *post = nil;
-static NSMutableArray *imageArray = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,6 +39,9 @@ static NSMutableArray *imageArray = nil;
     layout.itemSize = CGSizeMake(self.view.frame.size.width, 300.0f);
     layout.minimumLineSpacing = 0.0f;
     layout.minimumInteritemSpacing = 0.0f;
+    
+    //Register nib file for collection view
+    [self.imageSliderCollectionView registerNib:[UINib nibWithNibName:@"ImageSliderCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"imageSlideCollectionViewCell"];
     
     //Tap gesture for mapView
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handlePostAddressMapClick:)];
@@ -68,24 +70,13 @@ static NSMutableArray *imageArray = nil;
         post = [[Post alloc] initPostWithJson:[responseObject valueForKey:JSON_KEY_POST_OBJECT]];
         [self initWithPost:post];
         
+        [self.imageSliderCollectionView reloadData ];
+        
     }];
     
 }
 
 -(void)initWithPost:(Post*)post {
-    
-    //Populate image slider collection view
-    imageArray = [[NSMutableArray alloc] init];
-    for (NSString *imageName in post.postImageArray) {
-        
-        [[APICaller sharedInstance] callApiForImageRequest:imageName successBlock:^(id responseObject) {
-            
-            [imageArray addObject:responseObject];
-            
-            [self.imageSliderCollectionView reloadData];
-            
-        }];
-    }
     
     self.postTitle.text = post.postTitle;
     self.postDescription.text = post.postDescription;
@@ -104,20 +95,26 @@ static NSMutableArray *imageArray = nil;
     
 }
 
-//MARK: CollectionView Delegates
+//MARK: CollectionView Methods
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    //return post.postImageArray.count;
-    return imageArray.count;
+    NSLog(@"Size: %lu", post.postImageArray.count);
+    return post.postImageArray.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"imageSlideCollectionViewCell" forIndexPath:indexPath];
+    ImageSliderCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"imageSlideCollectionViewCell" forIndexPath:indexPath];
     
-    if (imageArray.count > 0) {
-        UIImageView *imgView = [[UIImageView alloc] initWithImage:imageArray[indexPath.row]];
-        [cell addSubview:imgView];
-    }
+    //Configure Cell
+    NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
+    SDWebImageDownloader *manager = [SDWebImageManager sharedManager].imageDownloader;
+    [manager setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
+
+    
+    NSURL *url = [NSURL URLWithString:[[BASE_URL stringByAppendingString:GETFILE_PATH] stringByAppendingString:post.postImageArray[indexPath.row]]];
+    
+    [cell .imageView sd_setImageWithURL:url];
+    
     
     return cell;
 }

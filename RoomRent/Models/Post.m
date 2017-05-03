@@ -41,7 +41,7 @@
     
     self.postUser = [[User alloc] initUserFromJson:[postJson objectForKey:JSON_KEY_USER_OBJECT]];
     
-    //Post *p = self;
+    Post *p = self;
     
     return self;
 }

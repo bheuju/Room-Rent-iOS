@@ -616,23 +616,7 @@
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
-                                                <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="imageSlideCollectionViewCell" reuseIdentifier="imageSlideCollectionViewCell" id="l2I-LJ-vO8">
-                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <subviews>
-                                                                <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" fixedFrame="YES" image="aa" translatesAutoresizingMaskIntoConstraints="NO" id="R4U-Vr-zoH">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                </imageView>
-                                                            </subviews>
-                                                        </view>
-                                                        <size key="customSize" width="414" height="300"/>
-                                                    </collectionViewCell>
-                                                </cells>
+                                                <cells/>
                                             </collectionView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9cx-2s-H5t">
                                                 <rect key="frame" x="10" y="320" width="394" height="230"/>
@@ -834,7 +818,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="aa" width="460" height="305"/>
         <image name="ask-off" width="29" height="29"/>
         <image name="ask-on" width="29" height="29"/>
         <image name="backgroundImage" width="748" height="1317"/>
