@@ -10,7 +10,13 @@
 #import <SWRevealViewController/SWRevealViewController.h>
 
 #import "SidebarImplementedViewController.h"
+#import "OfferTableViewCell.h"
+#import "RequestTableViewCell.h"
+#import "SinglePostViewController.h"
+#import "APICaller.h"
+#import "Constants.h"
+#include "PostPartial.h"
 
-@interface RequestViewController : SidebarImplementedViewController
+@interface RequestViewController : SidebarImplementedViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end

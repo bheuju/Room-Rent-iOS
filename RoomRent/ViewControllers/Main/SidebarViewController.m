@@ -11,7 +11,7 @@
 @interface SidebarViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *sidebarTableView;
-@property (weak, nonatomic) IBOutlet UIButton *profileImageButton;
+@property (weak, nonatomic) IBOutlet MyCircularUIButton *profileImageButton;
 
 @end
 
@@ -84,12 +84,12 @@ NSArray *menuList;
     
     NSDictionary *parameters = @{JSON_KEY_API_TOKEN:userApiToken};
     
-    [[APICaller sharedInstance] callApi:LOGOUT_PATH parameters:parameters sendToken:false successBlock:^(id responseObject) {
+    //POST: /logout
+    [[APICaller sharedInstance] callApiForPOST:LOGOUT_PATH parameters:parameters sendToken:true successBlock:^(id responseObject) {
         NSString *code = [responseObject valueForKey:JSON_KEY_CODE];
         NSString *message = [responseObject valueForKey:JSON_KEY_MESSAGE];
         
-        [[Alerter sharedInstance] createAlert:@"Logout" message:message viewController:self completion:^{}];
-        
+                
         //Switch to SignInViewController
         UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
         UIStoryboard *accountStory = [UIStoryboard storyboardWithName:@"Account" bundle:nil];

@@ -12,17 +12,16 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *offerTableView;
 
+@property NSMutableArray *postsArray;
+
+@property UIRefreshControl *refreshControl;
+@property int offsetValue;
+@property bool postAdded;     //Flag to prevent multiple calling of getData from scrollViewDidScroll
+@property bool isLastPage;
+
 @end
 
-NSMutableArray *postsArray;
-
 @implementation OfferViewController
-
-
-UIRefreshControl *refreshControl;
-int offsetValue;
-bool postAdded;
-bool isLastPage;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,84 +34,58 @@ bool isLastPage;
     self.offerTableView.rowHeight = UITableViewAutomaticDimension;
     self.offerTableView.estimatedRowHeight = 300.0f;
     
+    //TableView configs
+    //self.offerTableView.separatorColor = [UIColor redColor];
     
-    //Pull to refresh
-    refreshControl = [[UIRefreshControl alloc] init];
-    refreshControl.backgroundColor = [UIColor greenColor];
-    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Reloading posts"];
-    [refreshControl addTarget:self action:@selector(getData) forControlEvents:UIControlEventValueChanged];
-    [self.offerTableView addSubview:refreshControl];
+    //Pull to refresh init for TableView
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor greenColor];
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Reloading posts"];
+    [self.refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
+    [self.offerTableView addSubview:self.refreshControl];
     
-    //    NSDictionary *parameters = @{
-    //                                 @"offset":@"10",
-    //                                 @"post_type":@"1",
-    //                                 @"latitude":@"27.6869126",
-    //                                 @"longitude":@"85.3128881",
-    //                                 };
-    //
+    self.postsArray = [[NSMutableArray alloc] init];
     
-    postsArray = [[NSMutableArray alloc] init];
-    
-    //Items loading
-    postAdded = false;
-    isLastPage = false;
+    //Initial Data loading
+    [self getData];
+}
+
+-(void)refreshData {
+    self.offsetValue = 0;
+    [self.postsArray removeAllObjects];
     [self getData];
 }
 
 -(void)getData {
     
-    [[APICaller sharedInstance] callApi:POST_GET_ALL_PATH parameters:nil sendToken:true successBlock:^(id responseObject) {
-        
-        [postsArray removeAllObjects];
+    NSDictionary *parameters = @{
+                                 @"type":POSTS_OFFER_STRING,
+                                 @"offset":[NSNumber numberWithInt:self.offsetValue]
+                                 };
+    
+    //GET: /posts ? type & offset
+    [[APICaller sharedInstance] callApiForGET:POST_PATH parameters:parameters sendToken:true successBlock:^(id responseObject) {
         
         id data = [responseObject valueForKey:@"data"];
         
         for (id postJsonObject in data) {
-            
-            Post *post = [[Post alloc] initPostWithJson:postJsonObject];
-            
-            [postsArray addObject:post];
-            //int x = 8;
+            PostPartial *post = [[PostPartial alloc] initPostWithJson:postJsonObject];
+            [self.postsArray addObject:post];
         }
         
         [self.offerTableView reloadData];
         
+        NSLog(@"Posts count: %lu",(unsigned long)self.postsArray.count);
         
-        postAdded = true;
+        self.postAdded = true;
         
         //Set offset value
-        offsetValue = [[responseObject valueForKey:JSON_KEY_POST_OFFSET] intValue];
-        isLastPage = [[responseObject valueForKey:JSON_KEY_POST_IS_LAST_PAGE] boolValue];
+        self.offsetValue = [[responseObject valueForKey:JSON_KEY_POST_OFFSET] intValue];
+        self.isLastPage = [[responseObject valueForKey:JSON_KEY_POST_IS_LAST_PAGE] boolValue];
         
-        [refreshControl endRefreshing];
+        [self.refreshControl endRefreshing];
         
     }];
-}
-
-//MARK: TableView Methods
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    //int x = postsArray.count;
-    return postsArray.count;
-    
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    OfferTableViewCell *cell = (OfferTableViewCell*) [tableView dequeueReusableCellWithIdentifier:@"offerTableViewCell"];
-    
-    //[[cell textLabel] setText:@"Hello"];
-    
-    Post *post = postsArray[indexPath.row];
-    
-    cell.postTitle.text = [[post.postId stringValue] stringByAppendingString:post.postTitle];
-    cell.postNoOfRooms.text = [post.postNoOfRooms stringValue];
-    cell.postPrice.text = [post.postPrice stringValue];
-    cell.postUser.text = post.postUser.username;
-    //cell.textLabel = @"Hello";
-    
-    return cell;
-    
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -121,39 +94,31 @@ bool isLastPage;
     float buffer = 600.0f;
     float scrollPosition = scrollView.contentOffset.y;
     
-    NSLog(@"%lu",(unsigned long)postsArray.count);
-    
     //Reached bottom of list
-    if (scrollPosition > (bottom - buffer) && postAdded && !isLastPage) {
+    //load new posts only if notLastPage
+    if (scrollPosition > (bottom - buffer) && self.postAdded && !self.isLastPage) {
         
         //Add more posts
+        [self getData];
         
-        NSDictionary *parameters = @{
-                                     @"offset":[NSNumber numberWithInt:offsetValue]
-                                    };
-        
-        [[APICaller sharedInstance] callApi:POST_GET_ALL_PATH parameters:parameters sendToken:true successBlock:^(id responseObject) {
-            
-            id data = [responseObject valueForKey:@"data"];
-            
-            for (id postJsonObject in data) {
-                
-                Post *post = [[Post alloc] initPostWithJson:postJsonObject];
-                
-                [postsArray addObject:post];
-            }
-            
-            [self.offerTableView reloadData];
-            
-            
-            offsetValue = [[responseObject valueForKey:JSON_KEY_POST_OFFSET] intValue];
-            isLastPage = [[responseObject valueForKey:JSON_KEY_POST_IS_LAST_PAGE] boolValue];
-            
-            
-            [refreshControl endRefreshing];
-            
-        }];
+        self.postAdded = false;
     }
+}
+
+//MARK: TableView Methods
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.postsArray.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    OfferTableViewCell *cell = (OfferTableViewCell*) [tableView dequeueReusableCellWithIdentifier:@"offerTableViewCell"];
+    
+    //Configure cell data
+    [cell configureCellWithData:self.postsArray[indexPath.row]];
+    
+    return cell;
+    
 }
 
 
@@ -164,10 +129,10 @@ bool isLastPage;
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     SinglePostViewController *singlePostVC = (SinglePostViewController*)[story instantiateViewControllerWithIdentifier:@"SinglePostViewController"];
     
-    Post *p = postsArray[indexPath.row];
+    PostPartial *p = self.postsArray[indexPath.row];
     
     //Set post details
-    [singlePostVC initPostHavingPostId:p.postId];
+    [singlePostVC initPostHavingPostId:p.postSlug];
     
     [self.navigationController pushViewController:singlePostVC animated:true];
     
@@ -175,10 +140,24 @@ bool isLastPage;
 
 
 //MARK: Button Click Methods
-
 - (IBAction)onForceClearUserDefaults:(UIButton *)sender {
     
     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:[[NSBundle mainBundle] bundleIdentifier]];
+    
+    SDImageCache *imageCache = [SDImageCache sharedImageCache];
+    [imageCache clearMemory];
+    
+    
+    //Switch to SignInViewController
+    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+    UIStoryboard *accountStory = [UIStoryboard storyboardWithName:@"Account" bundle:nil];
+    
+    UIViewController *signInVC = [accountStory instantiateViewControllerWithIdentifier:@"SignInViewController"];
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:signInVC];
+    
+    [window setRootViewController:navController];
+    [window makeKeyAndVisible];
     
 }
 

@@ -16,12 +16,37 @@
 +(APICaller*)sharedInstance;
 -(APICaller*)initAPICaller;
 
--(void)callApi:(NSString*)url parameters:(NSDictionary*)param sendToken:(BOOL)sendToken successBlock:(void (^)(id responseObject))successBlock;
+/**
+ * POST Request with token
+ */
+
+-(void)callApiForPOST:(NSString*)url parameters:(NSDictionary*)param sendToken:(BOOL)sendToken successBlock:(void (^)(id responseObject))successBlock;
+
+/**
+ * POST Request with Single Image
+ */
+
 -(void)callApi:(NSString*)url parameters:(NSDictionary*)param image:(UIImage*)image successBlock:(void (^)(id responseObject))successBlock;
+
+/**
+ * POST Request with imageArray
+ */
+
 -(void)callApi:(NSString*)url parameters:(NSDictionary*)param imageArray:(NSArray*)imageArray successBlock:(void (^)(id responseObject))successBlock;
 
--(void)callApi:(NSString*)url parameters:(NSDictionary*)param successBlock:(void (^)(id responseObject))successBlock;
+/**
+ * GET Request
+ */
+-(void)callApiForGET:(NSString*)url parameters:(NSDictionary*)param sendToken:(BOOL)sendToken successBlock:(void (^)(id responseObject))successBlock;
 
+/**
+ * GET Request RAW url
+ */
+-(void)callApiForGETRawUrl:(NSString*)url parameters:(NSDictionary*)param successBlock:(void (^)(id responseObject))successBlock;
+
+/**
+ * Depracated
+ */
 -(void)callApiForImageRequest:(NSString*)urla successBlock:(void (^)(id responseObject))successBlock;
 
 

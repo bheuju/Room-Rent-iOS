@@ -33,7 +33,7 @@ MKPointAnnotation *annot;
     annot = [[MKPointAnnotation alloc] init];
     
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(placePin:)];
-    longPress.minimumPressDuration = 1;
+    longPress.minimumPressDuration = 0.5; //sec
     [self.mapView addGestureRecognizer:longPress];
     
 }
@@ -57,6 +57,8 @@ MKPointAnnotation *annot;
 //MARK: Button click methods
 - (IBAction)onOkClicked:(UIBarButtonItem *)sender {
     
+    //TODO: Check if pin is placed or not
+    
     [self.delegate setAddress:annot.coordinate];
     [self dismissViewControllerAnimated:true completion:nil];
 }
@@ -74,6 +76,7 @@ MKPointAnnotation *annot;
     [self.mapView setRegion:adjustedRegion animated:true];
     
 }
+
 
 @end
 

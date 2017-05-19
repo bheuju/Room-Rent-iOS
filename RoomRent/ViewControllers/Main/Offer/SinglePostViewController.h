@@ -12,12 +12,14 @@
 
 #import "MapViewController.h"
 #import "ImageSliderCollectionViewCell.h"
+#import "Helper.h"
+#import "Alerter.h"
 
 #import "Post.h"
 
 @interface SinglePostViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
 
--(void)initPostHavingPostId:(NSNumber*)postId;
+-(void)initPostHavingPostId:(NSString*)postSlug;
 
 @end
 

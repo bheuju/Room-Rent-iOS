@@ -26,6 +26,8 @@
 @property CLLocationCoordinate2D postAddressCoordinates;
 @property NSMutableArray *postImageArray;
 
+@property NSString *postSlug;
+
 @property User *postUser;
 
 -(Post*)initPostWithJson:(id)postJson;

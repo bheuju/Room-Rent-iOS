@@ -10,14 +10,6 @@
 
 @interface AddPostViewController ()
 
-@property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;
-
-@property (weak, nonatomic) IBOutlet UITextField *postTitle;
-@property (weak, nonatomic) IBOutlet UITextField *postDescription;
-@property (weak, nonatomic) IBOutlet UITextField *postNoOfRooms;
-@property (weak, nonatomic) IBOutlet UITextField *postPrice;
-@property (weak, nonatomic) IBOutlet UILabel *postAddress;
-
 @end
 
 
@@ -52,8 +44,8 @@ Post *post;
     
     
     //PROTOTYPE: test data
-    self.postTitle.text = @"2 Bed Flat For Rent Pine Gardens Honiton";
-    self.postDescription.text = @"A fine example of a top floor two bedroom apartment in a sought after location within Honiton.This well presented and spacious apartment is situated on the second floor and offers spectacular views across Honiton and surrounding areas. The property is situated in a much sought after location and is just minutes from the town centre.";
+    self.postTitle.text = @"2 Bed Flat For Rent";
+    self.postDescription.text = @"A fine example of a top floor two bedroom apartment in a sought after location within Honiton.";
     self.postNoOfRooms.text = @"2";
     self.postPrice.text = @"£150";
     self.postAddress.text = @"Pine Gardens, Honiton, EX14, Devon";
@@ -114,7 +106,8 @@ Post *post;
                                  JSON_KEY_POST_TYPE : post.postType
                                  };
     
-    [[APICaller sharedInstance] callApi:POST_POST_PATH parameters:parameters imageArray:post.postImageArray successBlock:^(id responseObject) {
+    //POST: /posts
+    [[APICaller sharedInstance] callApi:POST_PATH parameters:parameters imageArray:post.postImageArray successBlock:^(id responseObject) {
         
         [self dismissViewControllerAnimated:true completion:nil];
         
@@ -135,8 +128,8 @@ Post *post;
     UIImageView *photosImageView = [[UIImageView alloc] initWithFrame:imageRect];
     [cell.contentView addSubview:[photosImageView initWithImage:photoList[indexPath.row]]];
     
-    cell.layer.borderColor = [UIColor greenColor].CGColor;
-    cell.layer.borderWidth = 2.0f;
+    //cell.layer.borderColor = [UIColor greenColor].CGColor;
+    //cell.layer.borderWidth = 2.0f;
     
     return cell;
 }
@@ -197,27 +190,20 @@ Post *post;
     
     NSLog(@"Location Coordinates: %@, %@", lat, lon);
     
-    CLLocation *loc = [[CLLocation alloc] initWithLatitude:geoLocation.latitude longitude:geoLocation.longitude];
-    CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
-    [geoCoder reverseGeocodeLocation:loc completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+    NSDictionary *parameters = @{
+                                 @"latlng":[NSString stringWithFormat:@"%@, %@", lat, lon]
+                                 };
+    
+    // GET: http://maps.googleapis.com/maps/api/geocode/json?latlng=27.6770085916,%2085.3717560112
+    [[APICaller sharedInstance] callApiForGETRawUrl:@"http://maps.googleapis.com/maps/api/geocode/json" parameters:parameters successBlock:^(id responseObject) {
         
-        if (error){
-            NSLog(@"Geocode failed with error: %@", error);
-            return;
-        }
-        CLPlacemark *placemark = [placemarks objectAtIndex:0];
-        NSLog(@"placemark.ISOcountryCode %@",placemark.ISOcountryCode);
-        NSLog(@"locality %@",placemark.locality);
-        NSLog(@"sublocality %@",placemark.subLocality);
-        NSLog(@"throughfare %@",placemark.thoroughfare);
-        NSLog(@"subThroughfare %@",placemark.subThoroughfare);
-        NSLog(@"postalCode %@",placemark.postalCode);
-        
-        [self.postAddress setText:placemark.ISOcountryCode];
-        
+        id results = [responseObject valueForKey:@"results"];
+        id formattedAddress = [results[0] valueForKey:@"formatted_address"];
+    
+        [self.postAddress setText:formattedAddress];
     }];
     
-    //[self.postAddress setText:@"Some address"];
+    
     
     post.postAddressCoordinates = geoLocation;
 }
@@ -229,7 +215,7 @@ Post *post;
         NSString *price = [self extractNumber:textField.text];
         
         textField.text = @"";
-
+        
         if ([price length] > 0) {
             textField.text = [@"Rs. " stringByAppendingString:price];
         } else {

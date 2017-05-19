@@ -91,11 +91,6 @@ UIImage *profileImage;
     [self.textfieldEmail validate];
     [self.textfieldPassword validate];
     
-    //User *user = [[User alloc] initUser:0 name:name phone:phone username:username email:email password:password];
-        
-    //NSArray *imageArray = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"aa.png"] , nil];
-    //[[APICaller sharedInstance] callApiForImageUpload:IMAGE_UPLOAD_PATH imageArray:imageArray];
-    
     
     NSDictionary *parameters = @{
                                  JSON_KEY_NAME: name,
@@ -105,7 +100,7 @@ UIImage *profileImage;
                                  JSON_KEY_PASSWORD: password
                                  };
     
-    //profileImage = [UIImage imageNamed:@"aa.png"];
+    //POST: /register
     [[APICaller sharedInstance] callApi:SIGNUP_PATH parameters:parameters image:profileImage successBlock:^(id responseObject) {
         
         NSString *code = [responseObject valueForKey:JSON_KEY_CODE];

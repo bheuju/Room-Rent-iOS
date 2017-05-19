@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *postAddress;
 @property (weak, nonatomic) IBOutlet UILabel *postNoOfRooms;
 @property (weak, nonatomic) IBOutlet UILabel *postPrice;
+@property (weak, nonatomic) IBOutlet UILabel *postUser;
 @property (weak, nonatomic) IBOutlet MKMapView *postAddressMap;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *imageSliderCollectionView;
@@ -62,15 +63,16 @@ static Post *post = nil;
     
 }
 
--(void)initPostHavingPostId:(NSNumber*)postId {
+-(void)initPostHavingPostId:(NSString*)postSlug {
     
-    //GET: post/<id>
-    [[APICaller sharedInstance] callApi:[POST_GET_SPECIFIC_POST_PATH stringByAppendingString:[postId stringValue]] parameters:nil successBlock:^(id responseObject) {
+    //GET: /posts/{slug}
+    NSString *path = [[POST_PATH stringByAppendingString:@"/"] stringByAppendingString:postSlug];
+    [[APICaller sharedInstance] callApiForGET:path parameters:nil sendToken:true successBlock:^(id responseObject) {
         
-        post = [[Post alloc] initPostWithJson:[responseObject valueForKey:JSON_KEY_POST_OBJECT]];
+        post = [[Post alloc] initPostWithJson:[responseObject valueForKey:@"data"]];
         [self initWithPost:post];
         
-        [self.imageSliderCollectionView reloadData ];
+        [self.imageSliderCollectionView reloadData];
         
     }];
     
@@ -78,11 +80,14 @@ static Post *post = nil;
 
 -(void)initWithPost:(Post*)post {
     
+    //Init views
+    
     self.postTitle.text = post.postTitle;
     self.postDescription.text = post.postDescription;
     self.postAddress.text = post.postAddress;
     self.postNoOfRooms.text = [post.postNoOfRooms stringValue];
     self.postPrice.text = [post.postPrice stringValue];
+    self.postUser.text = post.postUser.name;
     
     //TODO: Init map here
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(post.postAddressCoordinates, 500, 500);
@@ -109,14 +114,25 @@ static Post *post = nil;
     NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
     SDWebImageDownloader *manager = [SDWebImageManager sharedManager].imageDownloader;
     [manager setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
-
     
-    NSURL *url = [NSURL URLWithString:[[BASE_URL stringByAppendingString:GETFILE_PATH] stringByAppendingString:post.postImageArray[indexPath.row]]];
-    
-    [cell .imageView sd_setImageWithURL:url];
-    
-    
+    [cell.imageView sd_setImageWithURL:[[Helper sharedInstance] generateGetImageURLFromFilename:post.postImageArray[indexPath.row]]  placeholderImage:[UIImage imageNamed:@"no-image"] options:SDWebImageRetryFailed];
+      
     return cell;
+}
+
+
+//MARK: IBActions
+- (IBAction)onCall:(UIButton *)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", post.postUser.phone]] options:@{} completionHandler:nil];
+}
+
+- (IBAction)onMessage:(UIButton *)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms:%@", post.postUser.phone]] options:@{} completionHandler:nil];
+}
+
+- (IBAction)onUserInfo:(UIButton *)sender {
+    //Load user info here
+    [[Alerter sharedInstance] createAlert:@"User Details" message:[NSString stringWithFormat:@"Name: %@\nPhone: %@\nUsername: %@\nEmail: %@\n", post.postUser.name, post.postUser.phone, post.postUser.username, post.postUser.email] viewController:self completion:^{}];
 }
 
 

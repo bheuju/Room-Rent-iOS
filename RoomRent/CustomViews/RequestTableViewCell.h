@@ -1,23 +1,18 @@
 //
-//  OfferTableViewCell.h
+//  RequestTableViewCell.h
 //  RoomRent
 //
-//  Created by Bishal Heuju on 4/12/17.
+//  Created by Bishal Heuju on 5/15/17.
 //  Copyright © 2017 Bishal Heuju. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import <SDWebImage/UIImageView+WebCache.h>
-
-#import "ImageSliderCollectionViewCell.h"
-#import "Helper.h"
 
 //#import "Post.h"
 #import "PostPartial.h"
 
-@interface OfferTableViewCell : UITableViewCell <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface RequestTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UICollectionView *postImagesCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *postTitle;
 @property (weak, nonatomic) IBOutlet UILabel *postNoOfRooms;
 @property (weak, nonatomic) IBOutlet UILabel *postPrice;
@@ -25,10 +20,9 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *checkHiddenButton;
 
+
 @property BOOL isSelected;
 
-
-@property NSMutableArray *postImagesNameArray;
 
 -(void)configureCellWithData:(PostPartial*)post;
 

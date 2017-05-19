@@ -10,8 +10,17 @@
 #import <SWRevealViewController/SWRevealViewController.h>
 
 #import "SidebarImplementedViewController.h"
+#import "OfferTableViewCell.h"
+#import "AddPostViewController.h"
+#import "RequestTableViewCell.h"
 #import "Alerter.h"
+#import "APICaller.h"
+#import "Constants.h"
+#import "SinglePostViewController.h"
 
-@interface DashboardViewController : SidebarImplementedViewController
+
+#import "Post.h"
+
+@interface DashboardViewController : SidebarImplementedViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end

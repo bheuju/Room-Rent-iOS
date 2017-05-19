@@ -56,7 +56,7 @@ User *user = nil;
     //Explicit validation on clicking of submit button
     [self.emailAddress validate];
     [self.password validate];
-
+    
     [self checkLogin:usernameOrEmail password:password];
     
 }
@@ -99,8 +99,8 @@ User *user = nil;
                                  JSON_KEY_DEVICE_TOKEN: DEVICE_TOKEN
                                  };
     
-    //Call API
-    [[APICaller sharedInstance] callApi:LOGIN_PATH parameters:parameters sendToken:false successBlock:^(id responseObject) {
+    //POST: /login
+    [[APICaller sharedInstance] callApiForPOST:LOGIN_PATH parameters:parameters sendToken:false successBlock:^(id responseObject) {
         
         //[[ResponseHandler sharedInstance] handleResponse:responseObject];
         
@@ -108,24 +108,6 @@ User *user = nil;
         NSString *message = [responseObject valueForKey:JSON_KEY_MESSAGE];
         
         if ([code isEqualToString:CODE_LOGIN_SUCCESS]) {
-            
-            //Alert user and do login activities
-            [[Alerter sharedInstance] createAlert:@"Success" message:message viewController:self completion:^{
-                
-                //Switch to tabBarViewController
-                UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
-                UIStoryboard *mainStory = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                UITabBarController *mainTabBarController = [mainStory instantiateViewControllerWithIdentifier:@"MainTabBarController"];
-                
-                UIViewController *sidebarVC = [mainStory instantiateViewControllerWithIdentifier:@"SidebarViewController"];
-                
-                //UINavigationController *mainVC = [[UINavigationController alloc] initWithRootViewController:mainTabBarController];
-                SWRevealViewController *revealVC = [[SWRevealViewController alloc] initWithRearViewController:sidebarVC frontViewController:mainTabBarController];
-                
-                [window setRootViewController:revealVC];
-                [window makeKeyAndVisible];
-            }];
-            
             
             //Extract and init USER
             id userJson = [responseObject valueForKey:JSON_KEY_USER_OBJECT];
@@ -136,7 +118,6 @@ User *user = nil;
             //MARK: Temporary for test
             //user.profileImageUrl = [responseObject valueForKey:JSON_KEY_PROFILE_IMAGE_URL];
             //User *tempUser = user;
-            
             
             //Save userdata to NSUserDefaults
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -152,7 +133,21 @@ User *user = nil;
             //NSData *data = [userDefaults objectForKey:JSON_KEY_USER_OBJECT];
             //User *u = [NSKeyedUnarchiver unarchiveObjectWithData:data];
             
-            //int x = 5;
+            
+            
+            
+            //Switch to tabBarViewController
+            UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+            UIStoryboard *mainStory = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UITabBarController *mainTabBarController = [mainStory instantiateViewControllerWithIdentifier:@"MainTabBarController"];
+            
+            UIViewController *sidebarVC = [mainStory instantiateViewControllerWithIdentifier:@"SidebarViewController"];
+            
+            //UINavigationController *mainVC = [[UINavigationController alloc] initWithRootViewController:mainTabBarController];
+            SWRevealViewController *revealVC = [[SWRevealViewController alloc] initWithRearViewController:sidebarVC frontViewController:mainTabBarController];
+            
+            [window setRootViewController:revealVC];
+            [window makeKeyAndVisible];
             
         } else {
             [[Alerter sharedInstance] createAlert:@"Failure" message:message viewController:self completion:^{}];

@@ -36,7 +36,7 @@ AFHTTPSessionManager *manager;
 }
 
 //no image
--(void)callApi:(NSString*)url parameters:(NSDictionary*)param sendToken:(BOOL)sendToken successBlock:(void (^)(id responseObject))successBlock {
+-(void)callApiForPOST:(NSString*)url parameters:(NSDictionary*)param sendToken:(BOOL)sendToken successBlock:(void (^)(id responseObject))successBlock {
     
     if (sendToken) {
         NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
@@ -61,10 +61,13 @@ AFHTTPSessionManager *manager;
     }];
 }
 
-/**
- * GET Request
- */
--(void)callApi:(NSString*)url parameters:(NSDictionary*)param successBlock:(void (^)(id responseObject))successBlock {
+
+-(void)callApiForGET:(NSString*)url parameters:(NSDictionary*)param sendToken:(BOOL)sendToken successBlock:(void (^)(id responseObject))successBlock {
+    
+    if (sendToken) {
+        NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
+        [manager.requestSerializer setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
+    }
     
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     
@@ -88,6 +91,32 @@ AFHTTPSessionManager *manager;
     }];
     
 }
+
+-(void)callApiForGETRawUrl:(NSString*)url parameters:(NSDictionary*)param successBlock:(void (^)(id responseObject))successBlock {
+    
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
+    [manager.requestSerializer setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
+    
+    [manager GET:url parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"Complete, Respose: %@", responseObject);
+        
+        successBlock(responseObject);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"Fail, Respose: %@", error);
+        
+        //[[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self completion:^{}];
+        
+        NSLog(@"Server is offline! \nSorry for the inconvenience. \nPlease try again later.");
+        
+    }];
+    
+}
+
 
 
 //image array named image[]
