@@ -23,6 +23,12 @@
 -(void)callApiForPOST:(NSString*)url parameters:(NSDictionary*)param sendToken:(BOOL)sendToken successBlock:(void (^)(id responseObject))successBlock;
 
 /**
+ * DELETE Request with token
+ */
+
+-(void)callApiForDELETE:(NSString*)url parameters:(NSDictionary*)param sendToken:(BOOL)sendToken successBlock:(void (^)(id responseObject))successBlock;
+
+/**
  * POST Request with Single Image
  */
 

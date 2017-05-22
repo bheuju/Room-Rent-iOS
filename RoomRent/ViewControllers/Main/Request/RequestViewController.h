@@ -15,7 +15,7 @@
 #import "SinglePostViewController.h"
 #import "APICaller.h"
 #import "Constants.h"
-#include "PostPartial.h"
+//#include "PostPartial.h"
 
 @interface RequestViewController : SidebarImplementedViewController <UITableViewDelegate, UITableViewDataSource>
 

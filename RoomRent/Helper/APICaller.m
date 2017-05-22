@@ -28,9 +28,6 @@ AFHTTPSessionManager *manager;
 -(APICaller*)initAPICaller {
     
     manager = [AFHTTPSessionManager manager];
-    //manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    
-    [manager.requestSerializer setValue:APP_API_TOKEN forHTTPHeaderField:@"apiToken"];
     
     return self;
 }
@@ -64,17 +61,19 @@ AFHTTPSessionManager *manager;
 
 -(void)callApiForGET:(NSString*)url parameters:(NSDictionary*)param sendToken:(BOOL)sendToken successBlock:(void (^)(id responseObject))successBlock {
     
+    //manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithDictionary:param];
+    
     if (sendToken) {
         NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
         [manager.requestSerializer setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
+      
+        [parameters setObject:userApiToken forKey:@"api_token"];
     }
     
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
-    [manager.requestSerializer setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
-    
-    [manager GET:[BASE_URL stringByAppendingString:url] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manager GET:[BASE_URL stringByAppendingString:url] parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSLog(@"Complete, Respose: %@", responseObject);
         
@@ -82,6 +81,7 @@ AFHTTPSessionManager *manager;
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
+        //NSLog(@"Fail, Task: %@", task);
         NSLog(@"Fail, Respose: %@", error);
         
         //[[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self completion:^{}];
@@ -184,6 +184,33 @@ AFHTTPSessionManager *manager;
         
     }];
 }
+
+-(void)callApiForDELETE:(NSString*)url parameters:(NSDictionary*)param sendToken:(BOOL)sendToken successBlock:(void (^)(id responseObject))successBlock {
+
+    if (sendToken) {
+        NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
+        [manager.requestSerializer setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
+    }
+    
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager DELETE:[BASE_URL stringByAppendingString:url] parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"Complete, Respose: %@", responseObject);
+        
+        successBlock(responseObject);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"Fail, Respose: %@", error);
+        
+        //[[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self completion:^{}];
+        
+        NSLog(@"Server is offline! \nSorry for the inconvenience. \nPlease try again later.");
+        
+    }];
+    
+}
+
 
 //image fetch with api_token
 -(void)callApiForImageRequest:(NSString*)url successBlock:(void (^)(id responseObject))successBlock {

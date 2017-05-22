@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-//#import "Post.h"
-#import "PostPartial.h"
+#import "Post.h"
+//#import "PostPartial.h"
 
 @interface RequestTableViewCell : UITableViewCell
 
@@ -24,6 +24,6 @@
 @property BOOL isSelected;
 
 
--(void)configureCellWithData:(PostPartial*)post;
+-(void)configureCellWithData:(Post*)post;
 
 @end

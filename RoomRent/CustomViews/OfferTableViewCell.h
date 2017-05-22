@@ -12,8 +12,8 @@
 #import "ImageSliderCollectionViewCell.h"
 #import "Helper.h"
 
-//#import "Post.h"
-#import "PostPartial.h"
+#import "Post.h"
+//#import "PostPartial.h"
 
 @interface OfferTableViewCell : UITableViewCell <UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -30,6 +30,6 @@
 
 @property NSMutableArray *postImagesNameArray;
 
--(void)configureCellWithData:(PostPartial*)post;
+-(void)configureCellWithData:(Post*)post;
 
 @end

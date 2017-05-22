@@ -38,14 +38,14 @@
 
 
 //Methods Implementation
--(void)configureCellWithData:(PostPartial*)post {
+-(void)configureCellWithData:(Post*)post {
     
     self.postTitle.text = [[[post.postId stringValue] stringByAppendingString:@": "] stringByAppendingString:post.postTitle];
     self.postNoOfRooms.text = [post.postNoOfRooms stringValue];
     self.postPrice.text = [post.postPrice stringValue];
-    self.postUser.text = post.postUser;
+    self.postUser.text = post.postUser.username;
     
-    self.postImagesNameArray = [[NSMutableArray alloc] initWithObjects:post.postImage, nil];
+    self.postImagesNameArray = [[NSMutableArray alloc] initWithArray:post.postImageArray];
     
     [self.postImagesCollectionView reloadData];
 }

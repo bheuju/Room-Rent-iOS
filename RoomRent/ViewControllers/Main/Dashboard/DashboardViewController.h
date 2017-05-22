@@ -18,7 +18,6 @@
 #import "Constants.h"
 #import "SinglePostViewController.h"
 
-
 #import "Post.h"
 
 @interface DashboardViewController : SidebarImplementedViewController <UITableViewDelegate, UITableViewDataSource>

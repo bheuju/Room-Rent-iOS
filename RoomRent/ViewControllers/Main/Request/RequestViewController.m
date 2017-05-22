@@ -108,7 +108,7 @@
         id data = [responseObject valueForKey:@"data"];
         
         for (id postJsonObject in data) {
-            PostPartial *post = [[PostPartial alloc] initPostWithJson:postJsonObject];
+            Post *post = [[Post alloc] initPostWithJson:postJsonObject];
             [self.postsArray addObject:post];
         }
         
@@ -189,7 +189,7 @@
         UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         SinglePostViewController *singlePostVC = (SinglePostViewController*)[story instantiateViewControllerWithIdentifier:@"SinglePostViewController"];
         
-        PostPartial *p = self.postsArray[indexPath.row];
+        Post *p = self.postsArray[indexPath.row];
         
         //Set post details
         [singlePostVC initPostHavingPostId:p.postSlug];
