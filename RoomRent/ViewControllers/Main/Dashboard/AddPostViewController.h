@@ -22,12 +22,33 @@
 @property (weak, nonatomic) IBOutlet UILabel *postPhotoCollectionViewLabel;
 
 @property (weak, nonatomic) IBOutlet UITextField *postTitle;
-@property (weak, nonatomic) IBOutlet UITextField *postDescription;
+@property (weak, nonatomic) IBOutlet UITextView *postDescription;
 @property (weak, nonatomic) IBOutlet UITextField *postNoOfRooms;
 @property (weak, nonatomic) IBOutlet UITextField *postPrice;
 @property (weak, nonatomic) IBOutlet UILabel *postAddress;
 
 
+@property NSString *addPostType;
+@property NSMutableArray *photoList;
+@property BOOL allowAddingImage;
+
+@property Post *post;
+
+@property BOOL isEditing;
+
+
+@property id postEditCompleteDelegate;
+
+
 -(void)populatePhotoCollectionViewWithImage:(UIImage*)image;
+
+
+@end
+
+
+
+@protocol PostEditCompletedDelegate
+
+-(void) refreshView:(NSString*)postSlug;
 
 @end

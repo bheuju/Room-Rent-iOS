@@ -7,6 +7,8 @@ target 'RoomRent' do
   	pod 'AFNetworking'
     pod 'SWRevealViewController'
     pod 'SDWebImage'
+    pod 'Firebase/Core'
+    pod 'Firebase/Messaging'
   # Pods for RoomRent
 
 end

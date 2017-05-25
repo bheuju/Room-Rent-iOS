@@ -10,15 +10,11 @@
 
 @interface AddPostViewController ()
 
+
 @end
 
 
 @implementation AddPostViewController
-
-static NSMutableArray *photoList;
-bool allowAddingImage;
-
-Post *post;
 
 
 - (void)viewDidLoad {
@@ -28,11 +24,13 @@ Post *post;
     
     self.navigationItem.rightBarButtonItem = cancelButton;
     
-    photoList = [[NSMutableArray alloc] initWithObjects:[UIImage imageNamed:@"addPhotosIcon"], nil];
+    self.photoList = [[NSMutableArray alloc] initWithObjects:[UIImage imageNamed:@"addPhotosIcon"], nil];
     
-    post = [[Post alloc] init];
+    if (self.post == nil) {
+        self.post = [[Post alloc] init];
+    }
     
-    allowAddingImage = true;
+    self.allowAddingImage = true;
     
     //FlowLayout
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.photoCollectionView.collectionViewLayout;
@@ -42,23 +40,29 @@ Post *post;
     self.photoCollectionView.delegate = self;
     self.photoCollectionView.dataSource = self;
     
+    if (self.addPostType == REQUEST || self.isEditing) {
+        [self.photoCollectionView removeFromSuperview];
+        [self.postPhotoCollectionViewLabel removeFromSuperview];
+    }
     
-    //PROTOTYPE: test data
-    self.postTitle.text = @"2 Bed Flat For Rent";
-    self.postDescription.text = @"A fine example of a top floor two bedroom apartment in a sought after location within Honiton.";
-    self.postNoOfRooms.text = @"2";
-    self.postPrice.text = @"£150";
-    self.postAddress.text = @"Pine Gardens, Honiton, EX14, Devon";
-    
+    if (self.isEditing) {
+        self.postTitle.text = self.post.postTitle;
+        self.postDescription.text = self.post.postDescription;
+        self.postNoOfRooms.text = [self.post.postNoOfRooms stringValue];
+        self.postPrice.text = [self.post.postPrice stringValue];
+        self.postAddress.text = self.post.postAddress;
+    }
     
     self.postPrice.delegate = self;
     
 }
 
-
+//MARK: Methods
 -(void)onCancel {
     [self dismissViewControllerAnimated:true completion:nil];
+    [self.navigationController popViewControllerAnimated:true];
 }
+
 
 
 //MARK: Button click methods
@@ -66,7 +70,7 @@ Post *post;
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     AddressPickerViewController *addressPickerVC = (AddressPickerViewController*)[story instantiateViewControllerWithIdentifier:@"AddressPickerViewController"];
     
-    addressPickerVC.delegate = self;
+    addressPickerVC.addressPickerDelegate = self;
     
     [self presentViewController:addressPickerVC animated:true completion:nil];
 }
@@ -76,48 +80,56 @@ Post *post;
     
     //TODO: Validation
     
-    post.postTitle = self.postTitle.text;
-    post.postDescription = self.postDescription.text;
-    post.postNoOfRooms = self.postNoOfRooms.text;
-    post.postPrice = [self extractNumber:self.postPrice.text];
-    post.postAddress = self.postAddress.text;
+    self.post.postTitle = self.postTitle.text;
+    self.post.postDescription = self.postDescription.text;
+    self.post.postNoOfRooms = self.postNoOfRooms.text;
+    self.post.postPrice = [self extractNumber:self.postPrice.text];
+    self.post.postAddress = self.postAddress.text;
     
-    float lat = post.postAddressCoordinates.latitude;
-    float lon = post.postAddressCoordinates.longitude;
+    float lat = self.post.postAddressCoordinates.latitude;
+    float lon = self.post.postAddressCoordinates.longitude;
     
-    post.postImageArray = photoList;
-    if (allowAddingImage) {
-        [post.postImageArray removeLastObject];
+    self.post.postImageArray = self.photoList;
+    if (self.allowAddingImage) {
+        [self.post.postImageArray removeLastObject];
     }
-    post.postType = OFFER;
-    
-    //post.postAddress = @"NP";
-    
-    //Post *p = post;
+    self.post.postType = self.addPostType;
     
     NSDictionary *parameters = @{
-                                 JSON_KEY_POST_TITLE : post.postTitle,
-                                 JSON_KEY_POST_DESCRIPTION : post.postDescription,
-                                 JSON_KEY_POST_NO_OF_ROOMS : post.postNoOfRooms,
-                                 JSON_KEY_POST_PRICE : post.postPrice,
-                                 JSON_KEY_POST_ADDRESS : post.postAddress,
+                                 JSON_KEY_POST_TITLE : self.post.postTitle,
+                                 JSON_KEY_POST_DESCRIPTION : self.post.postDescription,
+                                 JSON_KEY_POST_NO_OF_ROOMS : self.post.postNoOfRooms,
+                                 JSON_KEY_POST_PRICE : self.post.postPrice,
+                                 JSON_KEY_POST_ADDRESS : self.post.postAddress,
                                  JSON_KEY_POST_ADDRESS_LATITUDE : [NSNumber numberWithFloat:lat],
                                  JSON_KEY_POST_ADDRESS_LONGITUDE : [NSNumber numberWithFloat:lon],
-                                 JSON_KEY_POST_TYPE : post.postType
+                                 JSON_KEY_POST_TYPE : self.post.postType
                                  };
     
-    //POST: /posts
-    [[APICaller sharedInstance] callApi:POST_PATH parameters:parameters imageArray:post.postImageArray successBlock:^(id responseObject) {
+    if (!self.isEditing) {
+        //POST: /posts
+        [[APICaller sharedInstance:self] callApi:POST_PATH parameters:parameters imageArray:self.post.postImageArray successBlock:^(id responseObject) {
+            
+            [self dismissViewControllerAnimated:true completion:nil];
+            
+        }];
+    } else if (self.isEditing){
+        //PUT: /posts/{slug}
+        NSString *path = [[POST_PATH stringByAppendingString:@"/"] stringByAppendingString:self.post.postSlug];
+        [[APICaller sharedInstance:self] callApiForPUT:path parameters:parameters sendToken:true successBlock:^(id responseObject) {
+            
+            //[self dismissViewControllerAnimated:true completion:nil];
+            [self.postEditCompleteDelegate refreshView:self.post.postSlug];
+            [self.navigationController popViewControllerAnimated:true];
+            
+        }];
         
-        [self dismissViewControllerAnimated:true completion:nil];
-        
-    }];
-    
+    }
 }
 
 //MARK: Collectionview Methods
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return photoList.count;
+    return self.photoList.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -126,7 +138,7 @@ Post *post;
     
     CGRect imageRect = CGRectMake(0, 0 , 75, 75);
     UIImageView *photosImageView = [[UIImageView alloc] initWithFrame:imageRect];
-    [cell.contentView addSubview:[photosImageView initWithImage:photoList[indexPath.row]]];
+    [cell.contentView addSubview:[photosImageView initWithImage:self.photoList[indexPath.row]]];
     
     //cell.layer.borderColor = [UIColor greenColor].CGColor;
     //cell.layer.borderWidth = 2.0f;
@@ -137,12 +149,12 @@ Post *post;
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSUInteger lastItemIndex = photoList.count - 1;
+    NSUInteger lastItemIndex = self.photoList.count - 1;
     
     NSLog(@"Image selected");
     
     //Allowing max 5 images
-    if (allowAddingImage) {
+    if (self.allowAddingImage) {
         if (indexPath.row == lastItemIndex) {
             //Add photoIcon image selected
             
@@ -169,11 +181,11 @@ Post *post;
 
 -(void)populatePhotoCollectionViewWithImage:(UIImage*)image {
     
-    [photoList insertObject:image atIndex:0];
+    [self.photoList insertObject:image atIndex:0];
     
-    if (photoList.count > 5) {
-        [photoList removeLastObject];
-        allowAddingImage = false;
+    if (self.photoList.count > 5) {
+        [self.photoList removeLastObject];
+        self.allowAddingImage = false;
     }
     
     [self.photoCollectionView reloadData];
@@ -194,18 +206,16 @@ Post *post;
                                  @"latlng":[NSString stringWithFormat:@"%@, %@", lat, lon]
                                  };
     
-    // GET: http://maps.googleapis.com/maps/api/geocode/json?latlng=27.6770085916,%2085.3717560112
-    [[APICaller sharedInstance] callApiForGETRawUrl:@"http://maps.googleapis.com/maps/api/geocode/json" parameters:parameters successBlock:^(id responseObject) {
+    // GET: http://maps.googleapis.com/maps/api/geocode/json?latlng=27.6770085916,%85.3717560112
+    [[APICaller sharedInstance:self] callApiForGETRawUrl:@"http://maps.googleapis.com/maps/api/geocode/json" parameters:parameters successBlock:^(id responseObject) {
         
         id results = [responseObject valueForKey:@"results"];
         id formattedAddress = [results[0] valueForKey:@"formatted_address"];
-    
+        
         [self.postAddress setText:formattedAddress];
     }];
     
-    
-    
-    post.postAddressCoordinates = geoLocation;
+    self.post.postAddressCoordinates = geoLocation;
 }
 
 //UITextField Delegates
@@ -230,4 +240,6 @@ Post *post;
     return [[text componentsSeparatedByCharactersInSet:nonDigitCharacterSet] componentsJoinedByString:@""];
     
 }
+
+
 @end

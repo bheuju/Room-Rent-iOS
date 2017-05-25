@@ -15,12 +15,17 @@ static APICaller* instance = nil;
 //Variables
 AFHTTPSessionManager *manager;
 
-+(APICaller *)sharedInstance {
++(APICaller *)sharedInstance:(UIViewController*)VC {
     
     if (instance == nil) {
         instance = [[APICaller alloc] initAPICaller];
+        
+        instance.VC = VC;
+        
         return instance;
     }
+    
+    instance.VC = VC;
     
     return instance;
 }
@@ -51,7 +56,7 @@ AFHTTPSessionManager *manager;
         
         NSLog(@"Fail, Respose: %@", error);
         
-        //[[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self completion:^{}];
+        [[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self.VC completion:^{}];
         
         NSLog(@"Server is offline! \nSorry for the inconvenience. \nPlease try again later.");
         
@@ -63,13 +68,13 @@ AFHTTPSessionManager *manager;
     
     //manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-
+    
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithDictionary:param];
     
     if (sendToken) {
         NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
         [manager.requestSerializer setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
-      
+        
         [parameters setObject:userApiToken forKey:@"api_token"];
     }
     
@@ -84,7 +89,7 @@ AFHTTPSessionManager *manager;
         //NSLog(@"Fail, Task: %@", task);
         NSLog(@"Fail, Respose: %@", error);
         
-        //[[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self completion:^{}];
+        [[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self.VC completion:^{}];
         
         NSLog(@"Server is offline! \nSorry for the inconvenience. \nPlease try again later.");
         
@@ -109,7 +114,7 @@ AFHTTPSessionManager *manager;
         
         NSLog(@"Fail, Respose: %@", error);
         
-        //[[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self completion:^{}];
+        [[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self.VC completion:^{}];
         
         NSLog(@"Server is offline! \nSorry for the inconvenience. \nPlease try again later.");
         
@@ -156,6 +161,8 @@ AFHTTPSessionManager *manager;
         
         NSLog(@"Fail, Respose: %@", error);
         
+        [[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self.VC completion:^{}];
+        
     }];
 }
 
@@ -165,6 +172,7 @@ AFHTTPSessionManager *manager;
     
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
     [manager POST:[BASE_URL stringByAppendingString:url] parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         if (image != nil) {
             NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
@@ -182,17 +190,20 @@ AFHTTPSessionManager *manager;
         
         NSLog(@"Fail, Respose: %@", error);
         
+        [[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self.VC completion:^{}];
+        
     }];
 }
 
 -(void)callApiForDELETE:(NSString*)url parameters:(NSDictionary*)param sendToken:(BOOL)sendToken successBlock:(void (^)(id responseObject))successBlock {
-
+    
     if (sendToken) {
         NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
         [manager.requestSerializer setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
     }
     
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
     [manager DELETE:[BASE_URL stringByAppendingString:url] parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSLog(@"Complete, Respose: %@", responseObject);
@@ -203,12 +214,38 @@ AFHTTPSessionManager *manager;
         
         NSLog(@"Fail, Respose: %@", error);
         
-        //[[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self completion:^{}];
+        [[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self.VC completion:^{}];
         
         NSLog(@"Server is offline! \nSorry for the inconvenience. \nPlease try again later.");
         
     }];
     
+}
+
+//PUT
+-(void)callApiForPUT:(NSString*)url parameters:(NSDictionary*)param sendToken:(BOOL)sendToken successBlock:(void (^)(id responseObject))successBlock {
+    
+    if (sendToken) {
+        NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
+        [manager.requestSerializer setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
+    }
+    
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager PUT:[BASE_URL stringByAppendingString:url] parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"Complete, Respose: %@", responseObject);
+        
+        successBlock(responseObject);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"Fail, Respose: %@", error);
+        
+        [[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self.VC completion:^{}];
+        
+        NSLog(@"Server is offline! \nSorry for the inconvenience. \nPlease try again later.");
+        
+    }];
 }
 
 
@@ -228,7 +265,9 @@ AFHTTPSessionManager *manager;
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-        NSLog(@"%@", error);
+        NSLog(@"Fail, Respose: %@", error);
+        
+        [[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self.VC completion:^{}];
         
     }];
     

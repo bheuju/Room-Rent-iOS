@@ -19,7 +19,8 @@
 
 @property NSMutableArray *postsArray;
 
-@property NSMutableArray *selectedPostsArrayIndexPath;
+//@property NSMutableArray *selectedPostsArrayIndex;
+@property NSMutableIndexSet *selectedPostsIndexSet;
 
 @property UIRefreshControl *refreshControl;
 @property int offsetValue;
@@ -64,7 +65,8 @@
     //Init defaults
     //self.getPostType = OFFER;
     self.postsArray = [[NSMutableArray alloc] init];
-    self.selectedPostsArrayIndexPath = [[NSMutableArray alloc] init];
+    //self.selectedPostsArrayIndex = [[NSMutableArray alloc] init];
+    self.selectedPostsIndexSet = [[NSMutableIndexSet alloc] init];
     
     //For tableview rows select
     self.isEditing = false;
@@ -80,10 +82,44 @@
 
 -(void)cancelEditing {
     self.isEditing = false;
-    self.navigationItem.rightBarButtonItem = nil;
+    self.navigationItem.rightBarButtonItems = nil;
     
-    [self.selectedPostsArrayIndexPath removeAllObjects];
+    //[self.selectedPostsArrayIndex removeAllObjects];
+    [self.selectedPostsIndexSet removeAllIndexes];
     [self.dashboardTableView reloadData];
+}
+
+-(void)deletePosts {
+    
+    //Are you sure?
+    [[Alerter sharedInstance] createAlertWithDefaultCancel:@"Delete posts?" message:@"Are you sure?" viewController:self action:@"Ok" actionCompletion:^{
+        
+        NSMutableArray *slugsArray = [[NSMutableArray alloc] init];
+        
+        //Get slugs of array
+        
+        NSArray *selectedPosts = [self.postsArray objectsAtIndexes:self.selectedPostsIndexSet];
+        
+        for (Post *post in selectedPosts) {
+            [slugsArray addObject:post.postSlug];
+        }
+        
+        NSDictionary *params = @{
+                                 @"slugs":slugsArray
+                                 };
+        
+        //DELETE: /posts/bulkdelete
+        [[APICaller sharedInstance:self] callApiForDELETE:[POST_PATH stringByAppendingString:POST_BULKDELETE] parameters:params sendToken:true successBlock:^(id responseObject) {
+            
+            [self.postsArray removeObjectsAtIndexes:self.selectedPostsIndexSet];
+            [self.dashboardTableView reloadData];
+            
+            [self cancelEditing];
+            
+        }];
+        
+    }];
+
 }
 
 -(void)handleLongPress:(UILongPressGestureRecognizer*) gestureRecognizer {
@@ -98,7 +134,9 @@
     
     if (self.isEditing) {
         UIBarButtonItem *cancelEditing = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelEditing)];
-        self.navigationItem.rightBarButtonItem = cancelEditing;
+        UIBarButtonItem *deletePosts = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deletePosts)];
+        
+        self.navigationItem.rightBarButtonItems = @[deletePosts, cancelEditing];
     }
 }
 
@@ -124,6 +162,7 @@
     }
     
     [self refreshData];
+    [self cancelEditing];
     
 }
 
@@ -136,12 +175,12 @@
 -(void)getData {
     
     NSDictionary *parameters = @{
-                                 @"type":POSTS_REQUEST_STRING,
+                                 @"type":self.getPostType,
                                  @"offset":[NSNumber numberWithInt:self.offsetValue]
                                  };
     
-    //GET: /user/posts/{type}
-    [[APICaller sharedInstance] callApiForGET:MY_POST_PATH parameters:parameters sendToken:true successBlock:^(id responseObject) {
+    //GET: /myposts ? type & offset
+    [[APICaller sharedInstance:self] callApiForGET:MY_POST_PATH parameters:parameters sendToken:true successBlock:^(id responseObject) {
         
         id data = [responseObject valueForKey:@"data"];
         
@@ -171,8 +210,6 @@
     float buffer = 600.0f;
     float scrollPosition = scrollView.contentOffset.y;
     
-    //NSLog(@"%lu",(unsigned long)postsArray.count);
-    
     //Reached bottom of list
     //load new posts only if notLastPage
     if (scrollPosition > (bottom - buffer) && self.postAdded && !self.isLastPage) {
@@ -196,12 +233,13 @@
     if (self.getPostType == POSTS_OFFER_STRING) {
         cell = (OfferTableViewCell*) [tableView dequeueReusableCellWithIdentifier:@"offerTableViewCell" forIndexPath:indexPath];
         [(OfferTableViewCell*)cell configureCellWithData:self.postsArray[indexPath.row]];
+        ((OfferTableViewCell*)cell).collectionViewItemClickDelegate = self;
     } else if (self.getPostType == POSTS_REQUEST_STRING){
         cell = (RequestTableViewCell*) [tableView dequeueReusableCellWithIdentifier:@"requestTableViewCell" forIndexPath:indexPath];
         [(RequestTableViewCell*)cell configureCellWithData:self.postsArray[indexPath.row]];
     }
     
-    if ([self.selectedPostsArrayIndexPath containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
+    if ([self.selectedPostsIndexSet containsIndex:indexPath.row]) {
         ((RequestTableViewCell*)cell).checkHiddenButton.hidden = false;
     } else {
         ((RequestTableViewCell*)cell).checkHiddenButton.hidden = true;
@@ -221,11 +259,11 @@
         NSLog(@"%d", cell.isSelected);
         
         if (cell.isSelected) {
-            [self.selectedPostsArrayIndexPath addObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]];
+            [self.selectedPostsIndexSet addIndex:indexPath.row];
             cell.checkHiddenButton.hidden = false;
             NSLog(@"selected");
         } else {
-            [self.selectedPostsArrayIndexPath removeObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]];
+            [self.selectedPostsIndexSet removeIndex:indexPath.row];
             cell.checkHiddenButton.hidden = true;
             NSLog(@"not-selected");
         }
@@ -240,10 +278,11 @@
         //Set post details
         [singlePostVC initPostHavingPostId:p.postSlug];
         
+        singlePostVC.postDeleteCompletedDelegate = self;
+        
         [self.navigationController pushViewController:singlePostVC animated:true];
     }
 }
-
 
 //Mark: Methods
 - (void)addPost {
@@ -252,6 +291,11 @@
         
         UIStoryboard *mainStory = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewController *addPostVC = [mainStory instantiateViewControllerWithIdentifier:@"AddPostViewController"];
+        
+        
+        ((AddPostViewController*)addPostVC).addPostType = OFFER;
+        
+        
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addPostVC];
         
         [self presentViewController:navController animated:true completion:nil];
@@ -261,9 +305,7 @@
         UIStoryboard *mainStory = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewController *addRequestVC = [mainStory instantiateViewControllerWithIdentifier:@"AddPostViewController"];
         
-        //Hide photo selection views
-        [((AddPostViewController*)addRequestVC).photoCollectionView setHidden:true];
-        [((AddPostViewController*)addRequestVC).postPhotoCollectionViewLabel setHidden:true];
+        ((AddPostViewController*)addRequestVC).addPostType = REQUEST;
         
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addRequestVC];
         
@@ -271,6 +313,25 @@
         
     }];
     
+}
+
+//MARK: PostDeleteCompletedDelegate
+-(void)didFinishPostDelete {
+    [self refreshData];
+}
+
+//MARK: CollectionViewItemClickedDelegate
+-(void)collectionViewItemClicked:(NSString*)postSlug {
+    //Load single post view
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    SinglePostViewController *singlePostVC = (SinglePostViewController*)[story instantiateViewControllerWithIdentifier:@"SinglePostViewController"];
+    
+    //Set post details
+    [singlePostVC initPostHavingPostId:postSlug];
+    
+    singlePostVC.postDeleteCompletedDelegate = self;
+    
+    [self.navigationController pushViewController:singlePostVC animated:true];
 }
 
 @end

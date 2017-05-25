@@ -10,16 +10,6 @@
 
 @implementation User
 
-- (User*)initUser:(int)userId name:(NSString*)name phone:(NSString*)phone username:(NSString*)username email:(NSString*)email {
-    
-    self.name = name;
-    self.phone = phone;
-    self.username = username;
-    self.email = email;
-    
-    return self;
-}
-
 -(User*)initUserFromJson:(id)userJson {
     
     NSDictionary *json = (NSDictionary*) userJson;

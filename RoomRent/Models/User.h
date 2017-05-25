@@ -18,8 +18,6 @@
 @property NSString *email;
 @property NSString *profileImageUrl;
 
--(User*)initUser:(int)userId name:(NSString*)name phone:(NSString*)phone username:(NSString*)username email:(NSString*)email;
-
 -(User*)initUserFromJson:(id)userJson;
 
 @end

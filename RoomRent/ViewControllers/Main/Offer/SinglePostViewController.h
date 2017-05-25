@@ -15,11 +15,24 @@
 #import "Helper.h"
 #import "Alerter.h"
 
+#import "AddPostViewController.h"
+
 #import "Post.h"
 
-@interface SinglePostViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface SinglePostViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, PostEditCompletedDelegate>
+
+@property Post *post;
+
+@property (weak) id postDeleteCompletedDelegate;
 
 -(void)initPostHavingPostId:(NSString*)postSlug;
 
 @end
 
+
+
+@protocol PostDeleteCompletedDelegate
+
+-(void) didFinishPostDelete;
+
+@end

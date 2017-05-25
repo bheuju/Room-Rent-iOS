@@ -13,7 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
-@property id delegate;
+@property id addressPickerDelegate;
 
 @end
 

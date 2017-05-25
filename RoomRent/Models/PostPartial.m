@@ -24,7 +24,7 @@
     self.postPrice = [postJson valueForKey:JSON_KEY_POST_PRICE];
     self.postAddress = [postJson valueForKey:JSON_KEY_POST_ADDRESS];
     
-    PostPartial *p = self;
+    //PostPartial *p = self;
     
     return self;
 }

@@ -80,7 +80,7 @@
         [btnError addTarget:self action:@selector(tapOnError) forControlEvents:UIControlEventTouchUpInside];
         [btnError setBackgroundImage:[UIImage imageNamed:@"error.png"] forState:UIControlStateNormal];
         
-        self.rightView=btnError;
+        self.rightView = btnError;
         //self.rightViewMode=UITextFieldViewModeAlways;
         self.rightViewMode = UITextFieldViewModeUnlessEditing;
         

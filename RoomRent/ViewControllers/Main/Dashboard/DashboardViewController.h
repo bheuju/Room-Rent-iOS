@@ -20,6 +20,6 @@
 
 #import "Post.h"
 
-@interface DashboardViewController : SidebarImplementedViewController <UITableViewDelegate, UITableViewDataSource>
+@interface DashboardViewController : SidebarImplementedViewController <UITableViewDelegate, UITableViewDataSource, PostDeleteCompletedDelegate, CollectionViewItemClicked>
 
 @end

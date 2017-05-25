@@ -25,8 +25,6 @@
 
 @implementation SinglePostViewController
 
-static Post *post = nil;
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -50,6 +48,39 @@ static Post *post = nil;
     
 }
 
+-(void)editPost {
+    
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    AddPostViewController *editPost = [story instantiateViewControllerWithIdentifier:@"AddPostViewController"];
+   
+    editPost.isEditing = true;
+    editPost.addPostType = self.post.postType;
+    editPost.post = self.post;
+    
+    editPost.postEditCompleteDelegate = self;
+    
+    [self.navigationController pushViewController:editPost animated:true];
+    
+}
+
+
+-(void)deletePost {
+    
+    [[Alerter sharedInstance] createAlertWithDefaultCancel:@"Delete this post?" message:@"Are you sure?" viewController:self action:@"Ok" actionCompletion:^{
+        
+        //DELETE: /posts/{slug}
+        NSString *path = [[POST_PATH stringByAppendingString:@"/"] stringByAppendingString:self.post.postSlug];
+        [[APICaller sharedInstance:self] callApiForDELETE:path parameters:nil sendToken:true successBlock:^(id responseObject) {
+            
+            //TODO: Delete this post from array and Refresh tableView
+            [self.postDeleteCompletedDelegate didFinishPostDelete];
+            [self.navigationController popViewControllerAnimated:true];
+            
+        }];
+    }];
+    
+}
+
 
 -(void)handlePostAddressMapClick:(UITapGestureRecognizer*)gestureRecognizer {
     
@@ -57,7 +88,7 @@ static Post *post = nil;
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     MapViewController *mapVC = [story instantiateViewControllerWithIdentifier:@"MapViewController"];
     
-    mapVC.location = post.postAddressCoordinates;
+    mapVC.location = self.post.postAddressCoordinates;
     
     [self.navigationController pushViewController:mapVC animated:true];
     
@@ -67,10 +98,10 @@ static Post *post = nil;
     
     //GET: /posts/{slug}
     NSString *path = [[POST_PATH stringByAppendingString:@"/"] stringByAppendingString:postSlug];
-    [[APICaller sharedInstance] callApiForGET:path parameters:nil sendToken:true successBlock:^(id responseObject) {
+    [[APICaller sharedInstance:self] callApiForGET:path parameters:nil sendToken:true successBlock:^(id responseObject) {
         
-        post = [[Post alloc] initPostWithJson:[responseObject valueForKey:@"data"]];
-        [self initWithPost:post];
+        self.post = [[Post alloc] initPostWithJson:[responseObject valueForKey:@"data"]];
+        [self initWithPost:self.post];
         
         [self.imageSliderCollectionView reloadData];
         
@@ -81,7 +112,6 @@ static Post *post = nil;
 -(void)initWithPost:(Post*)post {
     
     //Init views
-    
     self.postTitle.text = post.postTitle;
     self.postDescription.text = post.postDescription;
     self.postAddress.text = post.postAddress;
@@ -98,12 +128,30 @@ static Post *post = nil;
     annot.coordinate = post.postAddressCoordinates;
     [self.postAddressMap addAnnotation:annot];
     
+    //Check isUserPost
+    //If isUserPost display edit and delete
+    NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_USER_OBJECT];
+    User *loggedInUser = [NSKeyedUnarchiver unarchiveObjectWithData:userData];
+    
+    if ([post.postUser.username isEqualToString:loggedInUser.username]) {
+        
+        //If is user's post, add options to delete and edit
+        UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editPost)];
+        UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deletePost)];
+        
+        self.navigationItem.rightBarButtonItems = @[deleteButton, editButton];
+    }
+    
+    if ([[post.postType stringValue] isEqual:REQUEST]) {
+        [self.imageSliderCollectionView removeFromSuperview];
+    }
+    
 }
 
 //MARK: CollectionView Methods
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    NSLog(@"Size: %lu", post.postImageArray.count);
-    return post.postImageArray.count;
+    NSLog(@"Size: %lu", self.post.postImageArray.count);
+    return self.post.postImageArray.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -115,24 +163,28 @@ static Post *post = nil;
     SDWebImageDownloader *manager = [SDWebImageManager sharedManager].imageDownloader;
     [manager setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
     
-    [cell.imageView sd_setImageWithURL:[[Helper sharedInstance] generateGetImageURLFromFilename:post.postImageArray[indexPath.row]]  placeholderImage:[UIImage imageNamed:@"no-image"] options:SDWebImageRetryFailed];
-      
+    [cell.imageView sd_setImageWithURL:[[Helper sharedInstance] generateGetImageURLFromFilename:self.post.postImageArray[indexPath.row]]  placeholderImage:[UIImage imageNamed:@"no-image"] options:SDWebImageRetryFailed];
+    
     return cell;
 }
 
+//MARK: PostEditCompeletedDelegate
+-(void)refreshView:(NSString*)postSlug {
+    [self initPostHavingPostId:postSlug];
+}
 
 //MARK: IBActions
 - (IBAction)onCall:(UIButton *)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", post.postUser.phone]] options:@{} completionHandler:nil];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", self.post.postUser.phone]] options:@{} completionHandler:nil];
 }
 
 - (IBAction)onMessage:(UIButton *)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms:%@", post.postUser.phone]] options:@{} completionHandler:nil];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms:%@", self.post.postUser.phone]] options:@{} completionHandler:nil];
 }
 
 - (IBAction)onUserInfo:(UIButton *)sender {
     //Load user info here
-    [[Alerter sharedInstance] createAlert:@"User Details" message:[NSString stringWithFormat:@"Name: %@\nPhone: %@\nUsername: %@\nEmail: %@\n", post.postUser.name, post.postUser.phone, post.postUser.username, post.postUser.email] viewController:self completion:^{}];
+    [[Alerter sharedInstance] createAlert:@"User Details" message:[NSString stringWithFormat:@"Name: %@\nPhone: %@\nUsername: %@\nEmail: %@\n", self.post.postUser.name, self.post.postUser.phone, self.post.postUser.username, self.post.postUser.email] viewController:self completion:^{}];
 }
 
 

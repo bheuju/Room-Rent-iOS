@@ -101,7 +101,7 @@ UIImage *profileImage;
                                  };
     
     //POST: /register
-    [[APICaller sharedInstance] callApi:SIGNUP_PATH parameters:parameters image:profileImage successBlock:^(id responseObject) {
+    [[APICaller sharedInstance:self] callApi:SIGNUP_PATH parameters:parameters image:profileImage successBlock:^(id responseObject) {
         
         NSString *code = [responseObject valueForKey:JSON_KEY_CODE];
         NSString *message = [responseObject valueForKey:JSON_KEY_MESSAGE];

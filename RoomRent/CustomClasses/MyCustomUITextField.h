@@ -21,4 +21,5 @@
 -(void)addRegex:(NSString*)regex withValidationMsg:(NSString*)validationMsg;
 -(BOOL)validate;
 -(void)setIsRequired;
+
 @end

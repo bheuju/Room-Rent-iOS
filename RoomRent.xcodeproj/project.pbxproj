@@ -27,9 +27,9 @@
 		DAA980FD1E96178B0032727F /* APICaller.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA980FC1E96178B0032727F /* APICaller.m */; };
 		DAAC92BC1EC96EF40018EEA8 /* RequestTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAC92BA1EC96EF40018EEA8 /* RequestTableViewCell.m */; };
 		DAAC92BD1EC96EF40018EEA8 /* RequestTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAAC92BB1EC96EF40018EEA8 /* RequestTableViewCell.xib */; };
+		DAACF01C1ED42EB700405B26 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DAACF01B1ED42EB700405B26 /* GoogleService-Info.plist */; };
 		DAAF21251E9F549C0089249D /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAF21241E9F549C0089249D /* SidebarViewController.m */; };
 		DAB5E38E1EA9BCDB0011AB67 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB5E38D1EA9BCDB0011AB67 /* Post.m */; };
-		DAB666B61E94BD2700E83956 /* ResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB666B51E94BD2700E83956 /* ResponseHandler.m */; };
 		DAB6944E1E973E6900BD3498 /* ValidationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB6944D1E973E6900BD3498 /* ValidationHandler.m */; };
 		DAB992E51E9355A3003A6483 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAB992E41E9355A3003A6483 /* Main.storyboard */; };
 		DAB992F51E9361D7003A6483 /* Alerter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB992F41E9361D7003A6483 /* Alerter.m */; };
@@ -83,12 +83,11 @@
 		DAAC92B91EC96EF40018EEA8 /* RequestTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestTableViewCell.h; sourceTree = "<group>"; };
 		DAAC92BA1EC96EF40018EEA8 /* RequestTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestTableViewCell.m; sourceTree = "<group>"; };
 		DAAC92BB1EC96EF40018EEA8 /* RequestTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequestTableViewCell.xib; sourceTree = "<group>"; };
+		DAACF01B1ED42EB700405B26 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DAAF21231E9F549C0089249D /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
 		DAAF21241E9F549C0089249D /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
 		DAB5E38C1EA9BCDB0011AB67 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		DAB5E38D1EA9BCDB0011AB67 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
-		DAB666B41E94BD2700E83956 /* ResponseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseHandler.h; sourceTree = "<group>"; };
-		DAB666B51E94BD2700E83956 /* ResponseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseHandler.m; sourceTree = "<group>"; };
 		DAB6944C1E973E6900BD3498 /* ValidationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidationHandler.h; sourceTree = "<group>"; };
 		DAB6944D1E973E6900BD3498 /* ValidationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidationHandler.m; sourceTree = "<group>"; };
 		DAB992E41E9355A3003A6483 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -193,6 +192,7 @@
 				DAA3BE9A1E8CF9410092F8DD /* LaunchScreen.storyboard */,
 				DA9096521ECC1C6D00891C9A /* Location.gpx */,
 				DAA3BE9D1E8CF9410092F8DD /* Info.plist */,
+				DAACF01B1ED42EB700405B26 /* GoogleService-Info.plist */,
 				DAA3BE8C1E8CF9410092F8DD /* Supporting Files */,
 			);
 			path = RoomRent;
@@ -220,8 +220,6 @@
 			children = (
 				DAB992F61E9361F4003A6483 /* Alerter.h */,
 				DAB992F41E9361D7003A6483 /* Alerter.m */,
-				DAB666B41E94BD2700E83956 /* ResponseHandler.h */,
-				DAB666B51E94BD2700E83956 /* ResponseHandler.m */,
 				DAA980FB1E96178B0032727F /* APICaller.h */,
 				DAA980FC1E96178B0032727F /* APICaller.m */,
 				DAB6944C1E973E6900BD3498 /* ValidationHandler.h */,
@@ -410,6 +408,7 @@
 			files = (
 				DAB992E51E9355A3003A6483 /* Main.storyboard in Resources */,
 				DAA3BE9C1E8CF9410092F8DD /* LaunchScreen.storyboard in Resources */,
+				DAACF01C1ED42EB700405B26 /* GoogleService-Info.plist in Resources */,
 				DA9096531ECC1C6D00891C9A /* Location.gpx in Resources */,
 				DAA4E51E1E9DE8AF00D165AF /* OfferTableViewCell.xib in Resources */,
 				DAAC92BD1EC96EF40018EEA8 /* RequestTableViewCell.xib in Resources */,
@@ -502,7 +501,6 @@
 				DA74488E1EA87E8A00009FD3 /* AddressPickerViewController.m in Sources */,
 				DACAA4EE1EB6F41300B397D0 /* MapViewController.m in Sources */,
 				DAA3BE8E1E8CF9410092F8DD /* main.m in Sources */,
-				DAB666B61E94BD2700E83956 /* ResponseHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,7 +624,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = RoomRent/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.heuju.RoomRent;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ebpearls.roomrent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -641,7 +639,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = RoomRent/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.heuju.RoomRent;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ebpearls.roomrent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

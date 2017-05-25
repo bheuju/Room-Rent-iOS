@@ -53,17 +53,16 @@ MKPointAnnotation *annot;
     
 }
 
-
 //MARK: Button click methods
-- (IBAction)onOkClicked:(UIBarButtonItem *)sender {
+- (IBAction)onOkClicked:(UIButton *)sender {
     
     //TODO: Check if pin is placed or not
     
-    [self.delegate setAddress:annot.coordinate];
+    [self.addressPickerDelegate setAddress:annot.coordinate];
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
-- (IBAction)onCancelClicked:(UIBarButtonItem *)sender {
+- (IBAction)onCancelClicked:(UIButton *)sender {
     [self dismissViewControllerAnimated:true completion:nil];
 }
 

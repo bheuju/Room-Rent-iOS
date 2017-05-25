@@ -26,7 +26,7 @@ static Helper *instance = nil;
     
     if (filename.length > 0) {
         url = [NSURL URLWithString:[[BASE_URL stringByAppendingString:GETFILE_PATH] stringByAppendingString:filename]];
-        NSLog(@"%@", url);
+        //NSLog(@"%@", url);
     }
     
     return url;

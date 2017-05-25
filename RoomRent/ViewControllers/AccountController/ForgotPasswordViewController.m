@@ -49,7 +49,7 @@
                                  };
     
     //POST: /forgotpassword
-    [[APICaller sharedInstance] callApiForPOST:FORGOT_PASSWORD_PATH parameters:parameters sendToken:false  successBlock:^(id responseObject) {
+    [[APICaller sharedInstance:self] callApiForPOST:FORGOT_PASSWORD_PATH parameters:parameters sendToken:false  successBlock:^(id responseObject) {
                
         NSString *code = [responseObject valueForKey:JSON_KEY_CODE];
         NSString *message = [responseObject valueForKey:JSON_KEY_MESSAGE];

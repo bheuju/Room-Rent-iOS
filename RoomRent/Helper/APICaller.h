@@ -10,48 +10,100 @@
 #import <AFNetworking/AFNetworking.h>
 
 #import "Constants.h"
+#import "Alerter.h"
 
 @interface APICaller : NSObject
 
-+(APICaller*)sharedInstance;
+@property UIViewController* VC;
+
++(APICaller*)sharedInstance:(UIViewController*)VC;
 -(APICaller*)initAPICaller;
 
+//MARK: GET
 /**
- * POST Request with token
- */
-
--(void)callApiForPOST:(NSString*)url parameters:(NSDictionary*)param sendToken:(BOOL)sendToken successBlock:(void (^)(id responseObject))successBlock;
-
-/**
- * DELETE Request with token
- */
-
--(void)callApiForDELETE:(NSString*)url parameters:(NSDictionary*)param sendToken:(BOOL)sendToken successBlock:(void (^)(id responseObject))successBlock;
-
-/**
- * POST Request with Single Image
- */
-
--(void)callApi:(NSString*)url parameters:(NSDictionary*)param image:(UIImage*)image successBlock:(void (^)(id responseObject))successBlock;
-
-/**
- * POST Request with imageArray
- */
-
--(void)callApi:(NSString*)url parameters:(NSDictionary*)param imageArray:(NSArray*)imageArray successBlock:(void (^)(id responseObject))successBlock;
-
-/**
- * GET Request
+ GET: Request
+ 
+ @param url             Partial URL without base url.
+ @param param           Request paramteres.
+ @param sendToken       Bool send api token or not
+ @param successBlock    Success block
  */
 -(void)callApiForGET:(NSString*)url parameters:(NSDictionary*)param sendToken:(BOOL)sendToken successBlock:(void (^)(id responseObject))successBlock;
 
 /**
- * GET Request RAW url
+ GET: Request RAW url
+ 
+ @param url             Full URL.
+ @param param           Request paramteres.
+ @param successBlock    Success block
  */
 -(void)callApiForGETRawUrl:(NSString*)url parameters:(NSDictionary*)param successBlock:(void (^)(id responseObject))successBlock;
 
+
+
+//MARK: POST
 /**
- * Depracated
+ POST: Request with token.
+ 
+ @param url             Partial URL without base url.
+ @param param           Request paramteres.
+ @param sendToken       Bool send api token or not
+ @param successBlock    Success block
+ */
+-(void)callApiForPOST:(NSString*)url parameters:(NSDictionary*)param sendToken:(BOOL)sendToken successBlock:(void (^)(id responseObject))successBlock;
+
+/**
+ POST: Request with Single Image
+ 
+ @param url             Partial URL without base url.
+ @param param           Request paramteres.
+ @param image           Single UIImage
+ @param successBlock    Success block
+ */
+-(void)callApi:(NSString*)url parameters:(NSDictionary*)param image:(UIImage*)image successBlock:(void (^)(id responseObject))successBlock;
+
+/**
+ POST: Request with imageArray
+ 
+ @param url             Partial URL without base url.
+ @param param           Request paramteres.
+ @param imageArray      UIImage Array []
+ @param successBlock    Success block
+ */
+-(void)callApi:(NSString*)url parameters:(NSDictionary*)param imageArray:(NSArray*)imageArray successBlock:(void (^)(id responseObject))successBlock;
+
+
+
+//MARK: PUT
+
+/**
+ PUT: Request with token
+ 
+ @param url             Partial URL without base url.
+ @param param           Request paramteres.
+ @param sendToken       Bool send api token or not
+ @param successBlock    Success block
+ */
+-(void)callApiForPUT:(NSString*)url parameters:(NSDictionary*)param sendToken:(BOOL)sendToken successBlock:(void (^)(id responseObject))successBlock;
+
+
+
+//MARK: DELETE
+/**
+ DELETE: Request with token
+ 
+ @param url             Partial URL without base url.
+ @param param           Request paramteres.
+ @param sendToken       Bool send api token or not
+ @param successBlock    Success block
+ */
+-(void)callApiForDELETE:(NSString*)url parameters:(NSDictionary*)param sendToken:(BOOL)sendToken successBlock:(void (^)(id responseObject))successBlock;
+
+
+
+/**
+ GET: Image
+ Depracated
  */
 -(void)callApiForImageRequest:(NSString*)urla successBlock:(void (^)(id responseObject))successBlock;
 

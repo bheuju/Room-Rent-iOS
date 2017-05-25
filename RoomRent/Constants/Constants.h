@@ -16,6 +16,17 @@
 //******************//
 static float SIDEBAR_WIDTH = 300.0f;
 
+static NSString *DEVICE_TYPE = @"1";
+static NSString *DEVICE_TOKEN = @"diYcDiJx_cU:APA91bGcSXcN3ev27AuH8740hztSVahqU0rM1OyQNAA18vYrWZaoKk0gxo1R1ibjiSIyAQuodu-bWD6-N8-9nb9VGNXnMQAKap4AcI9gcarouXTZU6p6XMBmvoshe-CAWywIxIpnao9f";
+
+static NSString *POSTS_ALL_STRING = @"all";
+static NSString *POSTS_OFFER_STRING = @"offers";
+static NSString *POSTS_REQUEST_STRING = @"asks";
+
+static NSString *OFFER = @"1";
+static NSString *REQUEST = @"2";
+
+
 
 //** URLs **//
 //**********//
@@ -32,22 +43,13 @@ static NSString *IMAGE_UPLOAD_PATH = @"/upload";
 
 static NSString *POST_PATH = @"/posts";
 static NSString *MY_POST_PATH = @"/myposts/";
-
 static NSString *USER_POST_PATH = @"/user/posts/";
+
+static NSString *POST_BULKDELETE = @"/bulkdelete";
 
 static NSString *APP_API_TOKEN = @"OD44GCYFpHYHcwYFTG1QsQBGPOLcHjk8OMOMPkd3Ew3RTaLX0ox2ES3UASxE";
 //static NSString *USER_API_TOKEN = @"";
 
-static NSString *DEVICE_TYPE = @"1";
-static NSString *DEVICE_TOKEN = @"Zero's iOS Device";
-
-
-static NSString *POSTS_ALL_STRING = @"all";
-static NSString *POSTS_OFFER_STRING = @"offers";
-static NSString *POSTS_REQUEST_STRING = @"asks";
-
-static NSString *OFFER = @"1";
-static NSString *REQUEST = @"2";
 
 
 //** JSON KEYS **//
@@ -69,7 +71,6 @@ static NSString *JSON_KEY_CREATED_AT = @"created_at";
 
 static NSString *JSON_KEY_DEVICE_TYPE = @"device_type";
 static NSString *JSON_KEY_DEVICE_TOKEN = @"device_token";
-
 
 static NSString *JSON_KEY_USER_OBJECT = @"user";
 

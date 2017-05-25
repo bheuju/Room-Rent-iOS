@@ -44,18 +44,22 @@
     [self.refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     [self.offerTableView addSubview:self.refreshControl];
     
+    //Init postsArray
     self.postsArray = [[NSMutableArray alloc] init];
     
     //Initial Data loading
     [self getData];
 }
 
+//Refresh tableView
+//Clear previous data and reload new data
 -(void)refreshData {
     self.offsetValue = 0;
     [self.postsArray removeAllObjects];
     [self getData];
 }
 
+//Server call for populating postsArray
 -(void)getData {
     
     NSDictionary *parameters = @{
@@ -64,7 +68,7 @@
                                  };
     
     //GET: /posts ? type & offset
-    [[APICaller sharedInstance] callApiForGET:POST_PATH parameters:parameters sendToken:true successBlock:^(id responseObject) {
+    [[APICaller sharedInstance:self] callApiForGET:POST_PATH parameters:parameters sendToken:true successBlock:^(id responseObject) {
         
         id data = [responseObject valueForKey:@"data"];
         
@@ -114,6 +118,8 @@
     
     OfferTableViewCell *cell = (OfferTableViewCell*) [tableView dequeueReusableCellWithIdentifier:@"offerTableViewCell"];
     
+    cell.collectionViewItemClickDelegate = self;
+    
     //Configure cell data
     [cell configureCellWithData:self.postsArray[indexPath.row]];
     
@@ -162,5 +168,16 @@
 }
 
 
+//MARK: CollectionViewItemClickedDelegate
+-(void)collectionViewItemClicked:(NSString*)postSlug {
+    //Load single post view
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    SinglePostViewController *singlePostVC = (SinglePostViewController*)[story instantiateViewControllerWithIdentifier:@"SinglePostViewController"];
+    
+    //Set post details
+    [singlePostVC initPostHavingPostId:postSlug];
+    
+    [self.navigationController pushViewController:singlePostVC animated:true];
+}
 
 @end

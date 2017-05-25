@@ -14,14 +14,11 @@
 
 
 @property NSMutableArray *postsArray;
-@property NSMutableArray *selectedPostsArrayIndexPath;
 
 @property UIRefreshControl *refreshControl;
 @property int offsetValue;
 @property BOOL postAdded;     //Flag to prevent multiple calling of getData from scrollViewDidScroll
 @property BOOL isLastPage;
-
-@property BOOL isEditing;
 
 @end
 
@@ -50,43 +47,13 @@
     
     
     self.postsArray = [[NSMutableArray alloc] init];
-    self.selectedPostsArrayIndexPath = [[NSMutableArray alloc] init];
     self.offsetValue = 0;
     self.postAdded = false;
     self.isLastPage = false;
-    
-    //For tableview rows select
-    self.isEditing = false;
-    
+        
     [self getData];
     
-    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-    [self.requestsTableView addGestureRecognizer:lpgr];
     
-}
-
--(void)handleLongPress:(UILongPressGestureRecognizer*) gestureRecognizer {
-    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        return;
-    }
-    
-    //CGPoint touchPoint = [gestureRecognizer locationInView:self.requestsTableView];
-    //NSIndexPath *indexPath = [self.requestsTableView indexPathForRowAtPoint:touchPoint];
-    
-    self.isEditing = true;
-    
-    if (self.isEditing) {
-        UIBarButtonItem *cancelEditing = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelEditing)];
-        self.navigationItem.rightBarButtonItem = cancelEditing;
-    }
-}
-
--(void)cancelEditing {
-    self.isEditing = false;
-    self.navigationItem.rightBarButtonItem = nil;
-    
-    [self.selectedPostsArrayIndexPath removeAllObjects];
-    [self.requestsTableView reloadData];
 }
 
 -(void)refreshData {
@@ -103,7 +70,7 @@
                                  };
     
     //GET: /posts ? type & offset
-    [[APICaller sharedInstance] callApiForGET:POST_PATH parameters:parameters sendToken:true successBlock:^(id responseObject) {
+    [[APICaller sharedInstance:self] callApiForGET:POST_PATH parameters:parameters sendToken:true successBlock:^(id responseObject) {
         
         id data = [responseObject valueForKey:@"data"];
         
@@ -155,47 +122,22 @@
     
     [cell configureCellWithData:self.postsArray[indexPath.row]];
     
-    if ([self.selectedPostsArrayIndexPath containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
-        cell.checkHiddenButton.hidden = false;
-    } else {
-        cell.checkHiddenButton.hidden = true;
-    }
-    
     return cell;
 }
 
 //MARK: TableView Delegates
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (self.isEditing) {
-        RequestTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    //Load single post view
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    SinglePostViewController *singlePostVC = (SinglePostViewController*)[story instantiateViewControllerWithIdentifier:@"SinglePostViewController"];
         
-        cell.isSelected ^= true;
+    Post *p = self.postsArray[indexPath.row];
         
-        NSLog(@"%d", cell.isSelected);
+    //Set post details
+    [singlePostVC initPostHavingPostId:p.postSlug];
         
-        if (cell.isSelected) {
-            [self.selectedPostsArrayIndexPath addObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]];
-            cell.checkHiddenButton.hidden = false;
-            NSLog(@"selected");
-        } else {
-            [self.selectedPostsArrayIndexPath removeObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]];
-            cell.checkHiddenButton.hidden = true;
-            NSLog(@"not-selected");
-        }
-        
-    } else {
-        //Load single post view
-        UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        SinglePostViewController *singlePostVC = (SinglePostViewController*)[story instantiateViewControllerWithIdentifier:@"SinglePostViewController"];
-        
-        Post *p = self.postsArray[indexPath.row];
-        
-        //Set post details
-        [singlePostVC initPostHavingPostId:p.postSlug];
-        
-        [self.navigationController pushViewController:singlePostVC animated:true];
-    }
+    [self.navigationController pushViewController:singlePostVC animated:true];
 }
 
 @end

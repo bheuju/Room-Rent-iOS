@@ -40,6 +40,9 @@
 //Methods Implementation
 -(void)configureCellWithData:(Post*)post {
     
+    //Post Slug assign for delegate, onItemClicked
+    self.postSlug = post.postSlug;
+    
     self.postTitle.text = [[[post.postId stringValue] stringByAppendingString:@": "] stringByAppendingString:post.postTitle];
     self.postNoOfRooms.text = [post.postNoOfRooms stringValue];
     self.postPrice.text = [post.postPrice stringValue];
@@ -66,6 +69,12 @@
     //UIImage *img = cell.imageView.image;
     
     return cell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [self.collectionViewItemClickDelegate collectionViewItemClicked:self.postSlug];
+    
 }
 
 

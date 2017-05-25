@@ -69,7 +69,9 @@ NSArray *menuList;
     
     NSString *item = menuList[indexPath.row];
     
-    if ([item isEqualToString:@"Logout"]) {
+    if ([item isEqualToString:@"Profile"]) {
+        [self profile];
+    } else if ([item isEqualToString:@"Logout"]) {
         //Logout from here
         [self logout];
     }
@@ -85,7 +87,7 @@ NSArray *menuList;
     NSDictionary *parameters = @{JSON_KEY_API_TOKEN:userApiToken};
     
     //POST: /logout
-    [[APICaller sharedInstance] callApiForDELETE:LOGOUT_PATH parameters:parameters sendToken:true successBlock:^(id responseObject) {
+    [[APICaller sharedInstance:self] callApiForDELETE:LOGOUT_PATH parameters:parameters sendToken:true successBlock:^(id responseObject) {
         NSString *code = [responseObject valueForKey:JSON_KEY_CODE];
         NSString *message = [responseObject valueForKey:JSON_KEY_MESSAGE];
         
@@ -105,6 +107,11 @@ NSArray *menuList;
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:JSON_KEY_USER_OBJECT];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:JSON_KEY_API_TOKEN];
     }];
+}
+
+-(void) profile {
+    NSString *userApiToken = [[NSUserDefaults standardUserDefaults] valueForKey:JSON_KEY_API_TOKEN];
+    NSLog(@"API TOKEN: Bearer %@", userApiToken);
 }
 
 @end

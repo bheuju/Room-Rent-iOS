@@ -26,10 +26,23 @@
 @property (weak, nonatomic) IBOutlet UIButton *checkHiddenButton;
 
 @property BOOL isSelected;
-
+@property NSString *postSlug;
 
 @property NSMutableArray *postImagesNameArray;
 
+
+@property id collectionViewItemClickDelegate;
+
+
 -(void)configureCellWithData:(Post*)post;
+
+@end
+
+
+
+
+@protocol CollectionViewItemClicked
+
+-(void)collectionViewItemClicked:(NSString*)postSlug;
 
 @end

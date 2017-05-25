@@ -100,7 +100,7 @@ User *user = nil;
                                  };
     
     //POST: /login
-    [[APICaller sharedInstance] callApiForPOST:LOGIN_PATH parameters:parameters sendToken:false successBlock:^(id responseObject) {
+    [[APICaller sharedInstance:self] callApiForPOST:LOGIN_PATH parameters:parameters sendToken:false successBlock:^(id responseObject) {
         
         //[[ResponseHandler sharedInstance] handleResponse:responseObject];
         

@@ -31,6 +31,29 @@ static Alerter *instance = nil;
     [VC presentViewController:alert animated:true completion:nil];
 }
 
+-(void)createAlertWithDefaultCancel:(NSString*)alertTitle message:(NSString*)alertMessage viewController:(UIViewController*)VC action:(NSString*)actionTitle actionCompletion:(void (^)(void))actionCompletion {
+
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:alertTitle message:alertMessage preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *action = [UIAlertAction actionWithTitle:actionTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        actionCompletion();
+        
+    }];
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+        [VC dismissViewControllerAnimated:true completion:nil];
+        
+    }];
+    
+    [alert addAction:action];
+    [alert addAction:cancel];
+    
+    [VC presentViewController:alert animated:true completion:nil];
+    
+}
+
 -(void)createActions:(NSString*)alertTitle message:(NSString*)alertMessage viewController:(UIViewController*) VC action1:(NSString*)actionTitle1 actionCompletion1:(void (^)(void))actionCompletion1 action2:(NSString*)actionTitle2 actionCompletion2:(void (^)(void))actionCompletion2 {
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:alertTitle message:alertMessage preferredStyle:UIAlertControllerStyleActionSheet];

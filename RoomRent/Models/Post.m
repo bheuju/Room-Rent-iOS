@@ -35,8 +35,7 @@
     self.postImageArray = [NSMutableArray arrayWithArray:[[postJson valueForKey:JSON_KEY_POST_IMAGES] allObjects]];
     
     
-    
-    Post *p = self;
+    //Post *p = self;
     
     return self;
 }

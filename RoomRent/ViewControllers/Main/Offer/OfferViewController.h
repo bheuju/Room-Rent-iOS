@@ -17,11 +17,9 @@
 #import "Alerter.h"
 #import "Constants.h"
 #import "User.h"
-//#import "Post.h"
-//#import "PostPartial.h"
 
 #import "OfferTableViewCell.h"
 
-@interface OfferViewController : SidebarImplementedViewController <UITableViewDelegate, UITableViewDataSource>
+@interface OfferViewController : SidebarImplementedViewController <UITableViewDelegate, UITableViewDataSource, CollectionViewItemClicked>
 
 @end
