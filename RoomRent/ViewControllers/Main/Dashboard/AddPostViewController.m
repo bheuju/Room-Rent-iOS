@@ -55,14 +55,29 @@
     
     self.postPrice.delegate = self;
     
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTap:)];
+    tap.cancelsTouchesInView = false;
+    [self.contentView addGestureRecognizer:tap];
+    
 }
 
 //MARK: Methods
+-(void)onTap:(UIGestureRecognizer*)gestureRecognizer {
+    
+    CGPoint tapPoint = [gestureRecognizer locationInView:self.view];
+    
+    CGRect photoCollectionViewRect = self.photoCollectionView.frame;
+    
+    if (!CGRectContainsPoint(photoCollectionViewRect, tapPoint)) {
+        [self.view endEditing:true];
+    }
+}
+
 -(void)onCancel {
     [self dismissViewControllerAnimated:true completion:nil];
     [self.navigationController popViewControllerAnimated:true];
 }
-
 
 
 //MARK: Button click methods
@@ -77,6 +92,11 @@
 
 
 - (IBAction)onPostSubmitClicked:(UIButton *)sender {
+    
+    //Disable button to prevent multiple posts
+    sender.enabled = false;
+    sender.alpha = 0.5;
+    
     
     //TODO: Validation
     

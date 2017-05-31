@@ -23,18 +23,18 @@
     
     //TODO: Check for location to be initalized
     
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.location, zoomDistance, zoomDistance);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.post.postAddressCoordinates, zoomDistance, zoomDistance);
     MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:viewRegion];
     [self.mapView setRegion:adjustedRegion];
     
     MKPointAnnotation *annot = [[MKPointAnnotation alloc] init];
-    annot.coordinate = self.location;
+    annot.coordinate = self.post.postAddressCoordinates;
     
-    annot.title = @"Room Rent";
-    annot.subtitle = @"Need a room?";
+    annot.title = self.post.postTitle;
+    annot.subtitle = [NSString stringWithFormat:@"%@ rooms at Rs. %@ by %@", self.post.postNoOfRooms, self.post.postPrice, self.post.postUser.username];
     
     [self.mapView addAnnotation:annot];
-      
+    
 }
 
 

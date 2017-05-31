@@ -23,6 +23,8 @@
     // Use Firebase library to configure APIs
     [FIRApp configure];
     
+    [self setupDefaults];
+    
     //MARK: AUTO LOGIN
     //Get userData from UserDefaults
     NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_USER_OBJECT];
@@ -79,6 +81,17 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+
+-(void)setupDefaults {
+
+    [[UITabBar appearance] setTintColor:[UIColor blackColor]];
+    [[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];
+    
+    [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
+    
 }
 
 

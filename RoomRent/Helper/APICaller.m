@@ -168,10 +168,15 @@ AFHTTPSessionManager *manager;
 
 //single image named profile_image
 //For
--(void)callApi:(NSString*)url parameters:(NSDictionary*)param image:(UIImage*)image successBlock:(void (^)(id responseObject))successBlock {
+-(void)callApi:(NSString*)url parameters:(NSDictionary*)param image:(UIImage*)image sendToken:(BOOL)sendToken successBlock:(void (^)(id responseObject))successBlock {
     
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    if (sendToken) {
+        NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
+        [manager.requestSerializer setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
+    }
     
     [manager POST:[BASE_URL stringByAppendingString:url] parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         if (image != nil) {

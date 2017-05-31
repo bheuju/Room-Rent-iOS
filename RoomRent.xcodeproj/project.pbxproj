@@ -14,6 +14,8 @@
 		DA5408C31EB1A71000F11BB4 /* SinglePostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5408C21EB1A71000F11BB4 /* SinglePostViewController.m */; };
 		DA74488E1EA87E8A00009FD3 /* AddressPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA74488D1EA87E8A00009FD3 /* AddressPickerViewController.m */; };
 		DA7448901EA881A700009FD3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA74488F1EA881A700009FD3 /* MapKit.framework */; };
+		DA7BD75B1EDBD55E00FFBE97 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BD75A1EDBD55D00FFBE97 /* ProfileViewController.m */; };
+		DA7BD75E1EDBE24200FFBE97 /* AllPostsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BD75D1EDBE24200FFBE97 /* AllPostsMapViewController.m */; };
 		DA9096531ECC1C6D00891C9A /* Location.gpx in Resources */ = {isa = PBXBuildFile; fileRef = DA9096521ECC1C6D00891C9A /* Location.gpx */; };
 		DA91A9981EA716B70073F123 /* AddRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA91A9971EA716B70073F123 /* AddRequestViewController.m */; };
 		DAA3BE8E1E8CF9410092F8DD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA3BE8D1E8CF9410092F8DD /* main.m */; };
@@ -62,6 +64,10 @@
 		DA74488C1EA87E8A00009FD3 /* AddressPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressPickerViewController.h; sourceTree = "<group>"; };
 		DA74488D1EA87E8A00009FD3 /* AddressPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressPickerViewController.m; sourceTree = "<group>"; };
 		DA74488F1EA881A700009FD3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		DA7BD7591EDBD55D00FFBE97 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		DA7BD75A1EDBD55D00FFBE97 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		DA7BD75C1EDBE24200FFBE97 /* AllPostsMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllPostsMapViewController.h; sourceTree = "<group>"; };
+		DA7BD75D1EDBE24200FFBE97 /* AllPostsMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllPostsMapViewController.m; sourceTree = "<group>"; };
 		DA9096521ECC1C6D00891C9A /* Location.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		DA91A9961EA716B70073F123 /* AddRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRequestViewController.h; sourceTree = "<group>"; };
 		DA91A9971EA716B70073F123 /* AddRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRequestViewController.m; sourceTree = "<group>"; };
@@ -267,6 +273,8 @@
 				DAC149BF1EA463C2001AA17D /* Dashboard */,
 				DAAF21231E9F549C0089249D /* SidebarViewController.h */,
 				DAAF21241E9F549C0089249D /* SidebarViewController.m */,
+				DA7BD75C1EDBE24200FFBE97 /* AllPostsMapViewController.h */,
+				DA7BD75D1EDBE24200FFBE97 /* AllPostsMapViewController.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -340,6 +348,8 @@
 				DAD538721E8E179B00F71D8B /* ForgotPasswordViewController.m */,
 				DAD538741E8E17A400F71D8B /* SignUpViewController.h */,
 				DAD538751E8E17A400F71D8B /* SignUpViewController.m */,
+				DA7BD7591EDBD55D00FFBE97 /* ProfileViewController.h */,
+				DA7BD75A1EDBD55D00FFBE97 /* ProfileViewController.m */,
 			);
 			path = AccountController;
 			sourceTree = "<group>";
@@ -493,12 +503,14 @@
 				DAAC92BC1EC96EF40018EEA8 /* RequestTableViewCell.m in Sources */,
 				DAC900F31ECEA28C0098ED95 /* PostPartial.m in Sources */,
 				DAB5E38E1EA9BCDB0011AB67 /* Post.m in Sources */,
+				DA7BD75B1EDBD55E00FFBE97 /* ProfileViewController.m in Sources */,
 				DAA980F91E95F88A0032727F /* User.m in Sources */,
 				DAA4E51D1E9DE8AF00D165AF /* OfferTableViewCell.m in Sources */,
 				DAC149C61EA463C2001AA17D /* AddPostViewController.m in Sources */,
 				DAB993031E9393EA003A6483 /* KeyboardAvoidingViewController.m in Sources */,
 				DA5408C31EB1A71000F11BB4 /* SinglePostViewController.m in Sources */,
 				DA74488E1EA87E8A00009FD3 /* AddressPickerViewController.m in Sources */,
+				DA7BD75E1EDBE24200FFBE97 /* AllPostsMapViewController.m in Sources */,
 				DACAA4EE1EB6F41300B397D0 /* MapViewController.m in Sources */,
 				DAA3BE8E1E8CF9410092F8DD /* main.m in Sources */,
 			);

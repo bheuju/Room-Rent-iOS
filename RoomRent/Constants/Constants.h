@@ -17,7 +17,7 @@
 static float SIDEBAR_WIDTH = 300.0f;
 
 static NSString *DEVICE_TYPE = @"1";
-static NSString *DEVICE_TOKEN = @"diYcDiJx_cU:APA91bGcSXcN3ev27AuH8740hztSVahqU0rM1OyQNAA18vYrWZaoKk0gxo1R1ibjiSIyAQuodu-bWD6-N8-9nb9VGNXnMQAKap4AcI9gcarouXTZU6p6XMBmvoshe-CAWywIxIpnao9f";
+static NSString *DEVICE_TOKEN = @"frg7zs0foGM:APA91bF7mlmZPFSXcrNhBuU9MLIviVNT05jJ8w5hYSxIEvsz6bWHh7ieqJbERMRioZ2lBR6Z49fgRJYpWgpc9FcX1jpqM-L8qEvLoCxd0gQWLN3g7jHE3_EBuRWE4kodUOGNhN0upL82";
 
 static NSString *POSTS_ALL_STRING = @"all";
 static NSString *POSTS_OFFER_STRING = @"offers";
@@ -38,6 +38,8 @@ static NSString *FORGOT_PASSWORD_PATH = @"/forgotpassword";
 static NSString *SIGNUP_PATH = @"/register";
 
 static NSString *GETFILE_PATH = @"/getfile/";
+
+static NSString *UPDATE_AVATAR = @"/updateavatar";
 
 static NSString *IMAGE_UPLOAD_PATH = @"/upload";
 

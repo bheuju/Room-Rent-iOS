@@ -9,11 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
+#import "Alerter.h"
+
 @interface AddressPickerViewController : UIViewController <MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
-@property id addressPickerDelegate;
+@property MKPointAnnotation *annot;
+
+@property (weak) id addressPickerDelegate;
 
 @end
 

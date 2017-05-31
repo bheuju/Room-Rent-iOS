@@ -133,9 +133,7 @@ User *user = nil;
             //NSData *data = [userDefaults objectForKey:JSON_KEY_USER_OBJECT];
             //User *u = [NSKeyedUnarchiver unarchiveObjectWithData:data];
             
-            
-            
-            
+                        
             //Switch to tabBarViewController
             UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
             UIStoryboard *mainStory = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

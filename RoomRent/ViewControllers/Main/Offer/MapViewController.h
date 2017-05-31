@@ -9,8 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
+#import "Post.h"
+
 @interface MapViewController : UIViewController
 
-@property CLLocationCoordinate2D location;
+//@property CLLocationCoordinate2D location;
+
+@property Post *post;
 
 @end

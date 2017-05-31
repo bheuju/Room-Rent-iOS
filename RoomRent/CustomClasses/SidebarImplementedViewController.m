@@ -31,6 +31,7 @@
         
         self.navigationItem.leftBarButtonItem = sidebarButton;
         
+        
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
         
     }
@@ -39,7 +40,26 @@
     self.revealViewController.rearViewRevealWidth = SIDEBAR_WIDTH;
     self.revealViewController.rearViewRevealOverdraw = 0.0f;
     
+    
+    
+    UIBarButtonItem *mapsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"grey-location-icon"] style:UIBarButtonItemStylePlain target:self action:@selector(maps)];
+    self.navigationItem.rightBarButtonItem = mapsButton;
+    
+    
 }
+
+//MARK: Methods
+-(void)maps {
+    
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *allMapsVC = [story instantiateViewControllerWithIdentifier:@"AllPostsMapViewController"];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:allMapsVC];
+    
+    //[self.navigationController pushViewController:navController animated:true];
+    [self presentViewController:navController animated:true completion:nil];
+                       
+}
+
 
 -(void)revealController:(SWRevealViewController *)revealController willMoveToPosition:(FrontViewPosition)position {
     

@@ -48,13 +48,14 @@
     
 }
 
+//MARK: Selectors
 -(void)editPost {
     
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     AddPostViewController *editPost = [story instantiateViewControllerWithIdentifier:@"AddPostViewController"];
-   
+    
     editPost.isEditing = true;
-    editPost.addPostType = self.post.postType;
+    editPost.addPostType = [self.post.postType stringValue];
     editPost.post = self.post;
     
     editPost.postEditCompleteDelegate = self;
@@ -88,13 +89,25 @@
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     MapViewController *mapVC = [story instantiateViewControllerWithIdentifier:@"MapViewController"];
     
-    mapVC.location = self.post.postAddressCoordinates;
+    //mapVC.location = self.post.postAddressCoordinates;
+    mapVC.post = self.post;
     
     [self.navigationController pushViewController:mapVC animated:true];
     
 }
 
+//MARK: Custom Methods
 -(void)initPostHavingPostId:(NSString*)postSlug {
+    
+    //Activity progress
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    indicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
+    indicator.center = self.view.center;
+    [self.view addSubview:indicator];
+    [indicator bringSubviewToFront:self.view];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = TRUE;
+    
+    [indicator startAnimating];
     
     //GET: /posts/{slug}
     NSString *path = [[POST_PATH stringByAppendingString:@"/"] stringByAppendingString:postSlug];
@@ -104,6 +117,8 @@
         [self initWithPost:self.post];
         
         [self.imageSliderCollectionView reloadData];
+        
+        [indicator stopAnimating];
         
     }];
     
@@ -120,9 +135,13 @@
     self.postUser.text = post.postUser.name;
     
     //TODO: Init map here
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(post.postAddressCoordinates, 500, 500);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(post.postAddressCoordinates, 5000, 5000);
     MKCoordinateRegion adjustedRegion = [self.postAddressMap regionThatFits:viewRegion];
-    [self.postAddressMap setRegion:adjustedRegion];
+    
+    if (adjustedRegion.center.latitude > -89 && adjustedRegion.center.latitude < 89 && adjustedRegion.center.longitude > -179 && adjustedRegion.center.longitude < 179) {
+        [self.postAddressMap setRegion:adjustedRegion];
+    }
+    
     
     MKPointAnnotation *annot = [[MKPointAnnotation alloc] init];
     annot.coordinate = post.postAddressCoordinates;
@@ -150,7 +169,7 @@
 
 //MARK: CollectionView Methods
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    NSLog(@"Size: %lu", self.post.postImageArray.count);
+    //NSLog(@"Size: %lu", self.post.postImageArray.count);
     return self.post.postImageArray.count;
 }
 

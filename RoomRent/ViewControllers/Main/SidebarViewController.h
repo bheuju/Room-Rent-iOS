@@ -16,10 +16,12 @@
 #import "APICaller.h"
 #import "MyCircularUIButton.h"
 
+#import "ProfileViewController.h"
+
 #import "User.h"
 
 
-@interface SidebarViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface SidebarViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate>
 
 
 -(void)logout;

@@ -58,9 +58,10 @@
  @param url             Partial URL without base url.
  @param param           Request paramteres.
  @param image           Single UIImage
+ @param sendToken       Bool send api token or not
  @param successBlock    Success block
  */
--(void)callApi:(NSString*)url parameters:(NSDictionary*)param image:(UIImage*)image successBlock:(void (^)(id responseObject))successBlock;
+-(void)callApi:(NSString*)url parameters:(NSDictionary*)param image:(UIImage*)image sendToken:(BOOL)sendToken successBlock:(void (^)(id responseObject))successBlock;
 
 /**
  POST: Request with imageArray

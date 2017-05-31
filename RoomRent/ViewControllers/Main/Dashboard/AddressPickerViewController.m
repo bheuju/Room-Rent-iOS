@@ -12,7 +12,7 @@
 
 @end
 
-MKPointAnnotation *annot;
+
 
 @implementation AddressPickerViewController
 @synthesize mapView;
@@ -30,7 +30,7 @@ MKPointAnnotation *annot;
     
     self.mapView.delegate = self;
     
-    annot = [[MKPointAnnotation alloc] init];
+    self.annot = [[MKPointAnnotation alloc] init];
     
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(placePin:)];
     longPress.minimumPressDuration = 0.5; //sec
@@ -47,19 +47,26 @@ MKPointAnnotation *annot;
     CLLocationCoordinate2D mapCoordinate = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
     
     //MKPointAnnotation *annot = [[MKPointAnnotation alloc] init];
-    [self.mapView removeAnnotation:annot];
-    annot.coordinate = mapCoordinate;
-    [self.mapView addAnnotation:annot];
+    [self.mapView removeAnnotation:self.annot];
+    self.annot.coordinate = mapCoordinate;
+    [self.mapView addAnnotation:self.annot];
     
 }
 
 //MARK: Button click methods
 - (IBAction)onOkClicked:(UIButton *)sender {
     
-    //TODO: Check if pin is placed or not
+    //Check if pin is placed or not
+    if (self.annot.coordinate.latitude != 0 && self.annot.coordinate.longitude != 0) {
+        
+        [self.addressPickerDelegate setAddress:self.annot.coordinate];
+        [self dismissViewControllerAnimated:true completion:nil];
+        
+    } else {
+        [[Alerter sharedInstance] createAlert:@"Address not picked." message:@"Long press to pick a place." viewController:self completion:^{}];
+    }
     
-    [self.addressPickerDelegate setAddress:annot.coordinate];
-    [self dismissViewControllerAnimated:true completion:nil];
+    
 }
 
 - (IBAction)onCancelClicked:(UIButton *)sender {

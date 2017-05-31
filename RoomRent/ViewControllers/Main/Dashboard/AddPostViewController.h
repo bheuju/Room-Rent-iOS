@@ -17,6 +17,7 @@
 
 @interface AddPostViewController : KeyboardAvoidingViewController <UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UICollectionViewDelegateFlowLayout, AddressPickerDelegeate, UITextFieldDelegate>
 
+@property (strong, nonatomic) IBOutlet UIView *contentView;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *postPhotoCollectionViewLabel;
@@ -28,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *postAddress;
 
 
+
 @property NSString *addPostType;
 @property NSMutableArray *photoList;
 @property BOOL allowAddingImage;
@@ -36,8 +38,7 @@
 
 @property BOOL isEditing;
 
-
-@property id postEditCompleteDelegate;
+@property (weak) id postEditCompleteDelegate;
 
 
 -(void)populatePhotoCollectionViewWithImage:(UIImage*)image;

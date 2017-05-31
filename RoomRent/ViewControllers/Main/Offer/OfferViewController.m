@@ -120,8 +120,10 @@
     
     cell.collectionViewItemClickDelegate = self;
     
-    //Configure cell data
-    [cell configureCellWithData:self.postsArray[indexPath.row]];
+    if (self.postsArray.count > 0) {
+        //Configure cell data
+        [cell configureCellWithData:self.postsArray[indexPath.row]];
+    }
     
     return cell;
     
