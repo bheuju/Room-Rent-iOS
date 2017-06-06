@@ -11,6 +11,7 @@
 		DA011D841EB9A1C6004D183C /* ImageSliderCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA011D821EB9A1C5004D183C /* ImageSliderCollectionViewCell.m */; };
 		DA011D851EB9A1C6004D183C /* ImageSliderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA011D831EB9A1C5004D183C /* ImageSliderCollectionViewCell.xib */; };
 		DA011D881EB9A96B004D183C /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA011D871EB9A96B004D183C /* Helper.m */; };
+		DA2107461EDFCA2C00937D2A /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2107451EDFCA2C00937D2A /* ProgressHUD.m */; };
 		DA5408C31EB1A71000F11BB4 /* SinglePostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5408C21EB1A71000F11BB4 /* SinglePostViewController.m */; };
 		DA74488E1EA87E8A00009FD3 /* AddressPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA74488D1EA87E8A00009FD3 /* AddressPickerViewController.m */; };
 		DA7448901EA881A700009FD3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA74488F1EA881A700009FD3 /* MapKit.framework */; };
@@ -59,6 +60,8 @@
 		DA011D831EB9A1C5004D183C /* ImageSliderCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageSliderCollectionViewCell.xib; sourceTree = "<group>"; };
 		DA011D861EB9A96B004D183C /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
 		DA011D871EB9A96B004D183C /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
+		DA2107441EDFCA2C00937D2A /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
+		DA2107451EDFCA2C00937D2A /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 		DA5408C11EB1A71000F11BB4 /* SinglePostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinglePostViewController.h; sourceTree = "<group>"; };
 		DA5408C21EB1A71000F11BB4 /* SinglePostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinglePostViewController.m; sourceTree = "<group>"; };
 		DA74488C1EA87E8A00009FD3 /* AddressPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressPickerViewController.h; sourceTree = "<group>"; };
@@ -232,6 +235,8 @@
 				DAB6944D1E973E6900BD3498 /* ValidationHandler.m */,
 				DA011D861EB9A96B004D183C /* Helper.h */,
 				DA011D871EB9A96B004D183C /* Helper.m */,
+				DA2107441EDFCA2C00937D2A /* ProgressHUD.h */,
+				DA2107451EDFCA2C00937D2A /* ProgressHUD.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -497,6 +502,7 @@
 				DAD538701E8E129A00F71D8B /* SignInViewController.m in Sources */,
 				DAC149CA1EA46FA5001AA17D /* SidebarImplementedViewController.m in Sources */,
 				DAB6944E1E973E6900BD3498 /* ValidationHandler.m in Sources */,
+				DA2107461EDFCA2C00937D2A /* ProgressHUD.m in Sources */,
 				DAA3BE911E8CF9410092F8DD /* AppDelegate.m in Sources */,
 				DAB992F51E9361D7003A6483 /* Alerter.m in Sources */,
 				DA011D881EB9A96B004D183C /* Helper.m in Sources */,

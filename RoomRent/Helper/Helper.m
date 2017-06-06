@@ -32,4 +32,16 @@ static Helper *instance = nil;
     return url;
 }
 
+-(User*)getUserFromUserDefaults {
+    NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_USER_OBJECT];
+    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:userData];
+    return user;
+}
+
+-(void)setUserToUserDefaults:(User*)user {
+    NSData *userData = [NSKeyedArchiver archivedDataWithRootObject:user];
+    [[NSUserDefaults standardUserDefaults] setObject:userData forKey:JSON_KEY_USER_OBJECT];
+}
+
+
 @end

@@ -180,6 +180,7 @@
                     <connections>
                         <outlet property="emailAddress" destination="eeL-5q-zrD" id="eHx-uR-FGJ"/>
                         <outlet property="password" destination="4Hm-17-6Af" id="suy-kh-hrg"/>
+                        <outlet property="signInButton" destination="lnM-Zm-GR2" id="fec-5c-K2e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

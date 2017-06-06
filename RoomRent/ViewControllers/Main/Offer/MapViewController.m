@@ -25,7 +25,11 @@
     
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.post.postAddressCoordinates, zoomDistance, zoomDistance);
     MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:viewRegion];
-    [self.mapView setRegion:adjustedRegion];
+    
+    //Check for valid coordinates
+    if (adjustedRegion.center.latitude > -89 && adjustedRegion.center.latitude < 89 && adjustedRegion.center.longitude > -179 && adjustedRegion.center.longitude < 179) {
+        [self.mapView setRegion:adjustedRegion];
+    }
     
     MKPointAnnotation *annot = [[MKPointAnnotation alloc] init];
     annot.coordinate = self.post.postAddressCoordinates;

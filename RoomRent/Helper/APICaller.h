@@ -11,6 +11,7 @@
 
 #import "Constants.h"
 #import "Alerter.h"
+#import "ProgressHUD.h"
 
 @interface APICaller : NSObject
 

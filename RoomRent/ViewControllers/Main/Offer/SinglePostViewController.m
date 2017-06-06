@@ -28,6 +28,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.hidden = true;
+    
     //Set collectionview delegates and datasource
     self.imageSliderCollectionView.delegate = self;
     self.imageSliderCollectionView.dataSource = self;
@@ -99,16 +101,6 @@
 //MARK: Custom Methods
 -(void)initPostHavingPostId:(NSString*)postSlug {
     
-    //Activity progress
-    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    indicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
-    indicator.center = self.view.center;
-    [self.view addSubview:indicator];
-    [indicator bringSubviewToFront:self.view];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = TRUE;
-    
-    [indicator startAnimating];
-    
     //GET: /posts/{slug}
     NSString *path = [[POST_PATH stringByAppendingString:@"/"] stringByAppendingString:postSlug];
     [[APICaller sharedInstance:self] callApiForGET:path parameters:nil sendToken:true successBlock:^(id responseObject) {
@@ -117,8 +109,6 @@
         [self initWithPost:self.post];
         
         [self.imageSliderCollectionView reloadData];
-        
-        [indicator stopAnimating];
         
     }];
     
@@ -138,6 +128,7 @@
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(post.postAddressCoordinates, 5000, 5000);
     MKCoordinateRegion adjustedRegion = [self.postAddressMap regionThatFits:viewRegion];
     
+    //Check for valid coordinates
     if (adjustedRegion.center.latitude > -89 && adjustedRegion.center.latitude < 89 && adjustedRegion.center.longitude > -179 && adjustedRegion.center.longitude < 179) {
         [self.postAddressMap setRegion:adjustedRegion];
     }
@@ -149,8 +140,9 @@
     
     //Check isUserPost
     //If isUserPost display edit and delete
-    NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_USER_OBJECT];
-    User *loggedInUser = [NSKeyedUnarchiver unarchiveObjectWithData:userData];
+//    NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_USER_OBJECT];
+//    User *loggedInUser = [NSKeyedUnarchiver unarchiveObjectWithData:userData];
+    User *loggedInUser = [[Helper sharedInstance] getUserFromUserDefaults];
     
     if ([post.postUser.username isEqualToString:loggedInUser.username]) {
         
@@ -178,9 +170,9 @@
     ImageSliderCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"imageSlideCollectionViewCell" forIndexPath:indexPath];
     
     //Configure Cell
-    NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
-    SDWebImageDownloader *manager = [SDWebImageManager sharedManager].imageDownloader;
-    [manager setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
+//    NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
+//    SDWebImageDownloader *manager = [SDWebImageManager sharedManager].imageDownloader;
+//    [manager setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
     
     [cell.imageView sd_setImageWithURL:[[Helper sharedInstance] generateGetImageURLFromFilename:self.post.postImageArray[indexPath.row]]  placeholderImage:[UIImage imageNamed:@"no-image"] options:SDWebImageRetryFailed];
     

@@ -16,6 +16,7 @@
 #import "Alerter.h"
 #import "APICaller.h"
 #import "MyCustomUITextField.h"
+#import "ProgressHUD.h"
 
 #import "User.h"
 

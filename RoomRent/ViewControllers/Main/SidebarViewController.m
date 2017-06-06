@@ -27,20 +27,19 @@ NSArray *menuList;
     
     menuList = @[@"Profile", @"Logout"];
     
-    NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_USER_OBJECT];
-    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:userData];
+//    NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_USER_OBJECT];
+//    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:userData];
+    User *user = [[Helper sharedInstance] getUserFromUserDefaults];
     
     //Load and cache profileImage
     if (![user.profileImageUrl isEqual:[NSNull null]]) {
         
-        NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
-        
-        SDWebImageDownloader *manager = [SDWebImageManager sharedManager].imageDownloader;
-        [manager setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
-        
-        //NSURL *url = [NSURL URLWithString:[[BASE_URL stringByAppendingString:GETFILE_PATH] stringByAppendingString:user.profileImageUrl]];
+//        NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
+//        SDWebImageDownloader *manager = [SDWebImageManager sharedManager].imageDownloader;
+//        [manager setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
         
         [self.profileImageButton sd_setImageWithURL:[[Helper sharedInstance] generateGetImageURLFromFilename:user.profileImageUrl] forState:UIControlStateNormal];
+        
         [self.profileImageButton setContentMode:UIViewContentModeScaleAspectFit];
         
         self.profileImageButton.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -122,8 +121,9 @@ NSArray *menuList;
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:profileVC];
     
-    NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_USER_OBJECT];
-    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:userData];
+//    NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_USER_OBJECT];
+//    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:userData];
+    User *user = [[Helper sharedInstance] getUserFromUserDefaults];
     
     ((ProfileViewController*)profileVC).user = user;
     
@@ -142,6 +142,11 @@ NSArray *menuList;
             NSString *imageName = [responseObject valueForKey:@"data"];
             
             [self.profileImageButton sd_setImageWithURL:[[Helper sharedInstance] generateGetImageURLFromFilename:imageName] forState:UIControlStateNormal];
+
+            //Also update userDefaults
+            User *user = [[Helper sharedInstance] getUserFromUserDefaults];
+            user.profileImageUrl = imageName;
+            [[Helper sharedInstance] setUserToUserDefaults:user];
             
         }];
     }

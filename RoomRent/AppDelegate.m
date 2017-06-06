@@ -25,6 +25,10 @@
     
     [self setupDefaults];
     
+    NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
+    SDWebImageDownloader *manager = [SDWebImageManager sharedManager].imageDownloader;
+    [manager setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
+    
     //MARK: AUTO LOGIN
     //Get userData from UserDefaults
     NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_USER_OBJECT];
@@ -85,7 +89,7 @@
 
 
 -(void)setupDefaults {
-
+    
     [[UITabBar appearance] setTintColor:[UIColor blackColor]];
     [[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];
     

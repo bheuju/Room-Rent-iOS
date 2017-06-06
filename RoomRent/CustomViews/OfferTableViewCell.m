@@ -64,8 +64,10 @@
     
     ImageSliderCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"imageSliderCollectionViewCell" forIndexPath:indexPath];
     
+    
+    
     [cell.imageView sd_setImageWithURL:[[Helper sharedInstance] generateGetImageURLFromFilename:self.postImagesNameArray[indexPath.row]]  placeholderImage:[UIImage imageNamed:@"no-image"] options:SDWebImageRetryFailed];
-
+    
     //UIImage *img = cell.imageView.image;
     
     return cell;

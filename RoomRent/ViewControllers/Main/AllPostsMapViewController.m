@@ -47,7 +47,7 @@
             Post *post = [[Post alloc] initPostWithJson:postJsonObject];
             
             MKPointAnnotation *annot = [[MKPointAnnotation alloc] init];
-            
+             
             annot.coordinate = post.postAddressCoordinates;
             annot.title = [[[post.postId stringValue] stringByAppendingString:@": " ] stringByAppendingString:post.postTitle];
             annot.subtitle = [NSString stringWithFormat:@"%@ rooms at Rs. %@ by %@", post.postNoOfRooms, post.postPrice, post.postUser.username];

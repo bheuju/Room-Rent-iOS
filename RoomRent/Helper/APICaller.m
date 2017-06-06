@@ -17,6 +17,8 @@ AFHTTPSessionManager *manager;
 
 +(APICaller *)sharedInstance:(UIViewController*)VC {
     
+    [ProgressHUD showProgressHUDAddedToView:VC.view];
+    
     if (instance == nil) {
         instance = [[APICaller alloc] initAPICaller];
         
@@ -49,12 +51,14 @@ AFHTTPSessionManager *manager;
     [manager POST:[BASE_URL stringByAppendingString:url] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSLog(@"Complete, Respose: %@", responseObject);
+        [ProgressHUD hideProgressHUD];
         
         successBlock(responseObject);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         NSLog(@"Fail, Respose: %@", error);
+        [ProgressHUD hideProgressHUD];
         
         [[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self.VC completion:^{}];
         
@@ -81,13 +85,14 @@ AFHTTPSessionManager *manager;
     [manager GET:[BASE_URL stringByAppendingString:url] parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSLog(@"Complete, Respose: %@", responseObject);
+        [ProgressHUD hideProgressHUD];
         
         successBlock(responseObject);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-        //NSLog(@"Fail, Task: %@", task);
         NSLog(@"Fail, Respose: %@", error);
+        [ProgressHUD hideProgressHUD];
         
         [[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self.VC completion:^{}];
         
@@ -107,12 +112,14 @@ AFHTTPSessionManager *manager;
     [manager GET:url parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSLog(@"Complete, Respose: %@", responseObject);
+        [ProgressHUD hideProgressHUD];
         
         successBlock(responseObject);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         NSLog(@"Fail, Respose: %@", error);
+        [ProgressHUD hideProgressHUD];
         
         [[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self.VC completion:^{}];
         
@@ -127,6 +134,7 @@ AFHTTPSessionManager *manager;
 //image array named image[]
 -(void)callApi:(NSString*)url parameters:(NSDictionary*)param imageArray:(NSArray*)imageArray successBlock:(void (^)(id responseObject))successBlock {
     
+    manager.requestSerializer.timeoutInterval = 10.0;
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     //manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -154,12 +162,14 @@ AFHTTPSessionManager *manager;
     } progress: nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSLog(@"Complete, Respose: %@", responseObject);
+        [ProgressHUD hideProgressHUD];
         
         successBlock(responseObject);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         NSLog(@"Fail, Respose: %@", error);
+        [ProgressHUD hideProgressHUD];
         
         [[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self.VC completion:^{}];
         
@@ -186,14 +196,15 @@ AFHTTPSessionManager *manager;
         }
     } progress: nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        NSLog(@"Task: %@", task);
         NSLog(@"Complete, Respose: %@", responseObject);
+        [ProgressHUD hideProgressHUD];
         
         successBlock(responseObject);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         NSLog(@"Fail, Respose: %@", error);
+        [ProgressHUD hideProgressHUD];
         
         [[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self.VC completion:^{}];
         
@@ -212,12 +223,14 @@ AFHTTPSessionManager *manager;
     [manager DELETE:[BASE_URL stringByAppendingString:url] parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSLog(@"Complete, Respose: %@", responseObject);
+        [ProgressHUD hideProgressHUD];
         
         successBlock(responseObject);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         NSLog(@"Fail, Respose: %@", error);
+        [ProgressHUD hideProgressHUD];
         
         [[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self.VC completion:^{}];
         
@@ -239,12 +252,14 @@ AFHTTPSessionManager *manager;
     [manager PUT:[BASE_URL stringByAppendingString:url] parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSLog(@"Complete, Respose: %@", responseObject);
+        [ProgressHUD hideProgressHUD];
         
         successBlock(responseObject);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         NSLog(@"Fail, Respose: %@", error);
+        [ProgressHUD hideProgressHUD];
         
         [[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self.VC completion:^{}];
         
@@ -265,12 +280,14 @@ AFHTTPSessionManager *manager;
     [manager GET:[[BASE_URL stringByAppendingString:GETFILE_PATH] stringByAppendingString:url] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSLog(@"%@", responseObject);
+        [ProgressHUD hideProgressHUD];
         
         successBlock(responseObject);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         NSLog(@"Fail, Respose: %@", error);
+        [ProgressHUD hideProgressHUD];
         
         [[Alerter sharedInstance] createAlert:@"Server Error" message:@"Server is offline! \nSorry for the inconvenience. \nPlease try again later." viewController:self.VC completion:^{}];
         

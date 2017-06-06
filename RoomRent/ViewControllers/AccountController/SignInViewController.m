@@ -13,6 +13,9 @@
 @property (weak, nonatomic) IBOutlet MyCustomUITextField *emailAddress;
 @property (weak, nonatomic) IBOutlet MyCustomUITextField *password;
 
+@property (weak, nonatomic) IBOutlet UIButton *signInButton;
+
+
 @end
 
 
@@ -25,8 +28,8 @@ User *user = nil;
     
     
     //PROTOTYPE: Data
-    self.emailAddress.text = @"zeros";
-    self.password.text = @"zeros";
+    self.emailAddress.text = @"zero";
+    self.password.text = @"zero";
     
     //Textfields validation setup
     //[self.emailAddress addRegex:@"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,10}" withValidationMsg:@"Invalid email address"];
@@ -48,6 +51,9 @@ User *user = nil;
 
 - (IBAction)onSignIn:(UIButton *)sender {
     
+    self.signInButton.enabled = false;
+    self.signInButton.alpha = 0.5;
+    
     //Get Form entries
     NSString* usernameOrEmail = self.emailAddress.text;
     NSString* password = self.password.text;
@@ -65,7 +71,6 @@ User *user = nil;
     
     UIViewController *forgotPasswordVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ForgotPasswordViewController"];
     
-    //[self.navigationController pushViewController:forgotPasswordVC animated:true];
     
     //UIBarButtonItem cancelButton = UIBarButtonSystemItemCancel
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:forgotPasswordVC];
@@ -78,9 +83,6 @@ User *user = nil;
     
     UIViewController *signUpVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SignUpViewController"];
     
-    //[self.navigationController pushViewController:forgotPasswordVC animated:true];
-    
-    //UIBarButtonItem cancelButton = UIBarButtonSystemItemCancel
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:signUpVC];
     
@@ -102,8 +104,6 @@ User *user = nil;
     //POST: /login
     [[APICaller sharedInstance:self] callApiForPOST:LOGIN_PATH parameters:parameters sendToken:false successBlock:^(id responseObject) {
         
-        //[[ResponseHandler sharedInstance] handleResponse:responseObject];
-        
         NSString *code = [responseObject valueForKey:JSON_KEY_CODE];
         NSString *message = [responseObject valueForKey:JSON_KEY_MESSAGE];
         
@@ -115,25 +115,15 @@ User *user = nil;
             //set userdata
             user = [[User alloc] initUserFromJson:userJson];
             
-            //MARK: Temporary for test
-            //user.profileImageUrl = [responseObject valueForKey:JSON_KEY_PROFILE_IMAGE_URL];
-            //User *tempUser = user;
             
             //Save userdata to NSUserDefaults
-            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            NSData *userData = [NSKeyedArchiver archivedDataWithRootObject:user];
-            [userDefaults setObject:userData forKey:JSON_KEY_USER_OBJECT];
-            [userDefaults synchronize];
+            [[Helper sharedInstance] setUserToUserDefaults:user];
             
             //set userApiToken
             NSString *userApiToken = [responseObject valueForKey:JSON_KEY_API_TOKEN];
-            [userDefaults setObject:userApiToken forKey:JSON_KEY_API_TOKEN];
+            [[NSUserDefaults standardUserDefaults] setObject:userApiToken forKey:JSON_KEY_API_TOKEN];
             
-            //Reading userdata from NSUserDefaults
-            //NSData *data = [userDefaults objectForKey:JSON_KEY_USER_OBJECT];
-            //User *u = [NSKeyedUnarchiver unarchiveObjectWithData:data];
             
-                        
             //Switch to tabBarViewController
             UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
             UIStoryboard *mainStory = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
