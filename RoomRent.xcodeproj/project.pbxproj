@@ -15,6 +15,7 @@
 		DA2107461EDFCA2C00937D2A /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2107451EDFCA2C00937D2A /* ProgressHUD.m */; };
 		DA5408C31EB1A71000F11BB4 /* SinglePostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5408C21EB1A71000F11BB4 /* SinglePostViewController.m */; };
 		DA627E7B1EE7CA400095379C /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA627E7A1EE7CA400095379C /* DBManager.m */; };
+		DA627E7D1EE7FE2F0095379C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA627E7C1EE7FE2F0095379C /* libsqlite3.tbd */; };
 		DA74488E1EA87E8A00009FD3 /* AddressPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA74488D1EA87E8A00009FD3 /* AddressPickerViewController.m */; };
 		DA7448901EA881A700009FD3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA74488F1EA881A700009FD3 /* MapKit.framework */; };
 		DA7BD75B1EDBD55E00FFBE97 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BD75A1EDBD55D00FFBE97 /* ProfileViewController.m */; };
@@ -70,6 +71,7 @@
 		DA5408C21EB1A71000F11BB4 /* SinglePostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinglePostViewController.m; sourceTree = "<group>"; };
 		DA627E791EE7CA400095379C /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
 		DA627E7A1EE7CA400095379C /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
+		DA627E7C1EE7FE2F0095379C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		DA74488C1EA87E8A00009FD3 /* AddressPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressPickerViewController.h; sourceTree = "<group>"; };
 		DA74488D1EA87E8A00009FD3 /* AddressPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressPickerViewController.m; sourceTree = "<group>"; };
 		DA74488F1EA881A700009FD3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -144,6 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA627E7D1EE7FE2F0095379C /* libsqlite3.tbd in Frameworks */,
 				DACAA4F01EB6FC2100B397D0 /* CoreLocation.framework in Frameworks */,
 				DA7448901EA881A700009FD3 /* MapKit.framework in Frameworks */,
 				212D39DE93BA6D90999047CD /* Pods_RoomRent.framework in Frameworks */,
@@ -156,6 +159,7 @@
 		1D40B147EDFADCBB3C9654D7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DA627E7C1EE7FE2F0095379C /* libsqlite3.tbd */,
 				DACAA4EF1EB6FC2100B397D0 /* CoreLocation.framework */,
 				DA74488F1EA881A700009FD3 /* MapKit.framework */,
 				E10184AC0278D4E52182C011 /* Pods_RoomRent.framework */,

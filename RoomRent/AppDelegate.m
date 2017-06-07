@@ -25,7 +25,6 @@
     
     [self setupDefaults];
     
-    
     //MARK: AUTO LOGIN
     //Get userData from UserDefaults
     NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_USER_OBJECT];

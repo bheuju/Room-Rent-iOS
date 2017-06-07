@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <SWRevealViewController/SWRevealViewController.h>
 
+#import "DBManager.h"
+
 #import "Constants.h"
 
 @interface SidebarImplementedViewController : UIViewController <SWRevealViewControllerDelegate>

@@ -10,15 +10,18 @@
 
 #import <FMDB/FMDB.h>
 
+#import "Post.h"
+
 @interface DBManager : NSObject
 
-@property NSString *databaseName;
-@property NSString *pathToDatabase;
 @property FMDatabase *db;
 
 +(DBManager*)sharedInstance;
 -(DBManager*)initDBManager;
 
--(void)createDatabase;
+-(BOOL)createDatabase;
+-(BOOL)createTable;
+
+-(BOOL)addPost:(Post*)post;
 
 @end

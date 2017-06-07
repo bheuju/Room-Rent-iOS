@@ -14,8 +14,10 @@
 #import "SidebarImplementedViewController.h"
 #import "SinglePostViewController.h"
 
+#import "DBManager.h"
 #import "Alerter.h"
 #import "Constants.h"
+
 #import "User.h"
 
 #import "OfferTableViewCell.h"

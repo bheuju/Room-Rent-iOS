@@ -46,6 +46,9 @@
     self.navigationItem.rightBarButtonItem = mapsButton;
     
     
+    //Preload Data into database
+    [self preloadData];
+    
 }
 
 //MARK: Methods
@@ -70,5 +73,13 @@
         [revealController.frontViewController.revealViewController tapGestureRecognizer];
     }
 }
+
+
+-(void)preloadData {
+    [[DBManager sharedInstance] createDatabase];
+    [[DBManager sharedInstance] createTable];
+    
+}
+
 
 @end

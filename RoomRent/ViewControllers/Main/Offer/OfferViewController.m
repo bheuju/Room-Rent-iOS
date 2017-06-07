@@ -49,6 +49,7 @@
     
     //Initial Data loading
     [self getData];
+    
 }
 
 //Refresh tableView
