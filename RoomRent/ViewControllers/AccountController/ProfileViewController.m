@@ -28,7 +28,19 @@
     [super viewDidLoad];
     
     UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(onCancel)];
-    self.navigationItem.rightBarButtonItem = cancel;
+    cancel.tintColor = [UIColor whiteColor];
+    UIBarButtonItem *edit = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(onEdit)];
+    edit.tintColor = [UIColor whiteColor];
+    
+    self.navigationItem.leftBarButtonItem = cancel;
+    self.navigationItem.rightBarButtonItem = edit;
+    
+    //Transparent navigation bar
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    //self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
+    //self.navigationController.view.backgroundColor = [UIColor clearColor];
+    //self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
     
     if (self.user != nil) {
         [self initProfile];
@@ -47,14 +59,29 @@
     //TODO: get Offers and Asks Counts and set
     NSString *offersCount = @"5";
     NSString *requestsCount = @"7";
-    [self.userPostsOffersButton setTitle:[offersCount stringByAppendingString:@"\nOffers"] forState:UIControlStateNormal];
-    [self.userPostsRequestsButton setTitle:[requestsCount stringByAppendingString:@"\nRequests"] forState:UIControlStateNormal];
+    [self.userPostsOffersButton setTitle:[offersCount stringByAppendingString:@" Offers"] forState:UIControlStateNormal];
+    [self.userPostsRequestsButton setTitle:[requestsCount stringByAppendingString:@" Requests"] forState:UIControlStateNormal];
     
+}
+
+
+//MARK: Methods
+-(void)onEdit {
+    //Open EditProfileVC
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Account" bundle:nil];
+    
+    UIViewController *editProfileVC = [story instantiateViewControllerWithIdentifier:@"EditProfileViewController"];
+    ((EditProfileViewController*)editProfileVC).user = [[Helper sharedInstance] getUserFromUserDefaults];
+    
+    //UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:editProfileVC];
+    
+    [self.navigationController pushViewController:editProfileVC animated:true];
 }
 
 -(void)onCancel {
     [self dismissViewControllerAnimated:true completion:nil];
 }
+
 
 //MARK: Button Click Events
 - (IBAction)onUserPostsOffersClicked:(UIButton *)sender {

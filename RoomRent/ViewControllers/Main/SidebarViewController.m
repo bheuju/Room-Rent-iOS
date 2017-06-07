@@ -121,8 +121,6 @@ NSArray *menuList;
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:profileVC];
     
-//    NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_USER_OBJECT];
-//    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:userData];
     User *user = [[Helper sharedInstance] getUserFromUserDefaults];
     
     ((ProfileViewController*)profileVC).user = user;

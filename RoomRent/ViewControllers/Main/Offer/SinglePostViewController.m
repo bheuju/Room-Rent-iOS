@@ -10,7 +10,6 @@
 
 @interface SinglePostViewController ()
 
-//@property (weak, nonatomic) IBOutlet UIImageView *postImage;
 @property (weak, nonatomic) IBOutlet UILabel *postTitle;
 @property (weak, nonatomic) IBOutlet UILabel *postDescription;
 @property (weak, nonatomic) IBOutlet UILabel *postAddress;
@@ -21,6 +20,8 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *imageSliderCollectionView;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *parentScrollView;
+
 @end
 
 @implementation SinglePostViewController
@@ -28,7 +29,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.hidden = true;
+    //Initially hide all until post data is fetched from server
+    self.parentScrollView.hidden = true;
     
     //Set collectionview delegates and datasource
     self.imageSliderCollectionView.delegate = self;
@@ -110,6 +112,9 @@
         
         [self.imageSliderCollectionView reloadData];
         
+        //Show details after post data has been loaded
+        self.parentScrollView.hidden = false;
+        
     }];
     
 }
@@ -124,7 +129,7 @@
     self.postPrice.text = [post.postPrice stringValue];
     self.postUser.text = post.postUser.name;
     
-    //TODO: Init map here
+    //Init map here
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(post.postAddressCoordinates, 5000, 5000);
     MKCoordinateRegion adjustedRegion = [self.postAddressMap regionThatFits:viewRegion];
     
@@ -140,8 +145,6 @@
     
     //Check isUserPost
     //If isUserPost display edit and delete
-//    NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_USER_OBJECT];
-//    User *loggedInUser = [NSKeyedUnarchiver unarchiveObjectWithData:userData];
     User *loggedInUser = [[Helper sharedInstance] getUserFromUserDefaults];
     
     if ([post.postUser.username isEqualToString:loggedInUser.username]) {
@@ -170,10 +173,6 @@
     ImageSliderCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"imageSlideCollectionViewCell" forIndexPath:indexPath];
     
     //Configure Cell
-//    NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
-//    SDWebImageDownloader *manager = [SDWebImageManager sharedManager].imageDownloader;
-//    [manager setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
-    
     [cell.imageView sd_setImageWithURL:[[Helper sharedInstance] generateGetImageURLFromFilename:self.post.postImageArray[indexPath.row]]  placeholderImage:[UIImage imageNamed:@"no-image"] options:SDWebImageRetryFailed];
     
     return cell;

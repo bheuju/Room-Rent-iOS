@@ -9,6 +9,7 @@ target 'RoomRent' do
     pod 'SDWebImage'
     pod 'Firebase/Core'
     pod 'Firebase/Messaging'
+    pod 'FMDB'
   # Pods for RoomRent
 
 end

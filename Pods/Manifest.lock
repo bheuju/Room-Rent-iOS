@@ -32,6 +32,9 @@ PODS:
     - FirebaseInstanceID (~> 1.0)
     - GoogleToolboxForMac/Logger (~> 2.1)
     - Protobuf (~> 3.1)
+  - FMDB (2.6.2):
+    - FMDB/standard (= 2.6.2)
+  - FMDB/standard (2.6.2)
   - GoogleToolboxForMac/Defines (2.1.1)
   - GoogleToolboxForMac/Logger (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
@@ -47,6 +50,7 @@ DEPENDENCIES:
   - AFNetworking
   - Firebase/Core
   - Firebase/Messaging
+  - FMDB
   - SDWebImage
   - SWRevealViewController
 
@@ -57,11 +61,12 @@ SPEC CHECKSUMS:
   FirebaseCore: a024587e43778508700af8c6b1209f7c4516ba02
   FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
   FirebaseMessaging: df8267f378580a24174ce7861233aa11d5c90109
+  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   Protobuf: 745f59e122e5de98d4d7ef291e264a0eef80f58e
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
 
-PODFILE CHECKSUM: 0b19336a75ce50d84e07a6a174a0502d9740fe6c
+PODFILE CHECKSUM: b6eccdd95732613efda0cc5882e9cebaa2df524a
 
 COCOAPODS: 1.2.0

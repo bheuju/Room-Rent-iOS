@@ -36,6 +36,7 @@
                                  @"offset":@"0",
                                  @"type":POSTS_ALL_STRING
                                  };
+    
     //GET: /posts ? type & offset
     [[APICaller sharedInstance:self] callApiForGET:POST_PATH parameters:parameters sendToken:true successBlock:^(id responseObject) {
         
@@ -51,6 +52,11 @@
             annot.coordinate = post.postAddressCoordinates;
             annot.title = [[[post.postId stringValue] stringByAppendingString:@": " ] stringByAppendingString:post.postTitle];
             annot.subtitle = [NSString stringWithFormat:@"%@ rooms at Rs. %@ by %@", post.postNoOfRooms, post.postPrice, post.postUser.username];
+            
+            //TODO: annotation pin color
+            
+            
+            
             
             [self.annotArray addObject:annot];
             [self.mapView addAnnotation:annot];

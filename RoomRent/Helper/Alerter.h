@@ -10,7 +10,7 @@
 
 @interface Alerter : NSObject
 
-+ (Alerter*)sharedInstance;
++(Alerter*)sharedInstance;
 
 -(void)createAlert:(NSString*)alertTitle message:(NSString*)alertMessage viewController:(UIViewController*)VC completion:(void (^)(void))completionBlock;
 

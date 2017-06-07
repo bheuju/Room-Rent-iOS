@@ -15,7 +15,7 @@ static APICaller* instance = nil;
 //Variables
 AFHTTPSessionManager *manager;
 
-+(APICaller *)sharedInstance:(UIViewController*)VC {
++(APICaller*)sharedInstance:(UIViewController*)VC {
     
     [ProgressHUD showProgressHUDAddedToView:VC.view];
     

@@ -11,8 +11,10 @@
 		DA011D841EB9A1C6004D183C /* ImageSliderCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA011D821EB9A1C5004D183C /* ImageSliderCollectionViewCell.m */; };
 		DA011D851EB9A1C6004D183C /* ImageSliderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA011D831EB9A1C5004D183C /* ImageSliderCollectionViewCell.xib */; };
 		DA011D881EB9A96B004D183C /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA011D871EB9A96B004D183C /* Helper.m */; };
+		DA0F5ED61EE65ABC00C120BA /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0F5ED51EE65ABC00C120BA /* EditProfileViewController.m */; };
 		DA2107461EDFCA2C00937D2A /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2107451EDFCA2C00937D2A /* ProgressHUD.m */; };
 		DA5408C31EB1A71000F11BB4 /* SinglePostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5408C21EB1A71000F11BB4 /* SinglePostViewController.m */; };
+		DA627E7B1EE7CA400095379C /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA627E7A1EE7CA400095379C /* DBManager.m */; };
 		DA74488E1EA87E8A00009FD3 /* AddressPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA74488D1EA87E8A00009FD3 /* AddressPickerViewController.m */; };
 		DA7448901EA881A700009FD3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA74488F1EA881A700009FD3 /* MapKit.framework */; };
 		DA7BD75B1EDBD55E00FFBE97 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BD75A1EDBD55D00FFBE97 /* ProfileViewController.m */; };
@@ -60,10 +62,14 @@
 		DA011D831EB9A1C5004D183C /* ImageSliderCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageSliderCollectionViewCell.xib; sourceTree = "<group>"; };
 		DA011D861EB9A96B004D183C /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
 		DA011D871EB9A96B004D183C /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
+		DA0F5ED41EE65ABC00C120BA /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
+		DA0F5ED51EE65ABC00C120BA /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		DA2107441EDFCA2C00937D2A /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
 		DA2107451EDFCA2C00937D2A /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 		DA5408C11EB1A71000F11BB4 /* SinglePostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinglePostViewController.h; sourceTree = "<group>"; };
 		DA5408C21EB1A71000F11BB4 /* SinglePostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinglePostViewController.m; sourceTree = "<group>"; };
+		DA627E791EE7CA400095379C /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
+		DA627E7A1EE7CA400095379C /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
 		DA74488C1EA87E8A00009FD3 /* AddressPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressPickerViewController.h; sourceTree = "<group>"; };
 		DA74488D1EA87E8A00009FD3 /* AddressPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressPickerViewController.m; sourceTree = "<group>"; };
 		DA74488F1EA881A700009FD3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -237,6 +243,8 @@
 				DA011D871EB9A96B004D183C /* Helper.m */,
 				DA2107441EDFCA2C00937D2A /* ProgressHUD.h */,
 				DA2107451EDFCA2C00937D2A /* ProgressHUD.m */,
+				DA627E791EE7CA400095379C /* DBManager.h */,
+				DA627E7A1EE7CA400095379C /* DBManager.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -355,6 +363,8 @@
 				DAD538751E8E17A400F71D8B /* SignUpViewController.m */,
 				DA7BD7591EDBD55D00FFBE97 /* ProfileViewController.h */,
 				DA7BD75A1EDBD55D00FFBE97 /* ProfileViewController.m */,
+				DA0F5ED41EE65ABC00C120BA /* EditProfileViewController.h */,
+				DA0F5ED51EE65ABC00C120BA /* EditProfileViewController.m */,
 			);
 			path = AccountController;
 			sourceTree = "<group>";
@@ -500,11 +510,13 @@
 				DAC149C51EA463C2001AA17D /* RequestViewController.m in Sources */,
 				DAAF21251E9F549C0089249D /* SidebarViewController.m in Sources */,
 				DAD538701E8E129A00F71D8B /* SignInViewController.m in Sources */,
+				DA0F5ED61EE65ABC00C120BA /* EditProfileViewController.m in Sources */,
 				DAC149CA1EA46FA5001AA17D /* SidebarImplementedViewController.m in Sources */,
 				DAB6944E1E973E6900BD3498 /* ValidationHandler.m in Sources */,
 				DA2107461EDFCA2C00937D2A /* ProgressHUD.m in Sources */,
 				DAA3BE911E8CF9410092F8DD /* AppDelegate.m in Sources */,
 				DAB992F51E9361D7003A6483 /* Alerter.m in Sources */,
+				DA627E7B1EE7CA400095379C /* DBManager.m in Sources */,
 				DA011D881EB9A96B004D183C /* Helper.m in Sources */,
 				DAAC92BC1EC96EF40018EEA8 /* RequestTableViewCell.m in Sources */,
 				DAC900F31ECEA28C0098ED95 /* PostPartial.m in Sources */,

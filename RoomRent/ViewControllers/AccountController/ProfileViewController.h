@@ -13,6 +13,8 @@
 #import "MyCircularUIButton.h"
 #import "Helper.h"
 
+#import "EditProfileViewController.h"
+
 #import "User.h"
 
 @interface ProfileViewController : UIViewController

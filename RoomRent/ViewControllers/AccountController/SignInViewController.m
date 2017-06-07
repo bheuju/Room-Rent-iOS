@@ -29,7 +29,7 @@ User *user = nil;
     
     //PROTOTYPE: Data
     self.emailAddress.text = @"zero";
-    self.password.text = @"zero";
+    self.password.text = @"Ball1234";
     
     //Textfields validation setup
     //[self.emailAddress addRegex:@"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,10}" withValidationMsg:@"Invalid email address"];
@@ -51,8 +51,8 @@ User *user = nil;
 
 - (IBAction)onSignIn:(UIButton *)sender {
     
-    self.signInButton.enabled = false;
-    self.signInButton.alpha = 0.5;
+    //self.signInButton.enabled = false;
+    //self.signInButton.alpha = 0.5;
     
     //Get Form entries
     NSString* usernameOrEmail = self.emailAddress.text;
@@ -123,6 +123,9 @@ User *user = nil;
             NSString *userApiToken = [responseObject valueForKey:JSON_KEY_API_TOKEN];
             [[NSUserDefaults standardUserDefaults] setObject:userApiToken forKey:JSON_KEY_API_TOKEN];
             
+            //For SDWebImage Manager to send api_token in header (needed only once: appdelegate autologin/signin)
+            SDWebImageDownloader *manager = [SDWebImageManager sharedManager].imageDownloader;
+            [manager setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
             
             //Switch to tabBarViewController
             UIWindow *window = [[[UIApplication sharedApplication] delegate] window];

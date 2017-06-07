@@ -25,9 +25,6 @@
     
     [self setupDefaults];
     
-    NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
-    SDWebImageDownloader *manager = [SDWebImageManager sharedManager].imageDownloader;
-    [manager setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
     
     //MARK: AUTO LOGIN
     //Get userData from UserDefaults
@@ -36,6 +33,12 @@
     if (userData != nil) {
         
         //Logged In User
+        
+        //For SDWebImage Manager to send api_token in header (needed only once: appdelegate autologin/signin)
+        NSString *userApiToken = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_API_TOKEN];
+        SDWebImageDownloader *manager = [SDWebImageManager sharedManager].imageDownloader;
+        [manager setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
+        
         
         //Switch to tabBarViewController
         UIWindow *window = [[[UIApplication sharedApplication] delegate] window];

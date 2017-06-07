@@ -12,8 +12,11 @@
 
 UIActivityIndicatorView *indicator;
 ProgressHUD *hud;
+UIView *parentView;
 
 +(ProgressHUD*)showProgressHUDAddedToView:(UIView*)view {
+    
+    parentView = view;
     
     hud = [[self alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
     hud.layer.cornerRadius = 15.0f;
@@ -33,6 +36,10 @@ ProgressHUD *hud;
     
     hud.center = view.center;
     
+    //Disable background view
+    parentView.userInteractionEnabled = false;
+    parentView.alpha = 0.8f;
+    
     return hud;
 }
 
@@ -41,6 +48,11 @@ ProgressHUD *hud;
     
     [indicator stopAnimating];
     [hud setHidden:true];
+    
+    //Enable background view
+    parentView.userInteractionEnabled = true;
+    parentView.alpha = 1.0f;
+    
     
 }
 

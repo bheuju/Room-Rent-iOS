@@ -45,6 +45,8 @@ static NSString *IMAGE_UPLOAD_PATH = @"/upload";
 
 static NSString *POST_PATH = @"/posts";
 static NSString *MY_POST_PATH = @"/myposts/";
+
+static NSString *USER_PATH = @"/user";
 static NSString *USER_POST_PATH = @"/user/posts/";
 
 static NSString *POST_BULKDELETE = @"/bulkdelete";
@@ -66,6 +68,7 @@ static NSString *JSON_KEY_PHONE = @"phone";
 static NSString *JSON_KEY_USERNAME = @"username";
 static NSString *JSON_KEY_EMAIL = @"email";
 static NSString *JSON_KEY_PASSWORD = @"password";
+static NSString *JSON_KEY_CONFIRM_PASSWORD = @"confirmpassword";
 static NSString *JSON_KEY_PROFILE_IMAGE_URL_REQUEST = @"profile_image";
 static NSString *JSON_KEY_PROFILE_IMAGE_URL = @"profile_image";
 static NSString *JSON_KEY_API_TOKEN = @"api_token";

@@ -493,14 +493,14 @@
                         <viewControllerLayoutGuide type="bottom" id="3PT-vw-Hms"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xzM-kY-OC9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hh3-aB-vJ2">
-                                <rect key="frame" x="0.0" y="20" width="414" height="780"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AgC-MN-8Xv">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="800"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Fb1-IT-v4L">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="684.33333333333337"/>
@@ -702,11 +702,11 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="800" id="46r-5F-zcF"/>
+                                            <constraint firstAttribute="height" constant="736" id="46r-5F-zcF"/>
                                             <constraint firstItem="Fb1-IT-v4L" firstAttribute="top" secondItem="AgC-MN-8Xv" secondAttribute="top" id="IiO-A6-992"/>
                                             <constraint firstAttribute="trailing" secondItem="Fb1-IT-v4L" secondAttribute="trailing" id="J5L-Mw-BtJ"/>
                                             <constraint firstItem="Fb1-IT-v4L" firstAttribute="leading" secondItem="AgC-MN-8Xv" secondAttribute="leading" id="QvW-bj-3i7"/>
-                                            <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="Fb1-IT-v4L" secondAttribute="bottom" constant="120" id="xmX-3s-ER5"/>
+                                            <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="Fb1-IT-v4L" secondAttribute="bottom" constant="500" id="xmX-3s-ER5"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -727,10 +727,9 @@
                             <constraint firstAttribute="bottom" secondItem="hh3-aB-vJ2" secondAttribute="bottom" id="nC8-Xt-Mdz"/>
                         </constraints>
                     </view>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="414" height="800"/>
                     <connections>
                         <outlet property="imageSliderCollectionView" destination="aLZ-9J-3Rj" id="zyd-Z5-Oyh"/>
+                        <outlet property="parentScrollView" destination="hh3-aB-vJ2" id="Ewv-v5-00x"/>
                         <outlet property="postAddress" destination="cUH-g6-KcM" id="CY0-CP-DMy"/>
                         <outlet property="postAddressMap" destination="mhW-hw-nKt" id="FpL-ze-gkA"/>
                         <outlet property="postDescription" destination="ePn-wq-iys" id="Yfu-gg-XBO"/>
@@ -774,7 +773,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BpV-5h-9Vq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2641" y="-1574"/>
+            <point key="canvasLocation" x="2638" y="-1548"/>
         </scene>
         <!--Add Post View Controller-->
         <scene sceneID="SQh-yb-VkS">
