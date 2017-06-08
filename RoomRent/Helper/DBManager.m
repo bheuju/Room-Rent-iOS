@@ -22,15 +22,19 @@ static DBManager* instance = nil;
 }
 
 -(DBManager*)initDBManager {
-    
-    //self.pathToDatabase = [NSTemporaryDirectory() stringByAppendingString:@"tmp.db"];
-    
+       
     return self;
 }
 
 
 -(BOOL)createDatabase {
-    NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:@"tmp.db"];
+    //NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:@"tmp.db"];
+    NSArray *docspath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true);
+    NSString *docsDir = [docspath objectAtIndex:0];
+    NSString *path = [docsDir stringByAppendingString:@"room.db"];
+    
+    NSLog(@"PATH: %@", path);
+    
     self.db = [FMDatabase databaseWithPath:path];
     
     if (self.db != nil) {
@@ -46,16 +50,36 @@ static DBManager* instance = nil;
 
 -(BOOL)createTable {
     
+    NSArray *docspath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true);
+    NSString *docsDir = [docspath objectAtIndex:0];
+    NSString *path = [docsDir stringByAppendingString:@"room.db"];
+    FMDatabase *db = [FMDatabase databaseWithPath:path];
+    //[self.db open];
+    [db open];
     NSString *sql = @"create table posts (id integer primary key autoincrement not null, title text not null, slug text not null, description text not null, user_id integer not null, no_of_rooms integer not null, price integer not null, address text not null, latitude decimal not null, longitude decimal not null, post_type integer not null)";
     
-    return [self.db executeQuery:sql];
+    [self.db executeUpdate:sql];
+    
+    [self.db close];
+    
+    return true;
 }
 
 -(BOOL)addPost:(Post*)post {
+    NSArray *docspath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true);
+    NSString *docsDir = [docspath objectAtIndex:0];
+    NSString *path = [docsDir stringByAppendingString:@"room.db"];
+    FMDatabase *db = [FMDatabase databaseWithPath:path];
+    [db open];
     
-    NSString *sql = [NSString stringWithFormat:@"INSERT INTO posts VALUES (%@, %@, %@, %@, %d, %@, %@, %@, %f, %f, %@)", post.postId, post.postTitle, post.postSlug, post.postDescription, post.postUser.userId, post.postNoOfRooms, post.postPrice, post.postAddress, post.postAddressCoordinates.latitude, post.postAddressCoordinates.longitude, post.postType];
+    [db executeUpdate:@"INSERT INTO POST_TABLE (id, title, slug, description, no_of_rooms , price, latitude, longitude, address, user_id, post_type) VALUES (?,?,?,?,?,?,?,?,?,?, ?)",post.postId, [NSString stringWithFormat:@"%@", post.postTitle], [NSString stringWithFormat:@"%@", post.postSlug], [NSString stringWithFormat:@"%@", post.postDescription], post.postNoOfRooms, post.postPrice, [NSNumber numberWithDouble:post.postAddressCoordinates.latitude] , [NSNumber numberWithDouble:post.postAddressCoordinates.longitude],[NSString stringWithFormat:@"%@", post.postAddress], [NSNumber numberWithInt: post.postUser.userId], post.postType];
     
-    return [self.db executeQuery:sql];
+    //[db executeUpdate:sql];
+    
+    [db close];
+    return true;
+    
+    //return [db executeQuery:sql];
 }
 
 
