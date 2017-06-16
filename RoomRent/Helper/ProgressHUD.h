@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProgressHUD : UIView
+@interface ProgressHUD : NSObject
 
-+(ProgressHUD*)showProgressHUDAddedToView:(UIView*)view;
-+(void)hideProgressHUD;
++(ProgressHUD*)sharedInstance;
+-(void)showProgressHUDAddedToView:(UIView*)view;
+-(void)hideProgressHUD;
 
 @end

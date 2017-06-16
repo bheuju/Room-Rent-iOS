@@ -45,10 +45,6 @@
     UIBarButtonItem *mapsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"grey-location-icon"] style:UIBarButtonItemStylePlain target:self action:@selector(maps)];
     self.navigationItem.rightBarButtonItem = mapsButton;
     
-    
-    //Preload Data into database
-    [self preloadData];
-    
 }
 
 //MARK: Methods
@@ -75,26 +71,6 @@
 }
 
 
--(void)preloadData {
-    BOOL s1 = [[DBManager sharedInstance] createDatabase];
-    BOOL s2 = [[DBManager sharedInstance] createTable];
-    
-    //GET: /posts
-    [[APICaller sharedInstance:self] callApiForGET:POST_PATH parameters:nil sendToken:true successBlock:^(id responseObject) {
-        
-        id data = [responseObject valueForKey:@"data"];
-        
-        NSLog(@"%@", data);
-        
-        for (id postJsonObject in data) {
-            Post *post = [[Post alloc] initPostWithJson:postJsonObject];
-            //[self.postsArray addObject:post];
-            [[DBManager sharedInstance] addPost:post];
-        }
-        
-    }];
-    
-}
 
 
 @end

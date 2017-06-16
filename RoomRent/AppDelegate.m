@@ -10,6 +10,7 @@
 
 #import <SWRevealViewController/SWRevealViewController.h>
 #import "SidebarViewController.h"
+#import "DBManager.h"
 
 @interface AppDelegate ()
 
@@ -23,6 +24,7 @@
     // Use Firebase library to configure APIs
     [FIRApp configure];
     
+    
     [self setupDefaults];
     
     //MARK: AUTO LOGIN
@@ -30,6 +32,9 @@
     NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:JSON_KEY_USER_OBJECT];
     
     if (userData != nil) {
+        
+        //Preload Data into database
+        [self preloadData];
         
         //Logged In User
         
@@ -99,6 +104,30 @@
     [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
     
 }
+
+-(void)preloadData {
+    
+    //GET: /posts
+    [[APICaller sharedInstance:nil] callApiForGET:POST_PATH parameters:nil sendToken:true successBlock:^(id responseObject) {
+        
+        id data = [responseObject valueForKey:@"data"];
+        
+        NSLog(@"%@", data);
+        
+        for (id postJsonObject in data) {
+            
+            Post *post = [[Post alloc] initPostWithJson:postJsonObject];
+            [[DBManager sharedInstance] addPost:post];
+            
+            id userJson = [postJsonObject valueForKey:JSON_KEY_USER_OBJECT];
+            User *user = [[User alloc] initUserFromJson:userJson];
+            [[DBManager sharedInstance] addUser:user];
+            
+        }
+        
+    }];
+}
+
 
 
 @end

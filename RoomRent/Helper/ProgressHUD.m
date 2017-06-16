@@ -10,15 +10,25 @@
 
 @implementation ProgressHUD
 
+static ProgressHUD *instance = nil;
+
 UIActivityIndicatorView *indicator;
-ProgressHUD *hud;
+UIView *hud;
 UIView *parentView;
 
-+(ProgressHUD*)showProgressHUDAddedToView:(UIView*)view {
++(ProgressHUD*)sharedInstance {
+    if (instance == nil) {
+        instance = [[ProgressHUD alloc] init];
+        return instance;
+    }
+    return instance;
+}
+
+-(void)showProgressHUDAddedToView:(UIView*)view {
     
     parentView = view;
     
-    hud = [[self alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
+    hud = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
     hud.layer.cornerRadius = 15.0f;
     [hud setBackgroundColor:[UIColor grayColor]];
     [view addSubview:hud];
@@ -40,19 +50,19 @@ UIView *parentView;
     parentView.userInteractionEnabled = false;
     parentView.alpha = 0.8f;
     
-    return hud;
+    //   return ;
 }
 
 
-+(void)hideProgressHUD {
+-(void)hideProgressHUD {
     
     [indicator stopAnimating];
     [hud setHidden:true];
+    [hud removeFromSuperview];
     
     //Enable background view
     parentView.userInteractionEnabled = true;
     parentView.alpha = 1.0f;
-    
     
 }
 

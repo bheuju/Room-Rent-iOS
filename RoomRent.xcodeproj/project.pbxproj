@@ -14,10 +14,13 @@
 		DA0F5ED61EE65ABC00C120BA /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0F5ED51EE65ABC00C120BA /* EditProfileViewController.m */; };
 		DA2107461EDFCA2C00937D2A /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2107451EDFCA2C00937D2A /* ProgressHUD.m */; };
 		DA5408C31EB1A71000F11BB4 /* SinglePostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5408C21EB1A71000F11BB4 /* SinglePostViewController.m */; };
-		DA627E7B1EE7CA400095379C /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA627E7A1EE7CA400095379C /* DBManager.m */; };
 		DA627E7D1EE7FE2F0095379C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA627E7C1EE7FE2F0095379C /* libsqlite3.tbd */; };
 		DA74488E1EA87E8A00009FD3 /* AddressPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA74488D1EA87E8A00009FD3 /* AddressPickerViewController.m */; };
 		DA7448901EA881A700009FD3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA74488F1EA881A700009FD3 /* MapKit.framework */; };
+		DA79EED41EF0DF3100596C9D /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA79EED31EF0DF3100596C9D /* DBManager.m */; };
+		DA79EEDD1EF0DF7700596C9D /* PostDB.m in Sources */ = {isa = PBXBuildFile; fileRef = DA79EEDC1EF0DF7700596C9D /* PostDB.m */; };
+		DA79EEE01EF0DF8000596C9D /* UserDB.m in Sources */ = {isa = PBXBuildFile; fileRef = DA79EEDF1EF0DF8000596C9D /* UserDB.m */; };
+		DA79EEE61EF0DFB700596C9D /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = DA79EEE51EF0DFB700596C9D /* Database.m */; };
 		DA7BD75B1EDBD55E00FFBE97 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BD75A1EDBD55D00FFBE97 /* ProfileViewController.m */; };
 		DA7BD75E1EDBE24200FFBE97 /* AllPostsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BD75D1EDBE24200FFBE97 /* AllPostsMapViewController.m */; };
 		DA9096531ECC1C6D00891C9A /* Location.gpx in Resources */ = {isa = PBXBuildFile; fileRef = DA9096521ECC1C6D00891C9A /* Location.gpx */; };
@@ -69,12 +72,18 @@
 		DA2107451EDFCA2C00937D2A /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 		DA5408C11EB1A71000F11BB4 /* SinglePostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinglePostViewController.h; sourceTree = "<group>"; };
 		DA5408C21EB1A71000F11BB4 /* SinglePostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinglePostViewController.m; sourceTree = "<group>"; };
-		DA627E791EE7CA400095379C /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
-		DA627E7A1EE7CA400095379C /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
 		DA627E7C1EE7FE2F0095379C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		DA74488C1EA87E8A00009FD3 /* AddressPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressPickerViewController.h; sourceTree = "<group>"; };
 		DA74488D1EA87E8A00009FD3 /* AddressPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressPickerViewController.m; sourceTree = "<group>"; };
 		DA74488F1EA881A700009FD3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		DA79EED21EF0DF3100596C9D /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
+		DA79EED31EF0DF3100596C9D /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
+		DA79EEDB1EF0DF7700596C9D /* PostDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDB.h; sourceTree = "<group>"; };
+		DA79EEDC1EF0DF7700596C9D /* PostDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDB.m; sourceTree = "<group>"; };
+		DA79EEDE1EF0DF8000596C9D /* UserDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDB.h; sourceTree = "<group>"; };
+		DA79EEDF1EF0DF8000596C9D /* UserDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDB.m; sourceTree = "<group>"; };
+		DA79EEE41EF0DFB700596C9D /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
+		DA79EEE51EF0DFB700596C9D /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
 		DA7BD7591EDBD55D00FFBE97 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		DA7BD75A1EDBD55D00FFBE97 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		DA7BD75C1EDBE24200FFBE97 /* AllPostsMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllPostsMapViewController.h; sourceTree = "<group>"; };
@@ -176,6 +185,21 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		DA79EED11EF0DF3100596C9D /* DBManager */ = {
+			isa = PBXGroup;
+			children = (
+				DA79EED21EF0DF3100596C9D /* DBManager.h */,
+				DA79EED31EF0DF3100596C9D /* DBManager.m */,
+				DA79EEE41EF0DFB700596C9D /* Database.h */,
+				DA79EEE51EF0DFB700596C9D /* Database.m */,
+				DA79EEDB1EF0DF7700596C9D /* PostDB.h */,
+				DA79EEDC1EF0DF7700596C9D /* PostDB.m */,
+				DA79EEDE1EF0DF8000596C9D /* UserDB.h */,
+				DA79EEDF1EF0DF8000596C9D /* UserDB.m */,
+			);
+			path = DBManager;
+			sourceTree = "<group>";
+		};
 		DAA3BE801E8CF9410092F8DD = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +261,7 @@
 		DAA3BEA71E8D0FA20092F8DD /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				DA79EED11EF0DF3100596C9D /* DBManager */,
 				DAB992F61E9361F4003A6483 /* Alerter.h */,
 				DAB992F41E9361D7003A6483 /* Alerter.m */,
 				DAA980FB1E96178B0032727F /* APICaller.h */,
@@ -247,8 +272,6 @@
 				DA011D871EB9A96B004D183C /* Helper.m */,
 				DA2107441EDFCA2C00937D2A /* ProgressHUD.h */,
 				DA2107451EDFCA2C00937D2A /* ProgressHUD.m */,
-				DA627E791EE7CA400095379C /* DBManager.h */,
-				DA627E7A1EE7CA400095379C /* DBManager.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -514,15 +537,16 @@
 				DAC149C51EA463C2001AA17D /* RequestViewController.m in Sources */,
 				DAAF21251E9F549C0089249D /* SidebarViewController.m in Sources */,
 				DAD538701E8E129A00F71D8B /* SignInViewController.m in Sources */,
+				DA79EEE01EF0DF8000596C9D /* UserDB.m in Sources */,
 				DA0F5ED61EE65ABC00C120BA /* EditProfileViewController.m in Sources */,
 				DAC149CA1EA46FA5001AA17D /* SidebarImplementedViewController.m in Sources */,
 				DAB6944E1E973E6900BD3498 /* ValidationHandler.m in Sources */,
 				DA2107461EDFCA2C00937D2A /* ProgressHUD.m in Sources */,
 				DAA3BE911E8CF9410092F8DD /* AppDelegate.m in Sources */,
 				DAB992F51E9361D7003A6483 /* Alerter.m in Sources */,
-				DA627E7B1EE7CA400095379C /* DBManager.m in Sources */,
 				DA011D881EB9A96B004D183C /* Helper.m in Sources */,
 				DAAC92BC1EC96EF40018EEA8 /* RequestTableViewCell.m in Sources */,
+				DA79EED41EF0DF3100596C9D /* DBManager.m in Sources */,
 				DAC900F31ECEA28C0098ED95 /* PostPartial.m in Sources */,
 				DAB5E38E1EA9BCDB0011AB67 /* Post.m in Sources */,
 				DA7BD75B1EDBD55E00FFBE97 /* ProfileViewController.m in Sources */,
@@ -535,6 +559,8 @@
 				DA7BD75E1EDBE24200FFBE97 /* AllPostsMapViewController.m in Sources */,
 				DACAA4EE1EB6F41300B397D0 /* MapViewController.m in Sources */,
 				DAA3BE8E1E8CF9410092F8DD /* main.m in Sources */,
+				DA79EEE61EF0DFB700596C9D /* Database.m in Sources */,
+				DA79EEDD1EF0DF7700596C9D /* PostDB.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

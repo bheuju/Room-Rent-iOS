@@ -23,5 +23,6 @@
 -(BOOL)createTable;
 
 -(BOOL)addPost:(Post*)post;
+-(BOOL)addUser:(User*)user;
 
 @end

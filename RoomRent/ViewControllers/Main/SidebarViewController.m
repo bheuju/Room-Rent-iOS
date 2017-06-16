@@ -38,7 +38,13 @@ NSArray *menuList;
 //        SDWebImageDownloader *manager = [SDWebImageManager sharedManager].imageDownloader;
 //        [manager setValue:[@"Bearer " stringByAppendingString:userApiToken] forHTTPHeaderField:@"Authorization"];
         
-        [self.profileImageButton sd_setImageWithURL:[[Helper sharedInstance] generateGetImageURLFromFilename:user.profileImageUrl] forState:UIControlStateNormal];
+//        [self.profileImageButton sd_setImageWithURL:[[Helper sharedInstance] generateGetImageURLFromFilename:user.profileImageUrl] forState:UIControlStateNormal];
+        
+        [self.profileImageButton sd_setImageWithURL:[[Helper sharedInstance] generateGetImageURLFromFilename:user.profileImageUrl] forState:UIControlStateNormal completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            
+            NSLog(@"%@", error);
+            
+        }];
         
         [self.profileImageButton setContentMode:UIViewContentModeScaleAspectFit];
         

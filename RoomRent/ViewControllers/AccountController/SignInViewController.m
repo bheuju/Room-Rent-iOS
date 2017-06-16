@@ -29,6 +29,7 @@ User *user = nil;
     
     //PROTOTYPE: Data
     self.emailAddress.text = @"zero";
+    //    self.password.text = @"zero";
     self.password.text = @"Ball1234";
     
     //Textfields validation setup
