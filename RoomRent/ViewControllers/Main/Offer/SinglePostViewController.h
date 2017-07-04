@@ -15,6 +15,7 @@
 #import "ImageSliderCollectionViewCell.h"
 #import "Helper.h"
 #import "Alerter.h"
+#import "DBManager.h"
 
 #import "AddPostViewController.h"
 

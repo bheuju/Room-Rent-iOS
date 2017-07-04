@@ -49,9 +49,11 @@
     self.offsetValue = 0;
     self.postAdded = false;
     self.isLastPage = false;
-        
-    [self getData];
     
+    
+    self.postsArray = [[DBManager sharedInstance] getPostsOfType:REQUEST forUserWithId:nil];
+    
+    //[self getData];
     
 }
 

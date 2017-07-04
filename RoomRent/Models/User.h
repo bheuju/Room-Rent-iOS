@@ -11,7 +11,7 @@
 
 @interface User : NSObject <NSCoding>
 
-@property int userId;
+@property NSNumber *userId;
 @property NSString *name;
 @property NSString *phone;
 @property NSString *username;

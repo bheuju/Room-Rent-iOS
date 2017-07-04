@@ -29,6 +29,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //Register nib file for collection view
+    [self.imageSliderCollectionView registerNib:[UINib nibWithNibName:@"ImageSliderCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"imageSlideCollectionViewCell"];
+    
     //Initially hide all until post data is fetched from server
     self.parentScrollView.hidden = true;
     
@@ -42,9 +45,6 @@
     layout.itemSize = CGSizeMake(self.view.frame.size.width, 300.0f);
     layout.minimumLineSpacing = 0.0f;
     layout.minimumInteritemSpacing = 0.0f;
-    
-    //Register nib file for collection view
-    [self.imageSliderCollectionView registerNib:[UINib nibWithNibName:@"ImageSliderCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"imageSlideCollectionViewCell"];
     
     //Tap gesture for mapView
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handlePostAddressMapClick:)];
@@ -104,18 +104,33 @@
 -(void)initPostHavingPostId:(NSString*)postSlug {
     
     //GET: /posts/{slug}
-    NSString *path = [[POST_PATH stringByAppendingString:@"/"] stringByAppendingString:postSlug];
-    [[APICaller sharedInstance:self] callApiForGET:path parameters:nil sendToken:true successBlock:^(id responseObject) {
+    //    NSString *path = [[POST_PATH stringByAppendingString:@"/"] stringByAppendingString:postSlug];
+    //    [[APICaller sharedInstance:self] callApiForGET:path parameters:nil sendToken:true successBlock:^(id responseObject) {
+    //
+    //        self.post = [[Post alloc] initPostWithJson:[responseObject valueForKey:@"data"]];
+    //        [self initWithPost:self.post];
+    //
+    //        [self.imageSliderCollectionView reloadData];
+    //
+    //        //Show details after post data has been loaded
+    //        self.parentScrollView.hidden = false;
+    //
+    //    }];
+    
+    [[ProgressHUD sharedInstance] showProgressHUDAddedToView:self.view];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // do work here
         
-        self.post = [[Post alloc] initPostWithJson:[responseObject valueForKey:@"data"]];
+        self.post = [[DBManager sharedInstance] getPostWithSlug:postSlug];
         [self initWithPost:self.post];
-        
         [self.imageSliderCollectionView reloadData];
         
         //Show details after post data has been loaded
         self.parentScrollView.hidden = false;
         
-    }];
+        [[ProgressHUD sharedInstance] hideProgressHUD];
+    });
+    
     
 }
 
@@ -128,6 +143,8 @@
     self.postNoOfRooms.text = [post.postNoOfRooms stringValue];
     self.postPrice.text = [post.postPrice stringValue];
     self.postUser.text = post.postUser.name;
+    
+    //[self.postTitle setText:@"Hello"];
     
     //Init map here
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(post.postAddressCoordinates, 5000, 5000);
@@ -194,7 +211,7 @@
 
 - (IBAction)onUserInfo:(UIButton *)sender {
     //Load user info here
-    [[Alerter sharedInstance] createAlert:@"User Details" message:[NSString stringWithFormat:@"Name: %@\nPhone: %@\nUsername: %@\nEmail: %@\n", self.post.postUser.name, self.post.postUser.phone, self.post.postUser.username, self.post.postUser.email] viewController:self completion:^{}];
+    [[Alerter sharedInstance] createAlert:@"User Details" message:[NSString stringWithFormat:@"Name: %@\nPhone: %@\nUsername: %@\nEmail: %@", self.post.postUser.name, self.post.postUser.phone, self.post.postUser.username, self.post.postUser.email] viewController:self completion:^{}];
 }
 
 

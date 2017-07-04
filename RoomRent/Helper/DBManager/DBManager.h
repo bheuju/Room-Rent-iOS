@@ -10,6 +10,8 @@
 
 #import <FMDB/FMDB.h>
 
+#import "Helper.h"
+
 #import "Post.h"
 
 @interface DBManager : NSObject
@@ -24,5 +26,10 @@
 
 -(BOOL)addPost:(Post*)post;
 -(BOOL)addUser:(User*)user;
+-(BOOL)addImage:(NSNumber*)id fileName:(NSString*)filename;
+    
+-(NSMutableArray*)getPostsOfType:(NSString*)type forUserWithId:(NSNumber*)userId;
+-(Post*)getPostWithSlug:(NSString*)slug;
+
 
 @end

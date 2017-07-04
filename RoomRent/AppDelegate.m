@@ -123,6 +123,11 @@
             User *user = [[User alloc] initUserFromJson:userJson];
             [[DBManager sharedInstance] addUser:user];
             
+            id images = [postJsonObject valueForKey:JSON_KEY_POST_IMAGES];
+            for (NSString* imagename in images) {
+                [[DBManager sharedInstance] addImage:post.postId fileName:imagename];
+            }
+            
         }
         
     }];

@@ -44,11 +44,16 @@
     [self.refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     [self.offerTableView addSubview:self.refreshControl];
     
+    
     //Init postsArray
     self.postsArray = [[NSMutableArray alloc] init];
+   
+    //Load posts from database
+    self.postsArray = [[DBManager sharedInstance] getPostsOfType:OFFER forUserWithId:nil];
+    
     
     //Initial Data loading
-    [self getData];
+    //[self getData];
     
 }
 

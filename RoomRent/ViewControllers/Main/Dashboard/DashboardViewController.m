@@ -119,7 +119,7 @@
         }];
         
     }];
-
+    
 }
 
 -(void)handleLongPress:(UILongPressGestureRecognizer*) gestureRecognizer {
@@ -148,12 +148,14 @@
             //My Offers
             //Load offers
             self.getPostType = POSTS_OFFER_STRING;
+//            self.getPostType = OFFER;
             break;
             
         case 1:
             //My Requests
             //Load Requests
             self.getPostType = POSTS_REQUEST_STRING;
+//            self.getPostType = REQUEST;
             break;
             
         default:
@@ -174,34 +176,50 @@
 
 -(void)getData {
     
-    NSDictionary *parameters = @{
-                                 @"type":self.getPostType,
-                                 @"offset":[NSNumber numberWithInt:self.offsetValue]
-                                 };
+    //    NSDictionary *parameters = @{
+    //                                 @"type":self.getPostType,
+    //                                 @"offset":[NSNumber numberWithInt:self.offsetValue]
+    //                                 };
+    //
+    //    //GET: /myposts ? type & offset
+    //    [[APICaller sharedInstance:self] callApiForGET:MY_POST_PATH parameters:parameters sendToken:true successBlock:^(id responseObject) {
+    //
+    //        id data = [responseObject valueForKey:@"data"];
+    //
+    //        for (id postJsonObject in data) {
+    //            Post *post = [[Post alloc] initPostWithJson:postJsonObject];
+    //            [self.postsArray addObject:post];
+    //        }
+    //
+    //        [self.dashboardTableView reloadData];
+    //
+    //        NSLog(@"Posts count: %lu",(unsigned long)self.postsArray.count);
+    //
+    //        self.postAdded = true;
+    //
+    //        //Set offset value
+    //        self.offsetValue = [[responseObject valueForKey:JSON_KEY_POST_OFFSET] intValue];
+    //        self.isLastPage = [[responseObject valueForKey:JSON_KEY_POST_IS_LAST_PAGE] boolValue];
+    //
+    //        [self.refreshControl endRefreshing];
+    //
+    //    }];
     
-    //GET: /myposts ? type & offset
-    [[APICaller sharedInstance:self] callApiForGET:MY_POST_PATH parameters:parameters sendToken:true successBlock:^(id responseObject) {
-        
-        id data = [responseObject valueForKey:@"data"];
-        
-        for (id postJsonObject in data) {
-            Post *post = [[Post alloc] initPostWithJson:postJsonObject];
-            [self.postsArray addObject:post];
-        }
-        
-        [self.dashboardTableView reloadData];
-        
-        NSLog(@"Posts count: %lu",(unsigned long)self.postsArray.count);
-        
-        self.postAdded = true;
-        
-        //Set offset value
-        self.offsetValue = [[responseObject valueForKey:JSON_KEY_POST_OFFSET] intValue];
-        self.isLastPage = [[responseObject valueForKey:JSON_KEY_POST_IS_LAST_PAGE] boolValue];
-        
-        [self.refreshControl endRefreshing];
-        
-    }];
+    
+    
+    self.postsArray = [[DBManager sharedInstance] getPostsOfType:self.getPostType forUserWithId:[[Helper sharedInstance] getUserFromUserDefaults].userId];
+    
+    [self.dashboardTableView reloadData];
+    
+    self.postAdded = true;
+    
+    
+    //Set offset value
+//    self.offsetValue = [[responseObject valueForKey:JSON_KEY_POST_OFFSET] intValue];
+//    self.isLastPage = [[responseObject valueForKey:JSON_KEY_POST_IS_LAST_PAGE] boolValue];
+    
+//    [self.refreshControl endRefreshing];
+    
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {

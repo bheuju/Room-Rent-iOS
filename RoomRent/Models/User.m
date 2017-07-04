@@ -14,7 +14,7 @@
     
     NSDictionary *json = (NSDictionary*) userJson;
     
-    self.userId = [[json valueForKey:JSON_KEY_USER_ID] intValue];
+    self.userId = [json valueForKey:JSON_KEY_USER_ID];
     self.name = [json valueForKey:JSON_KEY_NAME];
     self.phone = [json valueForKey:JSON_KEY_PHONE];
     self.username = [json valueForKey:JSON_KEY_USERNAME];
@@ -33,7 +33,7 @@
 -(id)initWithCoder:(NSCoder *)aDecoder {
     
     if (self = [super init]) {
-        self.userId = [[aDecoder decodeObjectForKey:JSON_KEY_USER_ID] intValue] ;
+        self.userId = [aDecoder decodeObjectForKey:JSON_KEY_USER_ID] ;
         self.name = [aDecoder decodeObjectForKey:JSON_KEY_NAME];
         self.phone = [aDecoder decodeObjectForKey:JSON_KEY_PHONE];
         self.username = [aDecoder decodeObjectForKey:JSON_KEY_USERNAME];
@@ -46,7 +46,7 @@
 
 -(void)encodeWithCoder:(NSCoder *)aCoder {
     
-    [aCoder encodeObject:[NSString stringWithFormat:@"%d",self.userId] forKey:JSON_KEY_USER_ID];
+    [aCoder encodeObject:self.userId forKey:JSON_KEY_USER_ID];
     [aCoder encodeObject:self.name forKey:JSON_KEY_NAME];
     [aCoder encodeObject:self.phone forKey:JSON_KEY_PHONE];
     [aCoder encodeObject:self.username forKey:JSON_KEY_USERNAME];
